@@ -163,6 +163,9 @@ def html(cfg, fc):
 
 def main():
     cfg = json.loads(Path(sys.argv[1]).read_text())
+    if "county_fips" not in cfg or "slug" not in cfg:
+        print(f"skip {sys.argv[1]}: not a food-bank config (no county_fips/slug)")
+        return
     fc = build(cfg)
     out = Path("docs") / (cfg["slug"] + ".html")
     out.parent.mkdir(exist_ok=True)

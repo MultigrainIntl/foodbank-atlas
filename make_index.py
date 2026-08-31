@@ -3,6 +3,10 @@ from pathlib import Path
 cards=[]
 for c in sorted(glob.glob("config/*.json")):
     cfg=json.loads(Path(c).read_text())
+    if "slug" not in cfg or "county_fips" not in cfg:
+        continue  # skip funding.json and other non-food-bank configs
+    if not Path(f"docs/{cfg['slug']}.html").exists():
+        continue  # only list food banks whose map actually built
     cards.append(f'<li><a href="{cfg["slug"]}.html">{cfg["name"]}</a> <span>{cfg.get("region_label","")}</span></li>')
 Path("docs").mkdir(exist_ok=True)
 Path("docs/index.html").write_text(f'''<!doctype html><meta charset=utf-8><title>Food-Need Atlas</title>
