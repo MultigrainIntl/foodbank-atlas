@@ -37,8 +37,31 @@
  .fund-size{float:right;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
  .fund-focus{font-size:12.5px;color:var(--ink-soft);margin:3px 0 5px} .fund-links{font-size:12px} .fund-links a{color:var(--primary)}
  a{color:var(--primary)}
-</style></head><body><div class="wrap">
- <div class="org">Food Aid Project · Food-Need Atlas</div>
+ .nav{position:sticky;top:0;z-index:1000;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;flex-wrap:wrap}
+ .brand{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);text-decoration:none;white-space:nowrap}
+ .brand b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.01em;text-transform:none;font-size:14px}
+ .navlinks{display:flex;align-items:center;gap:16px;font-size:13px}
+ .navlinks>a{color:var(--ink-soft);text-decoration:none} .navlinks>a:hover{color:var(--primary)}
+ .switch{position:relative}
+ .switch-btn{font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+ .switch-btn:hover{border-color:var(--primary)}
+ .switch-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:270px;max-height:62vh;overflow:auto;display:none}
+ .switch-menu.open{display:block}
+ .switch-menu a{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}
+ .switch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
+ .switch-menu a:hover{background:var(--ground)}
+ .switch-menu a.here{background:var(--primary);color:#fff} .switch-menu a.here small{color:rgba(255,255,255,.82)}
+ #map,#funding{scroll-margin-top:66px}
+</style></head><body>
+<header class="nav">
+ <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
+ <nav class="navlinks">
+  <a href="#map">Map</a>
+  <a href="#funding">Funding</a>
+  <div class="switch"><button class="switch-btn" id="switchBtn" aria-haspopup="true" aria-expanded="false">Switch food bank ▾</button><div class="switch-menu" id="switchMenu"></div></div>
+ </nav>
+</header>
+<div class="wrap">
  <h1>Food-need by neighborhood — __TITLE__</h1>
  <p class="lead">Every census tract in __REGION__ (about 4,000 people each), shaded by food need — a composite of poverty, share under 200% of the poverty line, SNAP receipt, and low income. Darker = higher need. Tracts outlined in purple are student / group-quarters areas (campuses, military housing, facilities), kept in rather than filtered out. Click any neighborhood for its numbers.</p>
  <div id="map"></div>
@@ -61,6 +84,14 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+ const FOODBANKS=__FOODBANKS__, SLUG=__SLUG__;
+ (function(){
+   const menu=document.getElementById('switchMenu'), btn=document.getElementById('switchBtn');
+   if(!menu||!btn) return;
+   menu.innerHTML=FOODBANKS.map(f=>`<a href="/${f.slug}"${f.slug===SLUG?' class="here"':''}>${f.name}<small>${f.region_label}</small></a>`).join('');
+   btn.addEventListener('click',e=>{e.stopPropagation();const o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+   document.addEventListener('click',e=>{if(!menu.contains(e.target)&&e.target!==btn){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+ })();
  const FUNDING=__FUNDING__;
  (function(){
    const F=FUNDING; if(!F) return;

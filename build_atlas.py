@@ -16,6 +16,61 @@ GEOCODER = "https://geocoding.geo.census.gov/geocoder/geographies/coordinates"
 TABLES = "B01003,B17001,C17002,B22003,B19013,B26001"
 HEAT = ['#3F8F74', '#8DA65E', '#E4B24A', '#DE7C3B', '#C0442E']
 
+STATE_FIPS = {
+    "01": ("Alabama", "AL"), "02": ("Alaska", "AK"), "04": ("Arizona", "AZ"),
+    "05": ("Arkansas", "AR"), "06": ("California", "CA"), "08": ("Colorado", "CO"),
+    "09": ("Connecticut", "CT"), "10": ("Delaware", "DE"), "11": ("District of Columbia", "DC"),
+    "12": ("Florida", "FL"), "13": ("Georgia", "GA"), "15": ("Hawaii", "HI"),
+    "16": ("Idaho", "ID"), "17": ("Illinois", "IL"), "18": ("Indiana", "IN"),
+    "19": ("Iowa", "IA"), "20": ("Kansas", "KS"), "21": ("Kentucky", "KY"),
+    "22": ("Louisiana", "LA"), "23": ("Maine", "ME"), "24": ("Maryland", "MD"),
+    "25": ("Massachusetts", "MA"), "26": ("Michigan", "MI"), "27": ("Minnesota", "MN"),
+    "28": ("Mississippi", "MS"), "29": ("Missouri", "MO"), "30": ("Montana", "MT"),
+    "31": ("Nebraska", "NE"), "32": ("Nevada", "NV"), "33": ("New Hampshire", "NH"),
+    "34": ("New Jersey", "NJ"), "35": ("New Mexico", "NM"), "36": ("New York", "NY"),
+    "37": ("North Carolina", "NC"), "38": ("North Dakota", "ND"), "39": ("Ohio", "OH"),
+    "40": ("Oklahoma", "OK"), "41": ("Oregon", "OR"), "42": ("Pennsylvania", "PA"),
+    "44": ("Rhode Island", "RI"), "45": ("South Carolina", "SC"), "46": ("South Dakota", "SD"),
+    "47": ("Tennessee", "TN"), "48": ("Texas", "TX"), "49": ("Utah", "UT"),
+    "50": ("Vermont", "VT"), "51": ("Virginia", "VA"), "53": ("Washington", "WA"),
+    "54": ("West Virginia", "WV"), "55": ("Wisconsin", "WI"), "56": ("Wyoming", "WY"),
+    "72": ("Puerto Rico", "PR"),
+}
+
+
+def load_foodbanks():
+    """All configured food banks (name, slug, region) for the cross-page switcher."""
+    import glob
+    out = []
+    for p in sorted(glob.glob(str(Path(__file__).parent / "config" / "*.json"))):
+        c = json.loads(Path(p).read_text())
+        if "slug" in c and "county_fips" in c:
+            out.append({"name": c["name"], "slug": c["slug"],
+                        "region_label": c.get("region_label", c["name"])})
+    return sorted(out, key=lambda x: x["name"])
+
+
+def summarize(cfg, fc):
+    """Compact per-food-bank summary that the home page reads (stats + map pin)."""
+    feats = fc["features"]
+    cents = [centroid(f["geometry"]) for f in feats]
+    lat = round(sum(c[0] for c in cents) / len(cents), 4) if cents else None
+    lon = round(sum(c[1] for c in cents) / len(cents), 4) if cents else None
+    scored = [f for f in feats if f["properties"].get("score") is not None]
+    top = max(scored, key=lambda f: f["properties"]["score"]) if scored else None
+    fips2 = (cfg["county_fips"][0] or "")[:2]
+    state, abbr = STATE_FIPS.get(fips2, ("", ""))
+    return {
+        "name": cfg["name"], "slug": cfg["slug"],
+        "region_label": cfg.get("region_label", cfg["name"]),
+        "state": state, "state_abbr": abbr,
+        "ntracts": len(feats),
+        "ngq": sum(1 for f in feats if f["properties"].get("gq")),
+        "center": [lat, lon],
+        "top_place": (top["properties"].get("place") or "") if top else "",
+        "top_score": top["properties"]["score"] if top else None,
+    }
+
 
 def _get(url, tries=3):
     for i in range(tries):
@@ -153,10 +208,13 @@ def html(cfg, fc):
     funding = json.loads(fpath.read_text()) if fpath.exists() else {}
     T = Path(__file__).parent / "template.html"
     tpl = T.read_text()
+    foodbanks = load_foodbanks()
     return (tpl.replace("__TITLE__", cfg["name"])
                .replace("__REGION__", cfg.get("region_label", cfg["name"]))
                .replace("__NTRACTS__", str(len(fc["features"])))
                .replace("__NGQ__", str(ngq))
+               .replace("__SLUG__", json.dumps(cfg["slug"]))
+               .replace("__FOODBANKS__", json.dumps(foodbanks, separators=(",", ":")))
                .replace("__FUNDING__", json.dumps(funding, separators=(",", ":")))
                .replace("__DATA__", geo))
 
@@ -170,6 +228,10 @@ def main():
     out = Path("docs") / (cfg["slug"] + ".html")
     out.parent.mkdir(exist_ok=True)
     out.write_text(html(cfg, fc))
+    data_dir = Path("docs") / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    (data_dir / (cfg["slug"] + ".json")).write_text(
+        json.dumps(summarize(cfg, fc), separators=(",", ":")))
     print(f"wrote {out} : {len(fc['features'])} tracts")
 
 
