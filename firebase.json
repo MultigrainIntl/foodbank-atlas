@@ -4,7 +4,6 @@
     "public": "docs",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "cleanUrls": true,
-    "trailingSlash": false,
     "headers": [
       {
         "source": "**/*.@(csv|json)",
