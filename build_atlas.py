@@ -204,8 +204,19 @@ def html(cfg, fc):
     scores = [f["properties"]["score"] for f in fc["features"] if f["properties"]["score"] is not None]
     ngq = sum(1 for f in fc["features"] if f["properties"]["gq"])
     geo = json.dumps(fc, separators=(",", ":"))
-    fpath = Path(__file__).parent / "config" / "funding.json"
-    funding = json.loads(fpath.read_text()) if fpath.exists() else {}
+    cdir = Path(__file__).parent / "config"
+    def _load(name):
+        p = cdir / name
+        try:
+            return json.loads(p.read_text()) if p.exists() else {}
+        except Exception:
+            return {}
+    funding = _load("funding.json")
+    grants = _load("grants.json")
+    fbs = _load("foundations_by_state.json")
+    abbr = STATE_FIPS.get((cfg["county_fips"][0] or "")[:2], ("", ""))[1]
+    state_name = STATE_FIPS.get((cfg["county_fips"][0] or "")[:2], ("", ""))[0]
+    state_foundations = (fbs.get("states") or {}).get(abbr, [])
     T = Path(__file__).parent / "template.html"
     tpl = T.read_text()
     foodbanks = load_foodbanks()
@@ -214,7 +225,10 @@ def html(cfg, fc):
                .replace("__NTRACTS__", str(len(fc["features"])))
                .replace("__NGQ__", str(ngq))
                .replace("__SLUG__", json.dumps(cfg["slug"]))
+               .replace("__STATE__", json.dumps(state_name))
                .replace("__FOODBANKS__", json.dumps(foodbanks, separators=(",", ":")))
+               .replace("__GRANTS__", json.dumps(grants, separators=(",", ":")))
+               .replace("__FOUNDATIONS__", json.dumps(state_foundations, separators=(",", ":")))
                .replace("__FUNDING__", json.dumps(funding, separators=(",", ":")))
                .replace("__DATA__", geo))
 

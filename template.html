@@ -36,6 +36,13 @@
  .fund-name:hover{text-decoration:underline}
  .fund-size{float:right;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
  .fund-focus{font-size:12.5px;color:var(--ink-soft);margin:3px 0 5px} .fund-links{font-size:12px} .fund-links a{color:var(--primary)}
+ .grant-list{margin:0;padding-left:0;list-style:none} .grant-list li{margin:0 0 11px;font-size:13.5px}
+ .grant-list a{font-weight:600;color:var(--primary);text-decoration:none} .grant-list a:hover{text-decoration:underline}
+ .grant-meta{color:var(--ink-faint);font-size:11px;margin-top:2px;font-family:"IBM Plex Mono",monospace}
+ .gtag{display:inline-block;background:var(--ground);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-size:10px;color:var(--ink-soft);margin-left:4px}
+ .more{margin-top:10px;font-size:12.5px} .more a{color:var(--primary)}
+ .prog{margin-top:14px;font-size:11.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:9px;line-height:1.7}
+ .prog-h{color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;font-size:10px} .prog a{color:var(--primary)}
  a{color:var(--primary)}
  .nav{position:sticky;top:0;z-index:1000;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;flex-wrap:wrap}
  .brand{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);text-decoration:none;white-space:nowrap}
@@ -51,13 +58,21 @@
  .switch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
  .switch-menu a:hover{background:var(--ground)}
  .switch-menu a.here{background:var(--primary);color:#fff} .switch-menu a.here small{color:rgba(255,255,255,.82)}
- #map,#funding{scroll-margin-top:66px}
+ #map,#funding,#order{scroll-margin-top:66px}
+ .order-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px;background:linear-gradient(100deg,rgba(30,107,87,.10),rgba(30,107,87,.03));border:1px solid var(--primary);border-radius:14px;padding:18px 22px;text-decoration:none;color:var(--ink);flex-wrap:wrap}
+ .order-cta:hover{background:linear-gradient(100deg,rgba(30,107,87,.16),rgba(30,107,87,.06))}
+ .order-txt{flex:1 1 340px}
+ .order-kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary)}
+ .order-h{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;letter-spacing:-.01em;margin:3px 0 4px}
+ .order-help{font-size:13px;color:var(--ink-soft);max-width:70ch}
+ .order-btn{flex:0 0 auto;background:var(--primary);color:#fff;font-weight:700;font-size:14px;border-radius:10px;padding:11px 18px;white-space:nowrap}
 </style></head><body>
 <header class="nav">
  <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
  <nav class="navlinks">
   <a href="#map">Map</a>
   <a href="#funding">Funding</a>
+  <a href="#order">Order</a>
   <div class="switch"><button class="switch-btn" id="switchBtn" aria-haspopup="true" aria-expanded="false">Switch food bank ▾</button><div class="switch-menu" id="switchMenu"></div></div>
  </nav>
 </header>
@@ -92,20 +107,48 @@
    btn.addEventListener('click',e=>{e.stopPropagation();const o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
    document.addEventListener('click',e=>{if(!menu.contains(e.target)&&e.target!==btn){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
  })();
- const FUNDING=__FUNDING__;
+ const FUNDING=__FUNDING__, GRANTS=__GRANTS__, FOUNDATIONS=__FOUNDATIONS__, STATE=__STATE__;
  (function(){
-   const F=FUNDING; if(!F) return;
-   const fed=(F.federal_channels||[]).map(c=>`<li><b>${c.name}</b> — ${c.what}${c.url?` <a href="${c.url}" target="_blank" rel="noopener">details →</a>`:''}</li>`).join('');
-   const ff=F.foundation_finder;
-   const finder=ff?`<div class="fund-card"><a href="${ff.url}" target="_blank" rel="noopener" class="fund-name">${ff.label} →</a><div class="fund-focus">${ff.help}</div><div class="fund-links"><a href="${ff.url}" target="_blank" rel="noopener">Open grantmakers.io →</a></div></div>`:'';
+   const F=FUNDING||{};
+   const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+   // ---- Open federal grants: live opportunities if the pull produced any, else ongoing channels ----
+   const ops=(GRANTS&&GRANTS.opportunities)||[];
+   let grantsHtml, grantsSub='';
+   if(ops.length){
+     grantsHtml='<ul class="grant-list">'+ops.map(o=>`<li><a href="${o.url}" target="_blank" rel="noopener">${esc(o.title)}</a>${(o.themes||[]).filter(t=>t!=='general').map(t=>`<span class="gtag">${esc(t)}</span>`).join('')}<div class="grant-meta">${esc(o.agency)} · closes ${esc(o.close)}${o.cfda?` · CFDA ${esc(o.cfda)}`:''}</div></li>`).join('')+'</ul>';
+     if(F.grants_gov_search) grantsSub=`<p class="more"><a href="${F.grants_gov_search}" target="_blank" rel="noopener">See all food-related grants on Grants.gov →</a></p>`;
+   } else {
+     grantsHtml='<ul class="fund-fed">'+(F.federal_channels||[]).map(c=>`<li><b>${esc(c.name)}</b> — ${esc(c.what)}${c.url?` <a href="${c.url}" target="_blank" rel="noopener">details →</a>`:''}</li>`).join('')+'</ul>';
+     if(F.grants_gov_search) grantsSub=`<p class="more"><a href="${F.grants_gov_search}" target="_blank" rel="noopener">Search open federal grants on Grants.gov →</a></p>`;
+   }
+   // ongoing federal programs strip (always relevant, shown compactly when live grants are present)
+   let prog='';
+   if(ops.length && (F.federal_channels||[]).length){
+     const links=(F.federal_channels||[]).map(c=>c.url?`<a href="${c.url}" target="_blank" rel="noopener">${esc(c.name)}</a>`:`<span>${esc(c.name)}</span>`).join(' · ');
+     prog=`<div class="prog"><div class="prog-h">Ongoing programs</div>${links}</div>`;
+   }
+   // ---- Local foundations: real state prospects from 990-PF if pulled, else the grantmakers.io finder ----
+   const fA=m=>m==null?'':(m>=1000?'$'+(m/1000).toFixed(1)+'B':'$'+m+'M');
+   let fdnHead, fdnHtml;
+   if(FOUNDATIONS&&FOUNDATIONS.length){
+     fdnHead=`Local foundations${STATE?` in ${esc(STATE)}`:''} <span class="fund-note">(IRS 990-PF)</span>`;
+     fdnHtml=FOUNDATIONS.map(f=>`<div class="fund-card"><a href="${f.gm_url}" target="_blank" rel="noopener" class="fund-name">${esc(f.name)}</a> <span class="fund-size">${fA(f.assets_musd)}</span><div class="fund-focus">${f.city?esc(f.city)+' · ':''}${esc(f.focus)}</div><div class="fund-links"><a href="${f.gm_url}" target="_blank" rel="noopener">grant history</a> · <a href="${f.pp_url}" target="_blank" rel="noopener">990</a></div></div>`).join('');
+     if(F.foundation_finder) fdnHtml+=`<p class="more"><a href="${F.foundation_finder.url}" target="_blank" rel="noopener">Search more foundations on grantmakers.io →</a></p>`;
+   } else {
+     const ff=F.foundation_finder;
+     fdnHead='Local foundations <span class="fund-note">(IRS 990-PF)</span>';
+     fdnHtml=ff?`<div class="fund-card"><a href="${ff.url}" target="_blank" rel="noopener" class="fund-name">${esc(ff.label)} →</a><div class="fund-focus">${esc(ff.help)}</div><div class="fund-links"><a href="${ff.url}" target="_blank" rel="noopener">Open grantmakers.io →</a></div></div>`:'';
+   }
+   const ord=F.order;
+   const orderHtml=ord?`<a class="order-cta" id="order" href="${ord.url}" target="_blank" rel="noopener"><div class="order-txt"><div class="order-kick">Food Aid Project · fill the trucks</div><div class="order-h">${esc(ord.label)} →</div><div class="order-help">${esc(ord.help)}</div></div><span class="order-btn">${esc(ord.label)} →</span></a>`:'<span id="order"></span>';
+   const dated=(GRANTS&&GRANTS.pulled)?` <span class="fund-note">grants refreshed ${esc(GRANTS.pulled)}</span>`:'';
    document.getElementById('funding').innerHTML=
      `<h2 class="fund-h">Funding to fill the gap</h2>
-      <p class="fund-lead">Money a food bank can pursue to buy and move food into the neighborhoods above. ${F.note||''}</p>
+      <p class="fund-lead">Money a food bank can pursue to buy and move food into the neighborhoods above.${dated}</p>
       <div class="fund-grid">
-        <div class="fund-col"><h3>Federal &amp; state channels</h3><ul class="fund-fed">${fed}</ul>
-          ${F.grants_gov_search?`<p style="margin-top:8px"><a href="${F.grants_gov_search}" target="_blank" rel="noopener">Search open federal grants on Grants.gov →</a></p>`:''}</div>
-        <div class="fund-col"><h3>Local foundations <span class="fund-note">(IRS 990-PF)</span></h3>${finder}</div>
-      </div>`;
+        <div class="fund-col"><h3>Open federal grants</h3>${grantsHtml}${grantsSub}${prog}</div>
+        <div class="fund-col"><h3>${fdnHead}</h3>${fdnHtml}</div>
+      </div>${orderHtml}`;
  })();
  const DATA=__DATA__;
  const C=['#3F8F74','#8DA65E','#E4B24A','#DE7C3B','#C0442E'];
