@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Food-Need Atlas — __TITLE__</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;
+  --c1:#3F8F74;--c2:#8DA65E;--c3:#E4B24A;--c4:#DE7C3B;--c5:#C0442E;--gq:#6C4FB0;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;--gq:#B7A6E6;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:15px;line-height:1.55}
+ .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.02em;margin:0}
+ .lead{color:var(--ink-soft);max-width:78ch;margin:12px 0 18px}
+ #map{height:560px;border-radius:14px;border:1px solid var(--line);box-shadow:0 8px 26px rgba(20,40,34,.08)}
+ .modewrap{display:flex;align-items:center;gap:10px;margin:2px 0 12px;flex-wrap:wrap}
+ .modelabel{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+ .modes{display:inline-flex;border:1.5px solid var(--primary);border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(30,107,87,.14)}
+ .mode{font:inherit;font-size:14px;font-weight:700;padding:9px 18px;background:var(--paper);color:var(--primary);border:none;cursor:pointer;transition:background .12s}
+ .mode:hover{background:rgba(30,107,87,.09)}
+ .mode+.mode{border-left:1.5px solid var(--primary)} .mode.on,.mode.on:hover{background:var(--primary);color:#fff}
+ .snaphead{background:var(--paper);border:1px solid var(--line);border-left:3px solid #2E7CB8;border-radius:10px;padding:11px 15px;margin:0 0 12px;font-size:13.5px;color:var(--ink-soft);display:none}
+ .snaphead.show{display:block} .snaphead b{color:var(--ink)}
+ .row{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px}
+ .legend,.note{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+ .note{flex:1 1 340px;font-size:13.5px;color:var(--ink-soft)} .legend{flex:0 0 auto}
+ .legend h3,.note h3{font-family:"Bricolage Grotesque",sans-serif;margin:0 0 8px;font-size:.98rem;color:var(--ink)}
+ .sw{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12.5px}
+ .sw i{width:16px;height:16px;border-radius:4px;display:inline-block}
+ .note b{color:var(--ink)} .note p{margin:6px 0}
+ .leaflet-popup-content{font-family:"Public Sans",sans-serif;font-size:13px;margin:10px 12px}
+ .pill{display:inline-block;background:var(--primary);color:#fff;border-radius:20px;padding:1px 9px;font-weight:600;font-size:12px}
+ .gqtag{display:inline-block;background:var(--gq);color:#fff;border-radius:6px;padding:1px 7px;font-size:11px;font-weight:600}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);margin-top:20px;border-top:1px solid var(--line);padding-top:14px}
+ #funding{margin-top:34px}
+ .fund-h{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.02em;margin:0 0 4px}
+ .fund-lead{color:var(--ink-soft);max-width:80ch;margin:6px 0 16px;font-size:14px}
+ .fund-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+ @media(max-width:720px){.fund-grid{grid-template-columns:1fr}}
+ .fund-col h3{font-family:"Bricolage Grotesque",sans-serif;font-size:1.02rem;margin:0 0 10px}
+ .fund-fed{margin:0;padding-left:18px} .fund-fed li{margin:7px 0;font-size:13.5px;color:var(--ink-soft)} .fund-fed b{color:var(--ink)}
+ .fund-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:9px}
+ .fund-name{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--primary);text-decoration:none;font-size:.98rem}
+ .fund-name:hover{text-decoration:underline}
+ .fund-focus{font-size:12.5px;color:var(--ink-soft);margin:3px 0 5px} .fund-links{font-size:12px} .fund-links a{color:var(--primary)}
+ .more{margin-top:10px;font-size:12.5px} .more a{color:var(--primary)}
+ a{color:var(--primary)}
+ .nav{position:sticky;top:0;z-index:1000;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;flex-wrap:wrap}
+ .brand{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);text-decoration:none;white-space:nowrap}
+ .brand b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.01em;text-transform:none;font-size:14px}
+ .navlinks{display:flex;align-items:center;gap:16px;font-size:13px}
+ .navlinks>a{color:var(--ink-soft);text-decoration:none} .navlinks>a:hover{color:var(--primary)}
+ .switch{position:relative}
+ .switch-btn{font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+ .switch-btn:hover{border-color:var(--primary)}
+ .switch-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:270px;max-height:62vh;overflow:auto;display:none}
+ .switch-menu.open{display:block}
+ .switch-menu a{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}
+ .switch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
+ .switch-menu a:hover{background:var(--ground)}
+ .switch-menu a.here{background:var(--primary);color:#fff} .switch-menu a.here small{color:rgba(255,255,255,.82)}
+ #map,#funding,#order{scroll-margin-top:66px}
+ .order-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px;background:linear-gradient(100deg,rgba(30,107,87,.10),rgba(30,107,87,.03));border:1px solid var(--primary);border-radius:14px;padding:18px 22px;text-decoration:none;color:var(--ink);flex-wrap:wrap}
+ .order-cta:hover{background:linear-gradient(100deg,rgba(30,107,87,.16),rgba(30,107,87,.06))}
+ .order-txt{flex:1 1 340px}
+ .order-kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary)}
+ .order-h{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;letter-spacing:-.01em;margin:3px 0 4px}
+ .order-help{font-size:13px;color:var(--ink-soft);max-width:70ch}
+ .order-btn{flex:0 0 auto;background:var(--primary);color:#fff;font-weight:700;font-size:14px;border-radius:10px;padding:11px 18px;white-space:nowrap}
+ .flag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);border:1px solid var(--line);border-radius:20px;padding:1px 9px;margin-left:6px}
+</style></head><body>
+<header class="nav">
+ <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
+ <nav class="navlinks">
+  <a href="#map">Map</a>
+  <a href="#funding">Funding</a>
+  <a href="#order">Order</a>
+  <a href="__BRIEF__">Brief</a>
+  <a href="/about">About</a>
+  <div class="switch"><button class="switch-btn" id="switchBtn" aria-haspopup="true" aria-expanded="false">Switch food bank ▾</button><div class="switch-menu" id="switchMenu"></div></div>
+ </nav>
+</header>
+<div class="wrap">
+ <h1>Food-need by neighbourhood — __TITLE__ <span class="flag">🇨🇦 Canada</span></h1>
+ <p class="lead">Every dissemination area in __REGION__ (about 400–700 people each — finer than a U.S. census tract), shaded by food need — a composite of the low-income measure (LIM-AT), reliance on government transfers, and income. Darker = higher need. Click any neighbourhood for its numbers. <b>Three views:</b> use the toggle just below to switch between overall <b>food need</b>, the <b>low-income</b> rate (LIM-AT), and the <b>Indigenous</b> layer (residents reporting Indigenous identity — a population standard maps often under-represent).</p>
+ <div class="modewrap">
+   <span class="modelabel">Map view →</span>
+   <div class="modes" role="tablist">
+     <button class="mode on" data-m="need" id="mNeed">Food need</button>
+     <button class="mode" data-m="lim" id="mLim">Low income ●</button>
+     <button class="mode" data-m="ind" id="mInd">Indigenous ●</button>
+   </div>
+ </div>
+ <div class="snaphead" id="limhead"></div>
+ <div class="snaphead" id="indhead" style="border-left-color:#A8622A"></div>
+ <div id="map"></div>
+ <div class="row">
+  <div class="legend" id="legend"></div>
+  <div class="note"><h3>How to use it</h3>
+   <p><b>Neighbourhood, not city.</b> This splits the region's food-insecurity picture into __NTRACTS__ dissemination areas so distributions, mobile pantries, and the right product mix can be aimed where need concentrates.</p>
+   <p><b>Consistent everywhere.</b> Every food bank's map is generated by the same pipeline — U.S. food banks on Census data, Canadian food banks on Statistics Canada data — so any two are directly comparable.</p>
+  </div>
+ </div>
+ <div id="funding"></div>
+ <div class="foot">Statistics Canada 2021 Census of Population (dissemination area) via the keyless Census Profile SDMX web service · boundaries from StatCan open boundary files · Food-need score = min-max composite of LIM-AT prevalence, government-transfer share of income, and inverse median household income across the region's scorable dissemination areas. Illustrative — not a Statistics Canada or Food Banks Canada product.</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+ const FOODBANKS=__FOODBANKS__, SLUG=__SLUG__;
+ (function(){
+   const menu=document.getElementById('switchMenu'), btn=document.getElementById('switchBtn');
+   if(!menu||!btn) return;
+   menu.innerHTML=FOODBANKS.map(f=>`<a href="/${f.slug}"${f.slug===SLUG?' class="here"':''}>${f.name}<small>${f.region_label}</small></a>`).join('');
+   btn.addEventListener('click',e=>{e.stopPropagation();const o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+   document.addEventListener('click',e=>{if(!menu.contains(e.target)&&e.target!==btn){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+ })();
+ const FUNDING=__FUNDING__;
+ (function(){
+   const F=FUNDING||{};
+   const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+   const chans=(F.federal_channels||[]);
+   const fedHtml='<ul class="fund-fed">'+chans.map(c=>`<li><b>${esc(c.name)}</b> — ${esc(c.what)}${c.url?` <a href="${c.url}" target="_blank" rel="noopener">details →</a>`:''}</li>`).join('')+'</ul>';
+   const ff=F.foundation_finder;
+   const fdnHtml=ff?`<div class="fund-card"><a href="${ff.url}" target="_blank" rel="noopener" class="fund-name">${esc(ff.label)} →</a><div class="fund-focus">${esc(ff.help)}</div><div class="fund-links"><a href="${ff.url}" target="_blank" rel="noopener">Open ${esc(ff.source||'the charity search')} →</a></div></div>`:'';
+   const prov=(F.provincial||[]);
+   const provHtml=prov.length?('<div style="margin-top:10px"><h3 style="font-family:\'Bricolage Grotesque\',sans-serif;font-size:.98rem;margin:0 0 8px">Provincial &amp; regional</h3><ul class="fund-fed">'+prov.map(c=>`<li><b>${esc(c.name)}</b> — ${esc(c.what)}${c.url?` <a href="${c.url}" target="_blank" rel="noopener">details →</a>`:''}</li>`).join('')+'</ul></div>'):'';
+   const ord=F.order;
+   const orderHtml=ord?`<a class="order-cta" id="order" href="${ord.url}" target="_blank" rel="noopener"><div class="order-txt"><div class="order-kick">Food Aid Project · fill the trucks</div><div class="order-h">${esc(ord.label)} →</div><div class="order-help">${esc(ord.help)}</div></div><span class="order-btn">${esc(ord.label)} →</span></a>`:'<span id="order"></span>';
+   document.getElementById('funding').innerHTML=
+     `<h2 class="fund-h">Funding to fill the gap</h2>
+      <p class="fund-lead">Money a Canadian food bank can pursue to buy and move food into the neighbourhoods above. The funding world here is its own map — no SNAP or TEFAP; confirm current eligibility before applying.</p>
+      <div class="fund-grid">
+        <div class="fund-col"><h3>Federal &amp; national programs</h3>${fedHtml}${provHtml}</div>
+        <div class="fund-col"><h3>Local foundations</h3>${fdnHtml}</div>
+      </div>${orderHtml}`;
+ })();
+ const DATA=__DATA__;
+ const C=['#3F8F74','#8DA65E','#E4B24A','#DE7C3B','#C0442E'];
+ const GC=['#EAF2FB','#BBD5EC','#84B4DC','#4E92C7','#2E7CB8','#17436E'];
+ const AC=['#F3ECE1','#E7D2AE','#D9B27B','#C68A4A','#A8622A','#7C3F16'];
+ const col=s=>s==null?'#c9d3ce':s>=80?C[4]:s>=60?C[3]:s>=40?C[2]:s>=20?C[1]:C[0];
+ const lcol=v=>v==null?'#e6ebe9':v>=30?GC[5]:v>=22?GC[4]:v>=16?GC[3]:v>=11?GC[2]:v>=6?GC[1]:GC[0];
+ const acol=v=>v==null?'#e6ebe9':v>=25?AC[5]:v>=15?AC[4]:v>=8?AC[3]:v>=4?AC[2]:v>=1?AC[1]:AC[0];
+ let mode='need';
+ const map=L.map('map',{scrollWheelZoom:false});
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18,subdomains:'abc'}).addTo(map);
+ const fmt=n=>n==null?'—':Number(n).toLocaleString();
+ const pc=v=>v==null?'—':v+'%';
+ const styleFor=p=>{
+   if(mode==='lim') return {fillColor:lcol(p.lim),weight:.6,color:'#ffffff',fillOpacity:p.lim==null?.28:.85};
+   if(mode==='ind') return {fillColor:acol(p.indig),weight:.6,color:'#ffffff',fillOpacity:p.indig==null?.28:.85};
+   return p.sup
+     ?{fillColor:'#c9d3ce',weight:1.4,color:'#9aa8a2',dashArray:'4,4',fillOpacity:.4}
+     :{fillColor:col(p.score),weight:.6,color:'#ffffff',fillOpacity:.82};};
+ const layer=L.geoJSON(DATA,{
+   style:f=>styleFor(f.properties),
+   onEachFeature:(f,l)=>{const p=f.properties;
+     l.bindPopup('<b>'+(p.csd||'Dissemination area')+'</b> · DA '+p.dauid+
+       (p.sup?' <span class="gqtag">data suppressed</span>':'')+
+       '<br>Food-need score: <span class="pill">'+(p.score==null?'—':p.score)+'</span>'+
+       '<br>Low income (LIM-AT): '+pc(p.lim)+
+       '<br>Gov. transfers (share of income): '+pc(p.govt)+
+       '<br>Median household income: $'+fmt(p.inc)+
+       '<br>Population: '+fmt(p.pop)+
+       '<br><b>Indigenous identity:</b> '+fmt(p.indn)+' ('+pc(p.indig)+')');
+     l.on({mouseover:e=>e.target.setStyle({weight:2.4,color:'#16211D'}),
+           mouseout:e=>layer.resetStyle(e.target)});}
+ }).addTo(map);
+ map.fitBounds(layer.getBounds(),{padding:[12,12]});
+ const indTotal=DATA.features.reduce((a,f)=>a+(f.properties.indn||0),0);
+ const indHigh=DATA.features.reduce((a,f)=>a+(((f.properties.score||0)>=60)?(f.properties.indn||0):0),0);
+ const NEEDLEG='<h3>Food-need score</h3>'+
+   [['var(--c5)','80–100 (highest)'],['var(--c4)','60–80'],['var(--c3)','40–60'],['var(--c2)','20–40'],['var(--c1)','0–20 (lowest)']]
+     .map(x=>'<div class="sw"><i style="background:'+x[0]+'"></i> '+x[1]+'</div>').join('')+
+   '<div class="sw" style="margin-top:8px"><i style="background:transparent;border:2px dashed #9aa8a2"></i> Data suppressed (small area)</div>';
+ const LIMLEG='<h3>Low income — LIM-AT</h3>'+
+   [[GC[5],'30%+ of residents'],[GC[4],'22–30%'],[GC[3],'16–22%'],[GC[2],'11–16%'],[GC[1],'under 11%']]
+     .map(x=>'<div class="sw"><i style="background:'+x[0]+'"></i> '+x[1]+'</div>').join('')+
+   '<div class="sw" style="margin-top:8px;color:var(--ink-faint);font-size:11.5px">Share of each neighbourhood below the Low-income measure, after tax — Canada\'s standard low-income line.</div>';
+ const INDLEG='<h3>Indigenous identity</h3>'+
+   [[AC[5],'25%+ of residents'],[AC[4],'15–25%'],[AC[3],'8–15%'],[AC[2],'4–8%'],[AC[1],'under 4%']]
+     .map(x=>'<div class="sw"><i style="background:'+x[0]+'"></i> '+x[1]+'</div>').join('')+
+   '<div class="sw" style="margin-top:8px;color:var(--ink-faint);font-size:11.5px">Share reporting First Nations, Métis or Inuit identity (StatCan). Some reserves are incompletely enumerated — read this as a floor.</div>';
+ const legend=document.getElementById('legend'), limhead=document.getElementById('limhead'), indhead=document.getElementById('indhead');
+ legend.innerHTML=NEEDLEG;
+ limhead.innerHTML='The <b>low-income (LIM-AT)</b> view shades each neighbourhood by the share of residents below Canada\'s standard low-income line — the clearest single signal of who a food bank needs to reach. Darker = a larger low-income share.';
+ indhead.innerHTML='<b>≈'+fmt(indTotal)+' residents reporting Indigenous identity</b> live across __REGION__'+(indHigh?', about '+fmt(indHigh)+' in the highest-need neighbourhoods':'')+'. Census counts under-represent Indigenous people, so read this as a floor — and route support through Indigenous-led programs and food-sovereignty initiatives, not one-size-fits-all aid.';
+ function setMode(m){mode=m;
+   document.getElementById('mNeed').classList.toggle('on',m==='need');
+   document.getElementById('mLim').classList.toggle('on',m==='lim');
+   document.getElementById('mInd').classList.toggle('on',m==='ind');
+   legend.innerHTML=m==='lim'?LIMLEG:m==='ind'?INDLEG:NEEDLEG;
+   limhead.classList.toggle('show',m==='lim');
+   indhead.classList.toggle('show',m==='ind');
+   layer.setStyle(f=>styleFor(f.properties));}
+ document.getElementById('mNeed').addEventListener('click',()=>setMode('need'));
+ document.getElementById('mLim').addEventListener('click',()=>setMode('lim'));
+ document.getElementById('mInd').addEventListener('click',()=>setMode('ind'));
+</script></body></html>
