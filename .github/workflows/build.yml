@@ -1,0 +1,26 @@
+name: Build Food-Need Atlas
+on:
+  workflow_dispatch: {}
+  push:
+    paths: ['config/**', 'build_atlas.py', 'template.html', 'make_index.py']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build every configured food bank (keyless Census Reporter)
+        run: |
+          for c in config/*.json; do echo "== $c =="; python build_atlas.py "$c"; done
+          python make_index.py
+      - name: Commit generated maps
+        run: |
+          git config user.name  atlas-bot
+          git config user.email atlas-bot@users.noreply.github.com
+          git add -f docs/*.html
+          git commit -m "build: atlas $(date -u +%F)" || echo "no changes"
+          git push
