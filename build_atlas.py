@@ -149,12 +149,15 @@ def html(cfg, fc):
     scores = [f["properties"]["score"] for f in fc["features"] if f["properties"]["score"] is not None]
     ngq = sum(1 for f in fc["features"] if f["properties"]["gq"])
     geo = json.dumps(fc, separators=(",", ":"))
+    fpath = Path(__file__).parent / "config" / "funding.json"
+    funding = json.loads(fpath.read_text()) if fpath.exists() else {}
     T = Path(__file__).parent / "template.html"
     tpl = T.read_text()
     return (tpl.replace("__TITLE__", cfg["name"])
                .replace("__REGION__", cfg.get("region_label", cfg["name"]))
                .replace("__NTRACTS__", str(len(fc["features"])))
                .replace("__NGQ__", str(ngq))
+               .replace("__FUNDING__", json.dumps(funding, separators=(",", ":")))
                .replace("__DATA__", geo))
 
 
