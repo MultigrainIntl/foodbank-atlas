@@ -6,7 +6,11 @@
     "cleanUrls": true,
     "headers": [
       {
-        "source": "**/*.@(csv|json)",
+        "source": "**/*.@(csv|json|html)",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
+        "source": "**",
         "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
       }
     ]
