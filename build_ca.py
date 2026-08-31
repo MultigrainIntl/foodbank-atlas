@@ -41,9 +41,13 @@ def log(*a):
 
 
 def _download(name, dest_dir):
-    """Download a StatCan boundary zip and extract it; return the .shp path."""
+    """Download a StatCan boundary zip and extract it; return the .shp path.
+    Each zip extracts into its OWN subdirectory so the .shp lookup can't pick up
+    a different layer's shapefile."""
     url = BND + name
-    zp = Path(dest_dir) / name
+    sub = Path(dest_dir) / name.replace(".zip", "")
+    sub.mkdir(parents=True, exist_ok=True)
+    zp = sub / name
     log(f"  downloading {name} …")
     req = urllib.request.Request(url, headers={"User-Agent": "food-bank-atlas/1.0"})
     with urllib.request.urlopen(req, timeout=300) as r, open(zp, "wb") as f:
@@ -53,8 +57,8 @@ def _download(name, dest_dir):
                 break
             f.write(chunk)
     with zipfile.ZipFile(zp) as z:
-        z.extractall(dest_dir)
-    shp = next(Path(dest_dir).rglob("*.shp"))
+        z.extractall(sub)
+    shp = next(Path(sub).rglob("*.shp"))
     log(f"  extracted {shp.name} ({zp.stat().st_size/1e6:.0f} MB zip)")
     return str(shp)
 
@@ -351,8 +355,8 @@ BRIEF_TPL = r'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta
 <title>__NAME__ — Food Need & Funding Brief</title>
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
- :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57}
- @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F}}
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
  *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
  .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
  .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
