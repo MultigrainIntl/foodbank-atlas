@@ -15,8 +15,12 @@ jobs:
           python-version: "3.12"
       - name: Build every configured food bank (keyless Census Reporter)
         run: |
-          for c in config/*.json; do echo "== $c =="; python build_atlas.py "$c"; done
+          for c in config/*.json; do
+            echo "== $c =="
+            python build_atlas.py "$c" || echo "!! BUILD FAILED: $c"
+          done
           python make_index.py
+          echo "== docs/ ==" && ls -la docs/
       - name: Commit generated maps
         run: |
           git config user.name  atlas-bot
