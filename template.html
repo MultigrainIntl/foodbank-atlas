@@ -12,9 +12,12 @@
  .org{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--primary);letter-spacing:.09em;text-transform:uppercase;margin:6px 0 0}
  .lead{color:var(--ink-soft);max-width:78ch;margin:12px 0 18px}
  #map{height:560px;border-radius:14px;border:1px solid var(--line);box-shadow:0 8px 26px rgba(20,40,34,.08)}
- .modes{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 12px}
- .mode{font:inherit;font-size:13px;font-weight:600;padding:8px 16px;background:var(--paper);color:var(--ink-soft);border:none;cursor:pointer}
- .mode+.mode{border-left:1px solid var(--line)} .mode.on{background:var(--primary);color:#fff}
+ .modewrap{display:flex;align-items:center;gap:10px;margin:2px 0 12px;flex-wrap:wrap}
+ .modelabel{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+ .modes{display:inline-flex;border:1.5px solid var(--primary);border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(30,107,87,.14)}
+ .mode{font:inherit;font-size:14px;font-weight:700;padding:9px 18px;background:var(--paper);color:var(--primary);border:none;cursor:pointer;transition:background .12s}
+ .mode:hover{background:rgba(30,107,87,.09)}
+ .mode+.mode{border-left:1.5px solid var(--primary)} .mode.on,.mode.on:hover{background:var(--primary);color:#fff}
  .snaphead{background:var(--paper);border:1px solid var(--line);border-left:3px solid #2E7CB8;border-radius:10px;padding:11px 15px;margin:0 0 12px;font-size:13.5px;color:var(--ink-soft);display:none}
  .snaphead.show{display:block} .snaphead b{color:var(--ink)}
  .legend h3{font-family:"Bricolage Grotesque",sans-serif;margin:0 0 8px;font-size:.98rem;color:var(--ink)}
@@ -86,10 +89,13 @@
 </header>
 <div class="wrap">
  <h1>Food-need by neighborhood — __TITLE__</h1>
- <p class="lead">Every census tract in __REGION__ (about 4,000 people each), shaded by food need — a composite of poverty, share under 200% of the poverty line, SNAP receipt, and low income. Darker = higher need. Tracts outlined in purple are student / group-quarters areas (campuses, military housing, facilities), kept in rather than filtered out. Click any neighborhood for its numbers.</p>
- <div class="modes">
-   <button class="mode on" data-m="need" id="mNeed">Food need</button>
-   <button class="mode" data-m="snap" id="mSnap">SNAP gap</button>
+ <p class="lead">Every census tract in __REGION__ (about 4,000 people each), shaded by food need — a composite of poverty, share under 200% of the poverty line, SNAP receipt, and low income. Darker = higher need. Tracts outlined in purple are student / group-quarters areas (campuses, military housing, facilities), kept in rather than filtered out. Click any neighborhood for its numbers. <b>Two views:</b> use the toggle just below to switch between overall <b>food need</b> and the <b>SNAP gap</b> — neighborhoods where people are eligible for SNAP but likely not enrolled.</p>
+ <div class="modewrap">
+   <span class="modelabel">Map view →</span>
+   <div class="modes" role="tablist">
+     <button class="mode on" data-m="need" id="mNeed">Food need</button>
+     <button class="mode" data-m="snap" id="mSnap">SNAP gap ●</button>
+   </div>
  </div>
  <div class="snaphead" id="snaphead"></div>
  <div id="map"></div>
