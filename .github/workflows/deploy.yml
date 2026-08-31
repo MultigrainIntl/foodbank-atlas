@@ -1,0 +1,31 @@
+name: Deploy site to Firebase Hosting
+
+# Publishes the docs/ folder to Firebase Hosting (foodbank-atlas.web.app).
+# Runs after each "Build Food-Need Atlas" run, when docs change, or on demand.
+# Requires one repo secret: FIREBASE_SERVICE_ACCOUNT
+# (the SAME Firebase service-account JSON used by the needs-atlas repo —
+#  it authorizes the whole "needs-atlas" Firebase project, which hosts this site).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "firebase.json"
+      - ".github/workflows/deploy.yml"
+  workflow_run:
+    workflows: ["Build Food-Need Atlas"]
+    types: [completed]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: needs-atlas
+          channelId: live
