@@ -25,6 +25,11 @@
       "name": "State food-purchase & local-food programs",
       "what": "Many states fund food banks directly to purchase food (and some run local-food-purchase programs). Check your state's department of agriculture / human services.",
       "url": ""
+    },
+    {
+      "name": "USDA FDPIR (tribal)",
+      "what": "Food Distribution Program on Indian Reservations — USDA foods for income-eligible Native households on and near reservations, run by tribal governments and Indian Tribal Organizations. A SNAP alternative (a household picks one per month) and the key channel where Indigenous food need concentrates.",
+      "url": "https://www.fns.usda.gov/fdpir"
     }
   ],
   "grants_gov_search": "https://www.grants.gov/search-grants?keywords=food%20bank%20nutrition%20emergency%20food",
