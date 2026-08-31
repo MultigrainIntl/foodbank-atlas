@@ -106,9 +106,15 @@ def derive(e):
     c1 = est("C17002", "C17002001")
     u200 = sum(est("C17002", k) or 0 for k in
                ["C17002002", "C17002003", "C17002004", "C17002005", "C17002006", "C17002007"])
-    snU, snB = est("B22003", "B22003001"), est("B22003", "B22003002")
+    snU, snB = est("B22003", "B22003001"), est("B22003", "B22003002")  # total hh, SNAP hh
     inc = est("B19013", "B19013001")
     gqpop = est("B26001", "B26001001")
+    # SNAP gap: people income-eligible (~under 130% of poverty; C17002 bands <1.25) who are
+    # not reached by SNAP. "Served" estimated as SNAP households x avg household size.
+    u130 = sum(est("C17002", k) or 0 for k in ["C17002002", "C17002003", "C17002004"])
+    hhsize = (pop / snU) if (pop and snU) else None
+    served = (snB * hhsize) if (snB is not None and hhsize) else None
+    gap = max(0.0, u130 - served) if (served is not None and u130) else None
     return {
         "pop": int(pop) if pop is not None else None,
         "pov": round(100 * povB / povU, 1) if povU else None,
@@ -116,6 +122,9 @@ def derive(e):
         "snap": round(100 * snB / snU, 1) if snU else None,
         "inc": int(inc) if inc is not None else None,
         "gq": bool((pop is not None and pop < 1200) or (pop and (gqpop or 0) / pop >= 0.5)),
+        "elig130": int(u130) if u130 else None,
+        "sgap": int(round(gap)) if gap is not None else None,
+        "gapr": round(100 * gap / pop, 1) if (gap is not None and pop) else None,
     }
 
 
@@ -247,6 +256,7 @@ def brief_html(cfg, fc):
         return round(sum(v * w for v, w in vals) / (sum(w for _, w in vals) or 1), 1) if vals else None
     high = [p for p in (f["properties"] for f in feats) if (p.get("score") or 0) >= 60]
     high_pop = sum(p.get("pop") or 0 for p in high)
+    snap_gap = sum((f["properties"].get("sgap") or 0) for f in feats)
     top = sorted((f["properties"] for f in feats), key=lambda p: -(p.get("score") or 0))[:12]
     funding, grants, foundations, state_name = _funding_data(cfg)
     ops = (grants or {}).get("opportunities", [])[:6]
@@ -276,6 +286,7 @@ def brief_html(cfg, fc):
                .replace("__NTRACTS__", f"{len(feats):,}")
                .replace("__NHIGH__", f"{len(high):,}")
                .replace("__HIGHPOP__", f"{high_pop:,}")
+               .replace("__SNAPGAP__", f"{snap_gap:,}")
                .replace("__POV__", str(wavg("pov")))
                .replace("__FPL__", str(wavg("fpl200")))
                .replace("__SNAP__", str(wavg("snap")))
