@@ -204,19 +204,7 @@ def html(cfg, fc):
     scores = [f["properties"]["score"] for f in fc["features"] if f["properties"]["score"] is not None]
     ngq = sum(1 for f in fc["features"] if f["properties"]["gq"])
     geo = json.dumps(fc, separators=(",", ":"))
-    cdir = Path(__file__).parent / "config"
-    def _load(name):
-        p = cdir / name
-        try:
-            return json.loads(p.read_text()) if p.exists() else {}
-        except Exception:
-            return {}
-    funding = _load("funding.json")
-    grants = _load("grants.json")
-    fbs = _load("foundations_by_state.json")
-    abbr = STATE_FIPS.get((cfg["county_fips"][0] or "")[:2], ("", ""))[1]
-    state_name = STATE_FIPS.get((cfg["county_fips"][0] or "")[:2], ("", ""))[0]
-    state_foundations = (fbs.get("states") or {}).get(abbr, [])
+    funding, grants, state_foundations, state_name = _funding_data(cfg)
     T = Path(__file__).parent / "template.html"
     tpl = T.read_text()
     foodbanks = load_foodbanks()
@@ -225,12 +213,77 @@ def html(cfg, fc):
                .replace("__NTRACTS__", str(len(fc["features"])))
                .replace("__NGQ__", str(ngq))
                .replace("__SLUG__", json.dumps(cfg["slug"]))
+               .replace("__BRIEF__", "/" + cfg["slug"] + "-brief")
                .replace("__STATE__", json.dumps(state_name))
                .replace("__FOODBANKS__", json.dumps(foodbanks, separators=(",", ":")))
                .replace("__GRANTS__", json.dumps(grants, separators=(",", ":")))
                .replace("__FOUNDATIONS__", json.dumps(state_foundations, separators=(",", ":")))
                .replace("__FUNDING__", json.dumps(funding, separators=(",", ":")))
                .replace("__DATA__", geo))
+
+
+def _funding_data(cfg):
+    """(funding.json, grants.json, this state's foundations, state name) — shared by map + brief."""
+    cdir = Path(__file__).parent / "config"
+    def _load(name):
+        p = cdir / name
+        try:
+            return json.loads(p.read_text()) if p.exists() else {}
+        except Exception:
+            return {}
+    fips2 = (cfg["county_fips"][0] or "")[:2]
+    name, abbr = STATE_FIPS.get(fips2, ("", ""))
+    fbs = _load("foundations_by_state.json")
+    return _load("funding.json"), _load("grants.json"), (fbs.get("states") or {}).get(abbr, []), name
+
+
+def brief_html(cfg, fc):
+    """A print-ready need + funding brief a food bank can paste into a grant app or board deck."""
+    feats = fc["features"]
+    res = [f["properties"] for f in feats if not f["properties"].get("gq") and f["properties"].get("pop")]
+    tot = sum(p["pop"] for p in res) or 1
+    def wavg(k):
+        vals = [(p[k], p["pop"]) for p in res if p.get(k) is not None]
+        return round(sum(v * w for v, w in vals) / (sum(w for _, w in vals) or 1), 1) if vals else None
+    high = [p for p in (f["properties"] for f in feats) if (p.get("score") or 0) >= 60]
+    high_pop = sum(p.get("pop") or 0 for p in high)
+    top = sorted((f["properties"] for f in feats), key=lambda p: -(p.get("score") or 0))[:12]
+    funding, grants, foundations, state_name = _funding_data(cfg)
+    ops = (grants or {}).get("opportunities", [])[:6]
+
+    def esc(s):
+        return (str(s if s is not None else "")
+                .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+    rows = "".join(
+        f'<tr><td>{esc(p.get("place"))}</td><td class="mono">{esc(p.get("tract"))}</td>'
+        f'<td class="num"><b>{p.get("score")}</b></td><td class="num">{p.get("pov")}%</td>'
+        f'<td class="num">{p.get("fpl200")}%</td><td class="num">{p.get("snap")}%</td>'
+        f'<td class="num">{(p.get("pop") or 0):,}</td></tr>' for p in top)
+    grant_rows = "".join(
+        f'<li><a href="{o.get("url")}">{esc(o.get("title"))}</a> — {esc(o.get("agency"))} · closes {esc(o.get("close"))}</li>'
+        for o in ops) or '<li>No open federal opportunities matched right now — check Grants.gov and state programs.</li>'
+    fA = lambda m: "" if m is None else ("$%.1fB" % (m / 1000) if m >= 1000 else "$%dM" % m)
+    fdn_rows = "".join(
+        f'<li><a href="{f.get("gm_url")}">{esc(f.get("name"))}</a> <span class="mono">{fA(f.get("assets_musd"))}</span>'
+        f'{" · " + esc(f.get("city")) if f.get("city") else ""}</li>' for f in foundations[:8]) \
+        or '<li>See grantmakers.io for local private foundations.</li>'
+    region = cfg.get("region_label", cfg["name"])
+    tpl = (Path(__file__).parent / "brief.html").read_text()
+    return (tpl.replace("__NAME__", esc(cfg["name"]))
+               .replace("__REGION__", esc(region))
+               .replace("__MAPHREF__", "/" + cfg["slug"])
+               .replace("__DATE__", time.strftime("%B %-d, %Y"))
+               .replace("__NTRACTS__", f"{len(feats):,}")
+               .replace("__NHIGH__", f"{len(high):,}")
+               .replace("__HIGHPOP__", f"{high_pop:,}")
+               .replace("__POV__", str(wavg("pov")))
+               .replace("__FPL__", str(wavg("fpl200")))
+               .replace("__SNAP__", str(wavg("snap")))
+               .replace("__TOTPOP__", f"{tot:,}")
+               .replace("__ROWS__", rows)
+               .replace("__GRANTS__", grant_rows)
+               .replace("__FOUNDATIONS__", fdn_rows)
+               .replace("__STATE__", esc(state_name)))
 
 
 def main():
@@ -246,7 +299,8 @@ def main():
     data_dir.mkdir(parents=True, exist_ok=True)
     (data_dir / (cfg["slug"] + ".json")).write_text(
         json.dumps(summarize(cfg, fc), separators=(",", ":")))
-    print(f"wrote {out} : {len(fc['features'])} tracts")
+    (Path("docs") / (cfg["slug"] + "-brief.html")).write_text(brief_html(cfg, fc))
+    print(f"wrote {out} : {len(fc['features'])} tracts (+ brief)")
 
 
 if __name__ == "__main__":
