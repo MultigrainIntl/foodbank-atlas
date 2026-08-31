@@ -13,9 +13,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Refresh live funding data (Grants.gov + ProPublica 990-PF)
+        continue-on-error: true      # never let a funding-API hiccup block the map build
+        run: |
+          python pull_funding.py grants      || echo "grants pull skipped (kept existing)"
+          python pull_funding.py foundations || echo "foundations pull skipped (kept existing)"
       - name: Build every configured food bank (keyless Census Reporter)
         run: |
           for c in config/*.json; do
+            case "$c" in */funding.json|*/grants.json|*/foundations_by_state.json) continue;; esac
             echo "== $c =="
             python build_atlas.py "$c" || echo "!! BUILD FAILED: $c"
           done
@@ -25,7 +31,8 @@ jobs:
         run: |
           git config user.name  atlas-bot
           git config user.email atlas-bot@users.noreply.github.com
-          git add -f docs/*.html
+          git add -f docs/*.html docs/data/*.json
+          git add -f config/grants.json config/foundations_by_state.json 2>/dev/null || true
           git commit -m "build: atlas $(date -u +%F)" || { echo "no changes"; exit 0; }
           # Rebase onto any commits that landed during the (long) build, then push, with retries.
           for i in 1 2 3; do
