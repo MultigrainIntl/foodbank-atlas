@@ -106,7 +106,8 @@ def place_of(lat, lon):
         for key in ("Incorporated Places", "County Subdivisions"):
             arr = g.get(key) or []
             if arr:
-                return arr[0]["NAME"]
+                import re as _re
+                return _re.sub(r"\s+(city|town|CDP|CCD|borough|village|\(balance\))$", "", arr[0]["NAME"]).strip()
     except Exception:
         pass
     return None
