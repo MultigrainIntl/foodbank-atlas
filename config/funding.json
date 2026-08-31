@@ -1,0 +1,110 @@
+{
+  "note": "Funding a food bank can pursue to buy and move food. Federal channels are ongoing programs (not dated calls); foundations are real prospects from IRS 990-PF data. Confirm current eligibility and guidelines before applying.",
+  "federal_channels": [
+    {
+      "name": "USDA TEFAP",
+      "what": "The Emergency Food Assistance Program \u2014 USDA-purchased food distributed to food banks through your state agency. The backbone of food-bank supply.",
+      "url": "https://www.fns.usda.gov/tefap/emergency-food-assistance-program"
+    },
+    {
+      "name": "USDA CSFP",
+      "what": "Commodity Supplemental Food Program \u2014 monthly food packages for low-income seniors, distributed via food banks.",
+      "url": "https://www.fns.usda.gov/csfp/commodity-supplemental-food-program"
+    },
+    {
+      "name": "USDA Community Food Projects (CFPCGP)",
+      "what": "NIFA competitive grants for community food-security projects that increase access and self-reliance.",
+      "url": "https://www.nifa.usda.gov/grants/programs/community-food-projects-competitive-grant-program-cfpcgp"
+    },
+    {
+      "name": "HHS/ACF Community Economic Development",
+      "what": "Grants to nonprofits for projects (including food enterprises) that create jobs and address food access in low-income communities.",
+      "url": "https://www.acf.hhs.gov/ocs/programs/community-economic-development"
+    },
+    {
+      "name": "State food-purchase & local-food programs",
+      "what": "Many states fund food banks directly to purchase food (and some run local-food-purchase programs). Check your state's department of agriculture / human services.",
+      "url": ""
+    }
+  ],
+  "grants_gov_search": "https://www.grants.gov/search-grants?keywords=food%20bank%20nutrition%20emergency%20food",
+  "foundations": [
+    {
+      "name": "The Provident Bank Foundation",
+      "ein": "043739441",
+      "city": "Iselin",
+      "state": "NJ",
+      "assets_musd": 17,
+      "focus": "Community enrichment incl. hunger & food security",
+      "geo": "New Jersey",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/043739441-provident-bank-foundation-inc",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/043739441"
+    },
+    {
+      "name": "OceanFirst Foundation",
+      "ein": "223465454",
+      "city": "Toms River",
+      "state": "NJ",
+      "assets_musd": 11,
+      "focus": "NJ community incl. hunger relief & health",
+      "geo": "New Jersey",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/223465454-oceanfirst-foundation",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/223465454"
+    },
+    {
+      "name": "PSEG Foundation",
+      "ein": "223125880",
+      "city": "Newark",
+      "state": "NJ",
+      "assets_musd": 30,
+      "focus": "NJ community: equity, environment, food security",
+      "geo": "New Jersey",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/223125880-pseg-foundation-inc",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/223125880"
+    },
+    {
+      "name": "The Prudential Foundation",
+      "ein": "222175290",
+      "city": "Newark",
+      "state": "NJ",
+      "assets_musd": 77,
+      "focus": "Economic mobility & community incl. food access",
+      "geo": "Newark / national",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/222175290-prudential-foundation-inc",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/222175290"
+    },
+    {
+      "name": "Victoria Foundation",
+      "ein": "221554541",
+      "city": "Newark",
+      "state": "NJ",
+      "assets_musd": 335,
+      "focus": "Newark neighborhoods incl. food & nutrition",
+      "geo": "Newark / Essex County",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/221554541-victoria-foundation-inc",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/221554541"
+    },
+    {
+      "name": "Robert Wood Johnson Foundation",
+      "ein": "226029397",
+      "city": "Princeton",
+      "state": "NJ",
+      "assets_musd": 13419,
+      "focus": "Health equity, healthy communities, nutrition (calls-for-proposals)",
+      "geo": "NJ / national",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/226029397-robert-wood-johnson-foundation",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/226029397"
+    },
+    {
+      "name": "Bristol-Myers Squibb Foundation",
+      "ein": "133127947",
+      "city": "Princeton",
+      "state": "NJ",
+      "assets_musd": 83,
+      "focus": "Health equity & access",
+      "geo": "NJ / national",
+      "gm_url": "https://www.grantmakers.io/profiles/v1/133127947-bristol-myers-squibb-foundation-inc",
+      "pp_url": "https://projects.propublica.org/nonprofits/organizations/133127947"
+    }
+  ]
+}
