@@ -13,7 +13,7 @@ from pathlib import Path
 
 CR = "https://api.censusreporter.org/1.0"
 GEOCODER = "https://geocoding.geo.census.gov/geocoder/geographies/coordinates"
-TABLES = "B01003,B17001,C17002,B22003,B19013,B26001"
+TABLES = "B01003,B17001,C17002,B22003,B19013,B26001,B02001"
 HEAT = ['#3F8F74', '#8DA65E', '#E4B24A', '#DE7C3B', '#C0442E']
 
 STATE_FIPS = {
@@ -115,6 +115,7 @@ def derive(e):
     hhsize = (pop / snU) if (pop and snU) else None
     served = (snB * hhsize) if (snB is not None and hhsize) else None
     gap = max(0.0, u130 - served) if (served is not None and u130) else None
+    aian = est("B02001", "B02001004")  # American Indian / Alaska Native alone
     return {
         "pop": int(pop) if pop is not None else None,
         "pov": round(100 * povB / povU, 1) if povU else None,
@@ -125,6 +126,8 @@ def derive(e):
         "elig130": int(u130) if u130 else None,
         "sgap": int(round(gap)) if gap is not None else None,
         "gapr": round(100 * gap / pop, 1) if (gap is not None and pop) else None,
+        "aian": int(aian) if aian is not None else None,
+        "aianr": round(100 * aian / pop, 1) if (aian is not None and pop) else None,
     }
 
 

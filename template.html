@@ -89,15 +89,17 @@
 </header>
 <div class="wrap">
  <h1>Food-need by neighborhood — __TITLE__</h1>
- <p class="lead">Every census tract in __REGION__ (about 4,000 people each), shaded by food need — a composite of poverty, share under 200% of the poverty line, SNAP receipt, and low income. Darker = higher need. Tracts outlined in purple are student / group-quarters areas (campuses, military housing, facilities), kept in rather than filtered out. Click any neighborhood for its numbers. <b>Two views:</b> use the toggle just below to switch between overall <b>food need</b> and the <b>SNAP gap</b> — neighborhoods where people are eligible for SNAP but likely not enrolled.</p>
+ <p class="lead">Every census tract in __REGION__ (about 4,000 people each), shaded by food need — a composite of poverty, share under 200% of the poverty line, SNAP receipt, and low income. Darker = higher need. Tracts outlined in purple are student / group-quarters areas (campuses, military housing, facilities), kept in rather than filtered out. Click any neighborhood for its numbers. <b>Three views:</b> use the toggle just below to switch between overall <b>food need</b>, the <b>SNAP gap</b> (people eligible for SNAP but likely not enrolled), and the <b>Indigenous</b> layer (American Indian / Alaska Native residents, a population standard maps often erase).</p>
  <div class="modewrap">
    <span class="modelabel">Map view →</span>
    <div class="modes" role="tablist">
      <button class="mode on" data-m="need" id="mNeed">Food need</button>
      <button class="mode" data-m="snap" id="mSnap">SNAP gap ●</button>
+     <button class="mode" data-m="ind" id="mInd">Indigenous ●</button>
    </div>
  </div>
  <div class="snaphead" id="snaphead"></div>
+ <div class="snaphead" id="indhead" style="border-left-color:#A8622A"></div>
  <div id="map"></div>
  <div class="row">
   <div class="legend" id="legend"></div>
@@ -165,8 +167,10 @@
  const DATA=__DATA__;
  const C=['#3F8F74','#8DA65E','#E4B24A','#DE7C3B','#C0442E'];
  const GC=['#EAF2FB','#BBD5EC','#84B4DC','#4E92C7','#2E7CB8','#17436E'];
+ const AC=['#F3ECE1','#E7D2AE','#D9B27B','#C68A4A','#A8622A','#7C3F16'];
  const col=s=>s==null?'#c9d3ce':s>=80?C[4]:s>=60?C[3]:s>=40?C[2]:s>=20?C[1]:C[0];
  const gcol=v=>v==null?'#e6ebe9':v>=20?GC[5]:v>=14?GC[4]:v>=9?GC[3]:v>=5?GC[2]:v>=1?GC[1]:GC[0];
+ const acol=v=>v==null?'#e6ebe9':v>=15?AC[5]:v>=8?AC[4]:v>=4?AC[3]:v>=2?AC[2]:v>=0.5?AC[1]:AC[0];
  let mode='need';
  const map=L.map('map',{scrollWheelZoom:false});
  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18,subdomains:'abc'}).addTo(map);
@@ -174,6 +178,7 @@
  const pc=v=>v==null?'—':v+'%';
  const styleFor=p=>{
    if(mode==='snap') return {fillColor:gcol(p.gapr),weight:.6,color:'#ffffff',fillOpacity:p.gapr==null?.28:.85};
+   if(mode==='ind') return {fillColor:acol(p.aianr),weight:.6,color:'#ffffff',fillOpacity:p.aianr==null?.28:.85};
    return p.gq
      ?{fillColor:col(p.score),weight:2.4,color:'#6C4FB0',dashArray:'5,4',fillOpacity:.78}
      :{fillColor:col(p.score),weight:.6,color:'#ffffff',fillOpacity:.82};};
@@ -186,13 +191,16 @@
        '<br>Poverty: '+pc(p.pov)+' · Below 200% FPL: '+pc(p.fpl200)+
        '<br>SNAP households: '+pc(p.snap)+' · Median income: $'+fmt(p.inc)+
        '<br>Population: '+fmt(p.pop)+
-       '<br><b>SNAP gap:</b> ~'+fmt(p.sgap)+' eligible &amp; not enrolled ('+pc(p.gapr)+' of residents)');
+       '<br><b>SNAP gap:</b> ~'+fmt(p.sgap)+' eligible &amp; not enrolled ('+pc(p.gapr)+' of residents)'+
+       '<br>Am. Indian / Alaska Native: '+fmt(p.aian)+' ('+pc(p.aianr)+')');
      l.on({mouseover:e=>e.target.setStyle({weight:2.4,color:'#16211D'}),
            mouseout:e=>layer.resetStyle(e.target)});}
  }).addTo(map);
  map.fitBounds(layer.getBounds(),{padding:[12,12]});
- // ---- Food-need vs SNAP-gap layer toggle ----
+ // ---- Food need / SNAP gap / Indigenous layer toggle ----
  const gapTotal=DATA.features.reduce((a,f)=>a+(f.properties.sgap||0),0);
+ const aianTotal=DATA.features.reduce((a,f)=>a+(f.properties.aian||0),0);
+ const aianHigh=DATA.features.reduce((a,f)=>a+(((f.properties.score||0)>=60)?(f.properties.aian||0):0),0);
  const NEEDLEG='<h3>Food-need score</h3>'+
    [['var(--c5)','80–100 (highest)'],['var(--c4)','60–80'],['var(--c3)','40–60'],['var(--c2)','20–40'],['var(--c1)','0–20 (lowest)']]
      .map(x=>'<div class="sw"><i style="background:'+x[0]+'"></i> '+x[1]+'</div>').join('')+
@@ -201,15 +209,23 @@
    [[GC[5],'20%+ of residents'],[GC[4],'14–20%'],[GC[3],'9–14%'],[GC[2],'5–9%'],[GC[1],'under 5%']]
      .map(x=>'<div class="sw"><i style="background:'+x[0]+'"></i> '+x[1]+'</div>').join('')+
    '<div class="sw" style="margin-top:8px;color:var(--ink-faint);font-size:11.5px">Est. residents income-eligible (~130% of poverty) not reached by SNAP, as a share of each neighborhood.</div>';
- const legend=document.getElementById('legend'), snaphead=document.getElementById('snaphead');
+ const INDLEG='<h3>Am. Indian / Alaska Native</h3>'+
+   [[AC[5],'15%+ of residents'],[AC[4],'8–15%'],[AC[3],'4–8%'],[AC[2],'2–4%'],[AC[1],'under 2%']]
+     .map(x=>'<div class="sw"><i style="background:'+x[0]+'"></i> '+x[1]+'</div>').join('')+
+   '<div class="sw" style="margin-top:8px;color:var(--ink-faint);font-size:11.5px">Share of each neighborhood that is American Indian / Alaska Native (Census, alone). This undercounts Indigenous people — read it as a floor.</div>';
+ const legend=document.getElementById('legend'), snaphead=document.getElementById('snaphead'), indhead=document.getElementById('indhead');
  legend.innerHTML=NEEDLEG;
  snaphead.innerHTML='<b>≈'+fmt(gapTotal)+' people</b> across __REGION__ look income-eligible for SNAP but likely aren\'t enrolled — grocery money that would ease pantry demand, and a concrete outreach target. Darker neighborhoods have the widest gap.';
+ indhead.innerHTML='<b>≈'+fmt(aianTotal)+' American Indian / Alaska Native residents</b> live across __REGION__'+(aianHigh?', about '+fmt(aianHigh)+' in the highest-need neighborhoods':'')+'. Census counts undercount Indigenous people, so read this as a floor — and route support through Indigenous-led programs and FDPIR, not one-size-fits-all aid.';
  function setMode(m){mode=m;
    document.getElementById('mNeed').classList.toggle('on',m==='need');
    document.getElementById('mSnap').classList.toggle('on',m==='snap');
-   legend.innerHTML=m==='snap'?SNAPLEG:NEEDLEG;
+   document.getElementById('mInd').classList.toggle('on',m==='ind');
+   legend.innerHTML=m==='snap'?SNAPLEG:m==='ind'?INDLEG:NEEDLEG;
    snaphead.classList.toggle('show',m==='snap');
+   indhead.classList.toggle('show',m==='ind');
    layer.setStyle(f=>styleFor(f.properties));}
  document.getElementById('mNeed').addEventListener('click',()=>setMode('need'));
  document.getElementById('mSnap').addEventListener('click',()=>setMode('snap'));
+ document.getElementById('mInd').addEventListener('click',()=>setMode('ind'));
 </script></body></html>
