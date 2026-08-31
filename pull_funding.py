@@ -75,11 +75,19 @@ GRANT_THEMES = [
 ]
 BAD_AGENCY = ("national institutes", "national institute of", "defense", "army", "navy", "naval",
               "air force", "national science", "geological", "fish and wildlife", "foreign agricultural",
-              "energy", "maritime", "oceanic", "endowment", "bureau of land", "u.s. mission")
+              "energy", "maritime", "oceanic", "endowment", "bureau of land", "u.s. mission",
+              "telecommunications", "international labor")
 BAD_TITLE = ("clinical trial", "(r0", "(r2", "(r3", "(k0", "(u0", "(p0", "sbir", "sttr", "fellowship",
              "dissertation", "research center", "global", "international", "overseas", "foreign",
              "pepfar", "malaria", "surveillance", "wildlife", "watershed", "aquaculture",
-             "specialty crop block", "livestock", "genome", "vaccine")
+             "specialty crop block", "livestock", "genome", "vaccine", "seafood", "wireless",
+             "supply chain innovation", "water infrastructure", "critical mineral", "pro-american",
+             "forced labor", "healthy homes", "housing preservation")
+# An opportunity is kept only if its title carries a genuine food / nutrition / hunger term —
+# this is what keeps generic "supply chain" / "workforce" / "healthy" grants out.
+FOOD_CORE = ("food", "nutrition", "hunger", "meal", "produce", "grocery", "snap", "wic", "tefap",
+             "csfp", "feeding", "pantry", "farm to", "fruit", "vegetable", "dietary", "commodity food",
+             "emergency food", "food security", "food access", "food assistance", "food bank")
 
 
 def theme_tag(title):
@@ -121,9 +129,12 @@ def pull_grants():
         close = iso(o.get("closeDate"))
         if not close or datetime.date.fromisoformat(close) < cutoff:
             continue
+        til = ti.lower()
+        if not any(w in til for w in FOOD_CORE):   # must be genuinely food-related
+            continue
         th = theme_tag(ti)
         if th == ["general"]:
-            continue
+            th = ["food"]
         kept.append({"number": o.get("number"), "title": ti, "agency": o.get("agency"),
                      "close": close, "cfda": (o.get("cfdaList") or [""])[0], "themes": th,
                      "url": "https://www.grants.gov/search-results-detail/" + str(o.get("id"))})

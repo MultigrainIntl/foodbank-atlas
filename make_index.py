@@ -103,6 +103,7 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
  .foot{{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);margin-top:30px;border-top:1px solid var(--line);padding-top:14px}}
  a.brand:hover{{opacity:.85}}
  .ordlink{{color:var(--primary);text-decoration:none;font-weight:700;font-size:13px}} .ordlink:hover{{text-decoration:underline}}
+ .tlink{{color:var(--ink-soft);text-decoration:none;font-size:13px}} .tlink:hover{{color:var(--primary)}}
  .navlinks{{display:flex;align-items:center;gap:16px}}
  .switch{{position:relative}}
  .switch-btn{{font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}}
@@ -122,7 +123,7 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
 </style></head><body>
 <header class="nav">
  <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
- <div class="navlinks">{order_nav}<div class="switch"><button class="switch-btn" id="switchBtn" aria-haspopup="true">Switch food bank ▾</button><div class="switch-menu" id="switchMenu">{switch_items}</div></div><span class="count">{len(sums)} food bank{"s" if len(sums)!=1 else ""}</span></div>
+ <div class="navlinks"><a class="tlink" href="/about">About</a>{order_nav}<div class="switch"><button class="switch-btn" id="switchBtn" aria-haspopup="true">Switch food bank ▾</button><div class="switch-menu" id="switchMenu">{switch_items}</div></div><span class="count">{len(sums)} food bank{"s" if len(sums)!=1 else ""}</span></div>
 </header>
 <div class="wrap">
  <h1>Food-Need Atlas</h1>
@@ -172,3 +173,89 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
  }})();
 </script></body></html>''')
 print("wrote docs/index.html with", len(sums), "food banks,", len(pins), "map pins")
+
+# ---------------------------------------------------------------- About page
+ABOUT = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Food-Need Atlas</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:15px;line-height:1.6}
+ .nav{position:sticky;top:0;z-index:1000;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;flex-wrap:wrap}
+ .brand{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);text-decoration:none}
+ .brand b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.01em;text-transform:none;font-size:14px}
+ .navlinks{display:flex;align-items:center;gap:16px}
+ .tlink{color:var(--ink-soft);text-decoration:none;font-size:13px} .tlink:hover{color:var(--primary)}
+ .ordlink{color:var(--primary);text-decoration:none;font-weight:700;font-size:13px} .ordlink:hover{text-decoration:underline}
+ .switch{position:relative}
+ .switch-btn{font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+ .switch-btn:hover{border-color:var(--primary)}
+ .switch-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:270px;max-height:62vh;overflow:auto;display:none;z-index:1100}
+ .switch-menu.open{display:block}
+ .switch-menu a{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}
+ .switch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
+ .switch-menu a:hover{background:var(--ground)}
+ .wrap{max-width:760px;margin:0 auto;padding:30px 18px 70px}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.02em;margin:0 0 6px}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:-.01em;margin:30px 0 8px}
+ p{color:var(--ink-soft);margin:11px 0} b{color:var(--ink)} a{color:var(--primary)}
+ .lead{font-size:17px;color:var(--ink);max-width:64ch}
+ .src{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--ink-soft);margin:14px 0}
+ .src b{color:var(--ink)}
+ .cta{display:inline-block;background:var(--primary);color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:11px 18px;margin-top:6px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
+</style></head><body>
+<header class="nav">
+ <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
+ <div class="navlinks"><a class="tlink" href="/">Atlas</a>__ORDER_NAV__<div class="switch"><button class="switch-btn" id="switchBtn">Switch food bank ▾</button><div class="switch-menu" id="switchMenu">__SWITCH__</div></div></div>
+</header>
+<div class="wrap">
+ <p class="kick">About</p>
+ <h1>Need you can aim at — and the money to meet it</h1>
+ <p class="lead">The Food-Need Atlas is a free, neighborhood-level map of food need, and the funding to fill it, built for food banks by <a href="https://www.foodaidproject.org" target="_blank" rel="noopener">Food Aid Project</a>. It exists because "food insecurity" usually arrives as one county number — and a county is far too big to aim a distribution, a mobile pantry, or a truckload at.</p>
+
+ <h2>From a county number to a neighborhood</h2>
+ <p>National sources report food insecurity by county, but a single county can span a million people and every income bracket at once. The Atlas splits each food bank's service area into <b>census tracts</b> — about 4,000 people each — and scores every one, so you can see where need actually concentrates and put food, mobile pantries, and the right product mix where they matter most.</p>
+
+ <h2>How the food-need score works</h2>
+ <p>Each tract gets a 0–100 score: a min-max composite of four U.S. Census ACS 5-year measures — the poverty rate, the share of people under 200% of the federal poverty line, SNAP receipt, and (inverted) median household income. Scores are normalized across the residential tracts in <em>your</em> service area, so the darkest neighborhoods are the highest-need ones relative to your region. It's a relative index for ranking and targeting — not an official headcount, and not a substitute for Map the Meal Gap's dollar estimates.</p>
+
+ <h2>Students, seniors, and group quarters — kept in</h2>
+ <p>Many need maps quietly drop "group-quarters" tracts: college dorms, military housing, senior facilities, shelters. Hunger there is real — student and senior food insecurity are both well documented — so the Atlas keeps those tracts in and flags them with a dashed purple outline instead of hiding them.</p>
+
+ <h2>Funding to fill the gap</h2>
+ <p>Seeing need is half the job; paying for the food is the other half. Every map carries a live funding panel: <b>open federal grant opportunities</b> pulled from Grants.gov and filtered to food work; the largest <b>private foundations in your own state</b> (from IRS 990-PF data, each linked to its grantmakers.io giving history and 990); the standing federal programs (TEFAP, CSFP, and more); and a direct line to <b>order a mixed truckload</b> of staples from Food Aid Project.</p>
+
+ <h2>Consistent everywhere</h2>
+ <p>Every food bank's map is generated by the same pipeline from the same Census data — same method, same look, same scoring — so any two are directly comparable, and adding a new food bank is a one-line change.</p>
+
+ <h2>Where the data comes from</h2>
+ <div class="src"><b>Need:</b> U.S. Census ACS 5-year estimates at tract level, via Census Reporter. <b>Place names:</b> the U.S. Census geocoder. <b>Grants:</b> the Grants.gov Search2 API. <b>Foundations:</b> IRS Form 990-PF filings via ProPublica Nonprofit Explorer and grantmakers.io.</div>
+
+ <h2>Who builds it</h2>
+ <p>Food Aid Project is a nonprofit that does two things food banks rarely find in one place: it builds technology like this Atlas, and it <b>sources and ships actual food</b> — truckloads and co-packed pouches of shelf-stable staples — to food banks across the U.S. and Canada. The Atlas is the free, neutral intelligence layer; the food is how the gap actually gets filled.</p>
+
+ <h2>Honest caveats</h2>
+ <p>This is an illustrative planning tool, not a Feeding America product. The score ranks <em>relative</em> need — it is not an official food-insecurity count. Census figures lag one to two years. Grant eligibility and foundation guidelines change constantly, so always verify on the source before applying, and treat the foundation list as prospects to research on grantmakers.io, not a guarantee of fit.</p>
+
+ <h2>Get your food bank on the map</h2>
+ <p>Adding a food bank takes minutes — send us your service area and it's mapped, scored, and matched to funding.</p>
+ <a class="cta" href="https://www.foodaidproject.org/food-banks.html" target="_blank" rel="noopener">Talk to Food Aid Project →</a>
+
+ <div class="foot">Food Aid Project · Food-Need Atlas · illustrative, not a Feeding America product</div>
+</div>
+<script>
+ (function(){
+   var menu=document.getElementById('switchMenu'), btn=document.getElementById('switchBtn');
+   if(menu&&btn){
+     btn.addEventListener('click',function(e){e.stopPropagation();menu.classList.toggle('open');});
+     document.addEventListener('click',function(e){if(!menu.contains(e.target)&&e.target!==btn)menu.classList.remove('open');});
+   }
+ })();
+</script></body></html>'''
+ABOUT = ABOUT.replace("__ORDER_NAV__", order_nav).replace("__SWITCH__", switch_items)
+Path("docs/about.html").write_text(ABOUT)
+print("wrote docs/about.html")
