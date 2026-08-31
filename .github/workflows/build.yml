@@ -2,7 +2,7 @@ name: Build Food-Need Atlas
 on:
   workflow_dispatch: {}
   push:
-    paths: ['config/**', 'build_atlas.py', 'template.html', 'make_index.py']
+    paths: ['config/**', 'build_atlas.py', 'template.html', 'make_index.py', 'build_ca.py', 'template_ca.html']
 permissions:
   contents: write
 jobs:
@@ -27,6 +27,20 @@ jobs:
           done
           python make_index.py
           echo "== docs/ ==" && ls -la docs/
+      - name: Build Canadian food banks (Statistics Canada, keyless)
+        continue-on-error: true      # a StatCan hiccup shouldn't block the U.S. maps
+        run: |
+          if ls config/ca/*.json >/dev/null 2>&1; then
+            python -m pip install --quiet geopandas pyogrio shapely
+            for c in config/ca/*.json; do
+              echo "== $c =="
+              python build_ca.py "$c" || echo "!! CA BUILD FAILED: $c"
+            done
+            python make_index.py   # rebuild home page/switcher now that Canada summaries exist
+            echo "== docs/ ==" && ls -la docs/
+          else
+            echo "no Canadian configs yet"
+          fi
       - name: Commit generated maps
         run: |
           git config user.name  atlas-bot
