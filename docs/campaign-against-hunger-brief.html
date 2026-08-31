@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Campaign Against Hunger — Food Need & Funding Brief</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
+ .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+ .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
+ .btn{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+ .sheet{max-width:820px;margin:22px auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 40px;box-shadow:0 8px 26px rgba(20,40,34,.07)}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0}
+ .meta{color:var(--ink-faint);font-size:12.5px;margin:5px 0 0;font-family:"IBM Plex Mono",monospace}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ p{color:var(--ink-soft);margin:9px 0} b{color:var(--ink)}
+ .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+ .stat{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+ .stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1}
+ .stat .l{color:var(--ink-faint);font-size:11px;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+ th{text-align:left;color:var(--ink-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{padding:6px 8px;border-bottom:1px solid var(--line)} td.num{text-align:right;font-variant-numeric:tabular-nums} td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+ ul{margin:8px 0;padding-left:20px} li{margin:6px 0;font-size:13px;color:var(--ink-soft)} li a{color:var(--primary)} .mono{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
+ .ask{background:var(--ground);border:1px dashed var(--primary);border-radius:10px;padding:14px 16px;color:var(--ink-soft);font-size:13.5px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+ @media print{
+   .bar{display:none} body{background:#fff} .sheet{box-shadow:none;border:none;border-radius:0;margin:0;max-width:none;padding:0 8px}
+   h2{break-after:avoid} table,ul{break-inside:avoid} a{color:#1E6B57;text-decoration:none}
+ }
+</style></head><body>
+<div class="bar">
+ <a href="/campaign-against-hunger">← Back to the map</a>
+ <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="sheet">
+ <p class="kick">Food Aid Project · Food-Need Atlas · Evidence Brief</p>
+ <h1>The Campaign Against Hunger — Food Need &amp; Funding Brief</h1>
+ <p class="meta">Brooklyn / Kings County, New York · generated August 31, 2026</p>
+
+ <p>Across Brooklyn / Kings County, New York, the Food-Need Atlas scores every one of <b>778 neighborhoods</b> (census tracts of ~4,000 people) on poverty, share under 200% of the federal poverty line, SNAP receipt, and low income. <b>79 neighborhoods — about 337,916 people — register high food need</b> and are where distribution, mobile pantries, and the right product mix return the most.</p>
+
+ <div class="stats">
+  <div class="stat"><div class="n">79</div><div class="l">high-need neighborhoods</div></div>
+  <div class="stat"><div class="n">19.2%</div><div class="l">live in poverty (avg)</div></div>
+  <div class="stat"><div class="n">36.3%</div><div class="l">under 200% of poverty</div></div>
+  <div class="stat"><div class="n">23.9%</div><div class="l">receive SNAP (avg)</div></div>
+ </div>
+
+ <h2>Highest-need neighborhoods</h2>
+ <table>
+  <thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead>
+  <tbody><tr><td>New York</td><td class="mono">18.03</td><td class="num"><b>100.0</b></td><td class="num">72.7%</td><td class="num">90.9%</td><td class="num">None%</td><td class="num">11</td></tr><tr><td>New York</td><td class="mono">808</td><td class="num"><b>94.3</b></td><td class="num">71.2%</td><td class="num">83.5%</td><td class="num">62.3%</td><td class="num">2,044</td></tr><tr><td>New York</td><td class="mono">352</td><td class="num"><b>88.2</b></td><td class="num">60.1%</td><td class="num">69.5%</td><td class="num">69.1%</td><td class="num">1,529</td></tr><tr><td>New York</td><td class="mono">910</td><td class="num"><b>86.5</b></td><td class="num">49.5%</td><td class="num">79.9%</td><td class="num">68.4%</td><td class="num">5,837</td></tr><tr><td>New York</td><td class="mono">906</td><td class="num"><b>85.3</b></td><td class="num">47.6%</td><td class="num">80.3%</td><td class="num">68.1%</td><td class="num">4,344</td></tr><tr><td>New York</td><td class="mono">489</td><td class="num"><b>84.7</b></td><td class="num">42.4%</td><td class="num">71.4%</td><td class="num">80.3%</td><td class="num">3,597</td></tr><tr><td>New York</td><td class="mono">382</td><td class="num"><b>83.8</b></td><td class="num">47.8%</td><td class="num">70.1%</td><td class="num">71.6%</td><td class="num">5,225</td></tr><tr><td>New York</td><td class="mono">545</td><td class="num"><b>83.3</b></td><td class="num">34.2%</td><td class="num">83.2%</td><td class="num">79.0%</td><td class="num">8,349</td></tr><tr><td>New York</td><td class="mono">29.01</td><td class="num"><b>82.1</b></td><td class="num">43.0%</td><td class="num">78.3%</td><td class="num">63.4%</td><td class="num">3,177</td></tr><tr><td>New York</td><td class="mono">1034.01</td><td class="num"><b>81.3</b></td><td class="num">48.2%</td><td class="num">71.8%</td><td class="num">59.6%</td><td class="num">3,637</td></tr><tr><td>New York</td><td class="mono">908</td><td class="num"><b>80.9</b></td><td class="num">49.8%</td><td class="num">73.0%</td><td class="num">64.5%</td><td class="num">6,230</td></tr><tr><td>New York</td><td class="mono">1210</td><td class="num"><b>80.9</b></td><td class="num">41.3%</td><td class="num">83.7%</td><td class="num">56.2%</td><td class="num">3,738</td></tr></tbody>
+ </table>
+
+ <h2>Funding to pursue</h2>
+ <p><b>Open federal opportunities</b> (verify eligibility on Grants.gov before applying):</p>
+ <ul><li><a href="https://www.grants.gov/search-results-detail/362823">Fiscal Year 2027 Expanding Nutrition Services</a> — Health Resources and Services Administration · closes 2026-09-09</li><li><a href="https://www.grants.gov/search-results-detail/363631">Cold Chain Grants for Emergency Food Assistance</a> — Agricultural Marketing Service · closes 2026-10-01</li></ul>
+ <p><b>Local private foundations in New York</b> (IRS 990-PF — check each one's giving history on grantmakers.io for food-relief fit):</p>
+ <ul><li><a href="https://www.grantmakers.io/profiles/v1/131684331-ford-foundation">Ford Foundation</a> <span class="mono">$16.8B</span> · New York</li><li><a href="https://www.grantmakers.io/profiles/v1/136151545-starr-foundation">Starr Foundation</a> <span class="mono">$1.3B</span> · New York</li><li><a href="https://www.grantmakers.io/profiles/v1/470824753-novo-foundation">Novo Foundation</a> <span class="mono">$719M</span> · Hurley</li><li><a href="https://www.grantmakers.io/profiles/v1/135616528-clark-foundation">Clark Foundation</a> <span class="mono">$449M</span> · Cooperstown</li><li><a href="https://www.grantmakers.io/profiles/v1/946182697-mulago-foundation">Mulago Foundation</a> <span class="mono">$355M</span> · New York</li><li><a href="https://www.grantmakers.io/profiles/v1/273406311-pussycat-foundation">Pussycat Foundation</a> <span class="mono">$98M</span> · New York</li><li><a href="https://www.grantmakers.io/profiles/v1/133781879-citi-foundation">Citi Foundation</a> <span class="mono">$88M</span> · New York</li><li><a href="https://www.grantmakers.io/profiles/v1/471408100-gray-foundation">Gray Foundation</a> <span class="mono">$82M</span> · Albany</li></ul>
+ <p>Standing federal programs (USDA TEFAP &amp; CSFP, state food-purchase) remain the backbone of supply — and Food Aid Project can source and ship a <a href="https://www.foodaidproject.org/food-banks.html">mixed truckload</a> of staples directly into these neighborhoods.</p>
+
+ <h2>The ask (template)</h2>
+ <div class="ask">The Campaign Against Hunger serves Brooklyn / Kings County, New York, where 79 neighborhoods — approximately 337,916 residents — face high food insecurity, with poverty averaging 19.2% and 23.9% relying on SNAP. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighborhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
+
+ <div class="foot">U.S. Census ACS 5-year estimates (tract) via Census Reporter · food-need score = min-max composite of poverty, &lt;200% FPL, SNAP, and inverse median income across residential tracts · funding via Grants.gov + IRS 990-PF (ProPublica / grantmakers.io) · Illustrative planning brief, not a Feeding America product. Verify all figures and eligibility before use.</div>
+</div>
+</body></html>
