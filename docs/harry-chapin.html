@@ -91,6 +91,9 @@
  .itbl td{padding:9px 12px;border-bottom:1px solid var(--line)} .itbl tbody tr:last-child td{border-bottom:none}
  .itbl td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap} .itbl td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint);font-size:12px}
  .itbl td.sc{font-weight:800;color:var(--ink);text-align:center;border-left:1px solid var(--line)} .itbl td.sc b{display:inline-block;min-width:2.4em}
+ .itbl tbody tr.trow{cursor:pointer} .itbl tbody tr.trow:hover{background:var(--ground)}
+ .itbl td.mono a.tract-link{color:var(--ink-faint);text-decoration:none;border-bottom:1px dotted var(--ink-faint)} .itbl td.mono a.tract-link:hover{color:var(--primary);border-bottom-color:var(--primary)}
+ .itbl-hint{font-size:11.5px;color:var(--ink-faint);margin:8px 2px 0}
  .gqmini{font-size:9.5px;background:var(--gq);color:#fff;border-radius:4px;padding:0 4px;vertical-align:middle;font-family:"IBM Plex Mono",monospace}
  .iopp{margin:6px 0 0;padding-left:20px} .iopp li{margin:7px 0;font-size:13.5px;color:var(--ink-soft)} .iopp b{color:var(--ink)}
  .inote{font-size:12.5px;color:var(--ink-faint);margin:10px 0 0;max-width:82ch}
@@ -214,9 +217,10 @@
    return p.gq
      ?{fillColor:col(p.score),weight:2.4,color:'#6C4FB0',dashArray:'5,4',fillOpacity:.78}
      :{fillColor:col(p.score),weight:.6,color:'#ffffff',fillOpacity:.82};};
+ const featByGeoid={};
  const layer=L.geoJSON(DATA,{
    style:f=>styleFor(f.properties),
-   onEachFeature:(f,l)=>{const p=f.properties;
+   onEachFeature:(f,l)=>{const p=f.properties; if(p.GEOID)featByGeoid[p.GEOID]=l;
      l.bindPopup('<b>'+(p.place||'—')+'</b> · tract '+p.tract+
        (p.gq?' <span class="gqtag">student / group quarters</span>':'')+
        '<br>Food-need score: <span class="pill">'+(p.score==null?'—':p.score)+'</span>'+
@@ -229,6 +233,11 @@
            mouseout:e=>layer.resetStyle(e.target)});}
  }).addTo(map);
  map.fitBounds(layer.getBounds(),{padding:[12,12]});
+ function focusTract(geoid){const l=featByGeoid[geoid]; if(!l)return;
+   if(mode!=='need'){setMode('need');}
+   map.fitBounds(l.getBounds(),{maxZoom:14,padding:[40,40]});
+   l.openPopup();
+   document.getElementById('map').scrollIntoView({behavior:'smooth',block:'center'});}
  // ---- Food need / SNAP gap / Indigenous layer toggle ----
  const gapTotal=DATA.features.reduce((a,f)=>a+(f.properties.sgap||0),0);
  const aianTotal=DATA.features.reduce((a,f)=>a+(f.properties.aian||0),0);
@@ -279,14 +288,19 @@
    const ORDERURL=(FUNDING&&FUNDING.order&&FUNDING.order.url)||'';
    const summary=`Across <b>${esc(REGION)}</b>, <b>${high.length} neighborhood${high.length!==1?'s':''}</b> — about <b>${fmt(highPop)} people</b> — register high food need, concentrated in <b>${esc(placeStr)}</b>. An estimated <b>${fmt(snapGap)} residents</b> look eligible for SNAP but likely aren't enrolled — the widest single lever a food bank has here.`;
    const stats=[[high.length,'high-need neighborhoods'],[fmt(highPop),'people living in them'],[fmt(snapGap),'SNAP-eligible, not enrolled'],[((wavgOf(high,'pov')!=null)?wavgOf(high,'pov'):'—')+'%','avg poverty, high-need areas']].map(s=>`<div class="istat"><div class="in">${s[0]}</div><div class="il">${s[1]}</div></div>`).join('');
-   const rows=top.map(p=>`<tr><td>${esc(p.place)||'—'}${p.gq?' <span class="gqmini">GQ</span>':''}</td><td class="mono">${esc(p.tract)}</td><td class="num sc" style="background:${col(p.score)}2b"><b>${p.score}</b></td><td class="num">${pcOr(p.pov)}</td><td class="num">${pcOr(p.fpl200)}</td><td class="num">${pcOr(p.snap)}</td><td class="num">${fmt(p.pop)}</td></tr>`).join('');
+   const crUrl=g=>`https://censusreporter.org/profiles/${g}/`;
+   const rows=top.map(p=>`<tr class="trow" data-geoid="${esc(p.GEOID)||''}"><td>${esc(p.place)||'—'}${p.gq?' <span class="gqmini">GQ</span>':''}</td><td class="mono">${p.GEOID?`<a class="tract-link" href="${crUrl(esc(p.GEOID))}" target="_blank" rel="noopener" title="Full Census profile for this tract ↗">${esc(p.tract)}</a>`:esc(p.tract)}</td><td class="num sc" style="background:${col(p.score)}2b"><b>${p.score}</b></td><td class="num">${pcOr(p.pov)}</td><td class="num">${pcOr(p.fpl200)}</td><td class="num">${pcOr(p.snap)}</td><td class="num">${fmt(p.pop)}</td></tr>`).join('');
    const oppRows=opp.map(p=>`<li><b>${esc(p.place)||'A neighborhood'}</b> · tract ${esc(p.tract)} — <b>~${fmt(p.sgap)}</b> residents SNAP-eligible but likely not enrolled (${p.gapr}% of the neighborhood)</li>`).join('');
    document.getElementById('insight').innerHTML=`
      <p class="isum">${summary}</p>
      <div class="istats">${stats}</div>
      <h2 class="ihead">Highest-need neighborhoods</h2>
+     <p class="itbl-hint">Click a row to locate it on the map · click a tract number for its full Census profile ↗</p>
      <div class="itbl"><table><thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead><tbody>${rows}</tbody></table></div>
      ${opp.length?`<h2 class="ihead">Biggest outreach opportunity — the SNAP gap</h2><ul class="iopp">${oppRows}</ul>`:''}
      <div class="ibar"><a class="ibtn primary" href="${BRIEF}">Generate a grant &amp; board brief →</a>${ORDERURL?`<a class="ibtn" href="${ORDERURL}" target="_blank" rel="noopener">Build a truckload for these neighborhoods →</a>`:''}</div>`;
+   document.querySelectorAll('#insight tr.trow').forEach(tr=>{
+     tr.addEventListener('click',e=>{ if(e.target.closest('a'))return; if(typeof focusTract==='function')focusTract(tr.getAttribute('data-geoid')); });
+   });
  })();
 </script></body></html>
