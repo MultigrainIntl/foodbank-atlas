@@ -338,17 +338,19 @@ def brief_html(cfg, fc):
 
 
 def main():
-    cfg = json.loads(Path(sys.argv[1]).read_text())
-    if "cma_uid" not in cfg or "slug" not in cfg:
-        log(f"skip {sys.argv[1]}: not a Canadian food-bank config (needs cma_uid/slug/pruid)")
-        return
-    fc = build(cfg)
+    data = json.loads(Path(sys.argv[1]).read_text())
+    items = data if isinstance(data, list) else [data]
     Path("docs").mkdir(exist_ok=True)
-    (Path("docs") / (cfg["slug"] + ".html")).write_text(html(cfg, fc))
     ddir = Path("docs") / "data"; ddir.mkdir(parents=True, exist_ok=True)
-    (ddir / (cfg["slug"] + ".json")).write_text(json.dumps(summarize(cfg, fc), separators=(",", ":")))
-    (Path("docs") / (cfg["slug"] + "-brief.html")).write_text(brief_html(cfg, fc))
-    log(f"wrote docs/{cfg['slug']}.html : {len(fc['features'])} dissemination areas (+ brief)")
+    for cfg in items:
+        if "cma_uid" not in cfg or "slug" not in cfg:
+            log(f"skip {sys.argv[1]} ({cfg.get('slug','?')}): needs cma_uid/slug/pruid")
+            continue
+        fc = build(cfg)
+        (Path("docs") / (cfg["slug"] + ".html")).write_text(html(cfg, fc))
+        (ddir / (cfg["slug"] + ".json")).write_text(json.dumps(summarize(cfg, fc), separators=(",", ":")))
+        (Path("docs") / (cfg["slug"] + "-brief.html")).write_text(brief_html(cfg, fc))
+        log(f"wrote docs/{cfg['slug']}.html : {len(fc['features'])} dissemination areas (+ brief)")
 
 
 # ---- print-ready brief template (kept inline to minimise repo files) --------
