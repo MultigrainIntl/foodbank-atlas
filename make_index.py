@@ -60,7 +60,7 @@ _order_ext = order.get("url", "").startswith("http")
 _order_tgt = ' target="_blank" rel="noopener"' if _order_ext else ""
 order_nav = (f'<a class="ordlink" href="{order["url"]}"{_order_tgt}>Order a truckload →</a>'
              if order.get("url") else "")
-fbs_json = json.dumps([{"slug": s["slug"], "name": s["name"], "region_label": s.get("region_label", "")}
+fbs_json = json.dumps([{"slug": s["slug"], "name": s["name"], "region_label": s.get("region_label", ""), "state": s.get("state", "")}
                        for s in sums], separators=(",", ":"))
 FBSEARCH_NAV = ('<div class="fbsearch"><input class="fbsearch-in" id="fbsearch" type="search" '
                 'placeholder="\U0001f50d Find a food bank…" autocomplete="off" aria-label="Find a food bank">'
@@ -69,7 +69,7 @@ FBSEARCH_JS = '<script>\nvar FBS=' + fbs_json + ';\n' + r'''(function(){
   var inp=document.getElementById("fbsearch"),menu=document.getElementById("fbsearchMenu");if(!inp||!menu)return;
   function esc(s){return String(s==null?"":s).replace(/[<>&]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];});}
   function render(){var t=inp.value.trim().toLowerCase();
-    var list=FBS.filter(function(f){return !t||(f.name+" "+(f.region_label||"")).toLowerCase().indexOf(t)>=0;});
+    var list=FBS.filter(function(f){return !t||(f.name+" "+(f.region_label||"")+" "+(f.state||"")).toLowerCase().indexOf(t)>=0;});
     menu.innerHTML=list.length?list.map(function(f){return '<a href="/'+f.slug+'">'+esc(f.name)+'<small>'+esc(f.region_label||"")+'</small></a>';}).join(""):'<div class="fbsearch-empty">No food banks match.</div>';}
   function openM(){render();menu.classList.add("open");}function closeM(){menu.classList.remove("open");}
   inp.addEventListener("focus",openM);inp.addEventListener("input",openM);
