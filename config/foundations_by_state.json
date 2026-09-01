@@ -1,7 +1,7 @@
 {
   "source": "IRS Form 990-PF via ProPublica Nonprofit Explorer",
   "source_url": "https://projects.propublica.org/nonprofits/",
-  "compiled": "2026-08-31",
+  "compiled": "2026-09-01",
   "method": "Largest private grantmaking foundations (NTEE T, 501(c)(3)) headquartered in each food bank's state, ranked by total assets from the latest public 990-PF. Assets shown because a private foundation must pay out ~5% of assets in grants a year. Open each on grantmakers.io to see its actual giving history and judge food-relief fit before applying.",
   "states": {
     "CA": [
