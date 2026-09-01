@@ -136,7 +136,7 @@
    const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
    const render=()=>{
      const t=inp.value.trim().toLowerCase();
-     const list=FOODBANKS.filter(f=>!t||(f.name+' '+(f.region_label||'')).toLowerCase().includes(t));
+     const list=FOODBANKS.filter(f=>!t||(f.name+' '+(f.region_label||'')+' '+(f.state||'')).toLowerCase().includes(t));
      menu.innerHTML=list.length?list.map(f=>`<a href="/${f.slug}"${f.slug===SLUG?' class="here"':''}>${esc(f.name)}<small>${esc(f.region_label||'')}</small></a>`).join(''):'<div class="fbsearch-empty">No food banks match.</div>';
    };
    const open=()=>{render();menu.classList.add('open');};
