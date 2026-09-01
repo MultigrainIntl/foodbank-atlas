@@ -304,20 +304,22 @@ def brief_html(cfg, fc):
 
 
 def main():
-    cfg = json.loads(Path(sys.argv[1]).read_text())
-    if "county_fips" not in cfg or "slug" not in cfg:
-        print(f"skip {sys.argv[1]}: not a food-bank config (no county_fips/slug)")
-        return
-    fc = build(cfg)
-    out = Path("docs") / (cfg["slug"] + ".html")
-    out.parent.mkdir(exist_ok=True)
-    out.write_text(html(cfg, fc))
+    data = json.loads(Path(sys.argv[1]).read_text())
+    items = data if isinstance(data, list) else [data]
     data_dir = Path("docs") / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
-    (data_dir / (cfg["slug"] + ".json")).write_text(
-        json.dumps(summarize(cfg, fc), separators=(",", ":")))
-    (Path("docs") / (cfg["slug"] + "-brief.html")).write_text(brief_html(cfg, fc))
-    print(f"wrote {out} : {len(fc['features'])} tracts (+ brief)")
+    for cfg in items:
+        if "county_fips" not in cfg or "slug" not in cfg:
+            print(f"skip {sys.argv[1]} ({cfg.get('slug','?')}): not a food-bank config (no county_fips/slug)")
+            continue
+        fc = build(cfg)
+        out = Path("docs") / (cfg["slug"] + ".html")
+        out.parent.mkdir(exist_ok=True)
+        out.write_text(html(cfg, fc))
+        (data_dir / (cfg["slug"] + ".json")).write_text(
+            json.dumps(summarize(cfg, fc), separators=(",", ":")))
+        (Path("docs") / (cfg["slug"] + "-brief.html")).write_text(brief_html(cfg, fc))
+        print(f"wrote {out} : {len(fc['features'])} tracts (+ brief)")
 
 
 if __name__ == "__main__":
