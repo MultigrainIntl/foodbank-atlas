@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order a truckload — Food-Need Atlas</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:15px;line-height:1.6}
+ .nav{position:sticky;top:0;z-index:1000;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;flex-wrap:wrap}
+ .brand{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);text-decoration:none}
+ .brand b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.01em;text-transform:none;font-size:14px}
+ a.brand:hover{opacity:.85}
+ .navlinks{display:flex;align-items:center;gap:16px}
+ .tlink{color:var(--ink-soft);text-decoration:none;font-size:13px} .tlink:hover{color:var(--primary)}
+ .fbsearch{position:relative}
+ .fbsearch-in{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:7px 12px;width:210px;max-width:46vw;transition:width .12s}
+ .fbsearch-in:focus{outline:none;border-color:var(--primary);background:var(--paper);width:240px}
+ .fbsearch-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:260px;max-width:min(360px,92vw);max-height:62vh;overflow:auto;display:none;z-index:1100}
+ .fbsearch-menu.open{display:block}
+ .fbsearch-menu a{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}
+ .fbsearch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
+ .fbsearch-menu a:hover,.fbsearch-menu a.sel{background:var(--ground)}
+ .fbsearch-menu a.here{background:var(--primary);color:#fff} .fbsearch-menu a.here small{color:rgba(255,255,255,.82)}
+ .fbsearch-empty{padding:8px 10px;color:var(--ink-faint);font-size:12.5px}
+ .wrap{max-width:960px;margin:0 auto;padding:26px 18px 56px}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:-.02em;margin:0 0 8px}
+ .lead{color:var(--ink-soft);max-width:74ch;margin:10px 0 8px}
+ .openfull{font-size:12.5px;color:var(--ink-faint);margin:2px 0 14px}
+ .openfull a{color:var(--primary)}
+ .embed-wrap{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 26px rgba(20,40,34,.08)}
+ .embed-frame{display:block;width:100%;height:calc(100vh - 150px);min-height:760px;border:0;background:#fff}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+</style></head><body>
+<header class="nav">
+ <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
+ <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a><div class="fbsearch"><input class="fbsearch-in" id="fbsearch" type="search" placeholder="🔍 Find a food bank…" autocomplete="off" aria-label="Find a food bank"><div class="fbsearch-menu" id="fbsearchMenu"></div></div></div>
+</header>
+<div class="wrap">
+ <p class="kick">Food Aid Project · fill the trucks</p>
+ <h1>Order a mixed truckload</h1>
+ <p class="lead">Mix and match beans, lentils, chickpeas, oats, rice and grains to fill a 53-ft dry van — watch the load build to 26 pallets / 42,000 lb — then start a conversation with Food Aid Project. Free planning tool, not a binding order.</p>
+ <p class="openfull">Trouble loading below? <a href="https://script.google.com/macros/s/AKfycbzXzcJrEfcG26FIltfrqHQFsRPD2Qu_War3vGHdFBpbqKN6CEWewmF8_6Qab9dbmTLN/exec" target="_blank" rel="noopener">Open the full tool in a new tab →</a></p>
+ <div class="embed-wrap"><iframe class="embed-frame" src="https://script.google.com/macros/s/AKfycbzXzcJrEfcG26FIltfrqHQFsRPD2Qu_War3vGHdFBpbqKN6CEWewmF8_6Qab9dbmTLN/exec" title="Build a mixed truckload" loading="lazy"></iframe></div>
+ <div class="foot">Food Aid Project · Food-Need Atlas · illustrative, not a Feeding America product</div>
+</div>
+<script>
+var FBS=[{"slug":"harry-chapin","name":"Harry Chapin Food Bank of Southwest Florida","region_label":"Southwest Florida (Charlotte, Collier, Glades, Hendry, Lee)"},{"slug":"rhode-island","name":"Rhode Island Community Food Bank","region_label":"Rhode Island (statewide)"},{"slug":"san-diego","name":"San Diego Food Bank","region_label":"San Diego County, California"},{"slug":"saskatoon","name":"Saskatoon Food Bank & Learning Centre","region_label":"Saskatoon (CMA), Saskatchewan"},{"slug":"campaign-against-hunger","name":"The Campaign Against Hunger","region_label":"Brooklyn / Kings County, New York"}];
+(function(){
+  var inp=document.getElementById("fbsearch"),menu=document.getElementById("fbsearchMenu");if(!inp||!menu)return;
+  function esc(s){return String(s==null?"":s).replace(/[<>&]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];});}
+  function render(){var t=inp.value.trim().toLowerCase();
+    var list=FBS.filter(function(f){return !t||(f.name+" "+(f.region_label||"")).toLowerCase().indexOf(t)>=0;});
+    menu.innerHTML=list.length?list.map(function(f){return '<a href="/'+f.slug+'">'+esc(f.name)+'<small>'+esc(f.region_label||"")+'</small></a>';}).join(""):'<div class="fbsearch-empty">No food banks match.</div>';}
+  function openM(){render();menu.classList.add("open");}function closeM(){menu.classList.remove("open");}
+  inp.addEventListener("focus",openM);inp.addEventListener("input",openM);
+  inp.addEventListener("keydown",function(e){if(e.key==="Enter"){var a=menu.querySelector("a");if(a){e.preventDefault();location.href=a.getAttribute("href");}}else if(e.key==="Escape"){closeM();inp.blur();}});
+  document.addEventListener("click",function(e){if(!menu.contains(e.target)&&e.target!==inp)closeM();});
+})();
+</script></body></html>
