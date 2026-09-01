@@ -39,14 +39,16 @@ STATE_FIPS = {
 
 
 def load_foodbanks():
-    """All configured food banks (name, slug, region) for the cross-page switcher."""
-    import glob
+    """Cross-page switcher / search: every food bank with a built summary (US + Canada)."""
     out = []
-    for p in sorted(glob.glob(str(Path(__file__).parent / "config" / "*.json"))):
-        c = json.loads(Path(p).read_text())
-        if "slug" in c and "county_fips" in c:
-            out.append({"name": c["name"], "slug": c["slug"],
-                        "region_label": c.get("region_label", c["name"])})
+    for p in sorted((Path(__file__).parent / "docs" / "data").glob("*.json")):
+        try:
+            s = json.loads(p.read_text())
+        except Exception:
+            continue
+        if s.get("slug"):
+            out.append({"name": s["name"], "slug": s["slug"],
+                        "region_label": s.get("region_label", s["name"])})
     return sorted(out, key=lambda x: x["name"])
 
 
