@@ -76,7 +76,8 @@ FBSEARCH_JS = '<script>\nvar FBS=' + fbs_json + ';\n' + r'''(function(){
   inp.addEventListener("keydown",function(e){if(e.key==="Enter"){var a=menu.querySelector("a");if(a){e.preventDefault();location.href=a.getAttribute("href");}}else if(e.key==="Escape"){closeM();inp.blur();}});
   document.addEventListener("click",function(e){if(!menu.contains(e.target)&&e.target!==inp)closeM();});
 })();
-</script>'''
+</script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8d77e1ce7e0c4dadb342f5b3324fdd4e"}'></script><!-- End Cloudflare Web Analytics -->'''
 order_banner = (
     f'<a class="order-cta" href="{order["url"]}"{_order_tgt}>'
     f'<div class="order-txt"><div class="order-kick">Food Aid Project · fill the trucks</div>'
