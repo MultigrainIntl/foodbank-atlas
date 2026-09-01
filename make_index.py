@@ -58,8 +58,23 @@ except Exception:
     pass
 order_nav = (f'<a class="ordlink" href="{order["url"]}" target="_blank" rel="noopener">Order a truckload →</a>'
              if order.get("url") else "")
-switch_items = "".join(
-    f'<a href="/{s["slug"]}">{s["name"]}<small>{s.get("region_label","")}</small></a>' for s in sums)
+fbs_json = json.dumps([{"slug": s["slug"], "name": s["name"], "region_label": s.get("region_label", "")}
+                       for s in sums], separators=(",", ":"))
+FBSEARCH_NAV = ('<div class="fbsearch"><input class="fbsearch-in" id="fbsearch" type="search" '
+                'placeholder="\U0001f50d Find a food bank…" autocomplete="off" aria-label="Find a food bank">'
+                '<div class="fbsearch-menu" id="fbsearchMenu"></div></div>')
+FBSEARCH_JS = '<script>\nvar FBS=' + fbs_json + ';\n' + r'''(function(){
+  var inp=document.getElementById("fbsearch"),menu=document.getElementById("fbsearchMenu");if(!inp||!menu)return;
+  function esc(s){return String(s==null?"":s).replace(/[<>&]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];});}
+  function render(){var t=inp.value.trim().toLowerCase();
+    var list=FBS.filter(function(f){return !t||(f.name+" "+(f.region_label||"")).toLowerCase().indexOf(t)>=0;});
+    menu.innerHTML=list.length?list.map(function(f){return '<a href="/'+f.slug+'">'+esc(f.name)+'<small>'+esc(f.region_label||"")+'</small></a>';}).join(""):'<div class="fbsearch-empty">No food banks match.</div>';}
+  function openM(){render();menu.classList.add("open");}function closeM(){menu.classList.remove("open");}
+  inp.addEventListener("focus",openM);inp.addEventListener("input",openM);
+  inp.addEventListener("keydown",function(e){if(e.key==="Enter"){var a=menu.querySelector("a");if(a){e.preventDefault();location.href=a.getAttribute("href");}}else if(e.key==="Escape"){closeM();inp.blur();}});
+  document.addEventListener("click",function(e){if(!menu.contains(e.target)&&e.target!==inp)closeM();});
+})();
+</script>'''
 order_banner = (
     f'<a class="order-cta" href="{order["url"]}" target="_blank" rel="noopener">'
     f'<div class="order-txt"><div class="order-kick">Food Aid Project · fill the trucks</div>'
@@ -105,14 +120,16 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
  .ordlink{{color:var(--primary);text-decoration:none;font-weight:700;font-size:13px}} .ordlink:hover{{text-decoration:underline}}
  .tlink{{color:var(--ink-soft);text-decoration:none;font-size:13px}} .tlink:hover{{color:var(--primary)}}
  .navlinks{{display:flex;align-items:center;gap:16px}}
- .switch{{position:relative}}
- .switch-btn{{font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}}
- .switch-btn:hover{{border-color:var(--primary)}}
- .switch-menu{{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:270px;max-height:62vh;overflow:auto;display:none;z-index:1100}}
- .switch-menu.open{{display:block}}
- .switch-menu a{{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}}
- .switch-menu a small{{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}}
- .switch-menu a:hover{{background:var(--ground)}}
+ .fbsearch{{position:relative}}
+ .fbsearch-in{{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:7px 12px;width:210px;max-width:46vw;transition:width .12s}}
+ .fbsearch-in:focus{{outline:none;border-color:var(--primary);background:var(--paper);width:240px}}
+ .fbsearch-menu{{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:260px;max-width:min(360px,92vw);max-height:62vh;overflow:auto;display:none;z-index:1100}}
+ .fbsearch-menu.open{{display:block}}
+ .fbsearch-menu a{{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}}
+ .fbsearch-menu a small{{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}}
+ .fbsearch-menu a:hover,.fbsearch-menu a.sel{{background:var(--ground)}}
+ .fbsearch-menu a.here{{background:var(--primary);color:#fff}} .fbsearch-menu a.here small{{color:rgba(255,255,255,.82)}}
+ .fbsearch-empty{{padding:8px 10px;color:var(--ink-faint);font-size:12.5px}}
  .order-cta{{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:20px 0 0;background:linear-gradient(100deg,rgba(30,107,87,.10),rgba(30,107,87,.03));border:1px solid var(--primary);border-radius:14px;padding:18px 22px;text-decoration:none;color:var(--ink);flex-wrap:wrap}}
  .order-cta:hover{{background:linear-gradient(100deg,rgba(30,107,87,.16),rgba(30,107,87,.06))}}
  .order-txt{{flex:1 1 340px}}
@@ -123,7 +140,7 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
 </style></head><body>
 <header class="nav">
  <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
- <div class="navlinks"><a class="tlink" href="/about">About</a>{order_nav}<div class="switch"><button class="switch-btn" id="switchBtn" aria-haspopup="true">Switch food bank ▾</button><div class="switch-menu" id="switchMenu">{switch_items}</div></div><span class="count">{len(sums)} food bank{"s" if len(sums)!=1 else ""}</span></div>
+ <div class="navlinks"><a class="tlink" href="/about">About</a>{order_nav}{FBSEARCH_NAV}<span class="count">{len(sums)} food bank{"s" if len(sums)!=1 else ""}</span></div>
 </header>
 <div class="wrap">
  <h1>Food-Need Atlas</h1>
@@ -164,14 +181,7 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
    }});
    empty.style.display=any?'none':'block';
  }});
- (function(){{
-   const menu=document.getElementById('switchMenu'), btn=document.getElementById('switchBtn');
-   if(menu&&btn){{
-     btn.addEventListener('click',function(e){{e.stopPropagation();menu.classList.toggle('open');}});
-     document.addEventListener('click',function(e){{if(!menu.contains(e.target)&&e.target!==btn)menu.classList.remove('open');}});
-   }}
- }})();
-</script></body></html>''')
+</script>{FBSEARCH_JS}</body></html>''')
 print("wrote docs/index.html with", len(sums), "food banks,", len(pins), "map pins")
 
 # ---------------------------------------------------------------- About page
@@ -189,14 +199,16 @@ ABOUT = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  .navlinks{display:flex;align-items:center;gap:16px}
  .tlink{color:var(--ink-soft);text-decoration:none;font-size:13px} .tlink:hover{color:var(--primary)}
  .ordlink{color:var(--primary);text-decoration:none;font-weight:700;font-size:13px} .ordlink:hover{text-decoration:underline}
- .switch{position:relative}
- .switch-btn{font:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
- .switch-btn:hover{border-color:var(--primary)}
- .switch-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:270px;max-height:62vh;overflow:auto;display:none;z-index:1100}
- .switch-menu.open{display:block}
- .switch-menu a{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}
- .switch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
- .switch-menu a:hover{background:var(--ground)}
+ .fbsearch{position:relative}
+ .fbsearch-in{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:7px 12px;width:210px;max-width:46vw;transition:width .12s}
+ .fbsearch-in:focus{outline:none;border-color:var(--primary);background:var(--paper);width:240px}
+ .fbsearch-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(20,40,34,.16);padding:6px;min-width:260px;max-width:min(360px,92vw);max-height:62vh;overflow:auto;display:none;z-index:1100}
+ .fbsearch-menu.open{display:block}
+ .fbsearch-menu a{display:block;padding:8px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600}
+ .fbsearch-menu a small{display:block;color:var(--ink-faint);font-size:11.5px;font-weight:400;margin-top:1px}
+ .fbsearch-menu a:hover,.fbsearch-menu a.sel{background:var(--ground)}
+ .fbsearch-menu a.here{background:var(--primary);color:#fff} .fbsearch-menu a.here small{color:rgba(255,255,255,.82)}
+ .fbsearch-empty{padding:8px 10px;color:var(--ink-faint);font-size:12.5px}
  .wrap{max-width:760px;margin:0 auto;padding:30px 18px 70px}
  .kick{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
  h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.02em;margin:0 0 6px}
@@ -210,7 +222,7 @@ ABOUT = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 </style></head><body>
 <header class="nav">
  <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
- <div class="navlinks"><a class="tlink" href="/">Atlas</a>__ORDER_NAV__<div class="switch"><button class="switch-btn" id="switchBtn">Switch food bank ▾</button><div class="switch-menu" id="switchMenu">__SWITCH__</div></div></div>
+ <div class="navlinks"><a class="tlink" href="/">Atlas</a>__ORDER_NAV____FBSEARCH_NAV__</div>
 </header>
 <div class="wrap">
  <p class="kick">About</p>
@@ -247,15 +259,7 @@ ABOUT = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 
  <div class="foot">Food Aid Project · Food-Need Atlas · illustrative, not a Feeding America product</div>
 </div>
-<script>
- (function(){
-   var menu=document.getElementById('switchMenu'), btn=document.getElementById('switchBtn');
-   if(menu&&btn){
-     btn.addEventListener('click',function(e){e.stopPropagation();menu.classList.toggle('open');});
-     document.addEventListener('click',function(e){if(!menu.contains(e.target)&&e.target!==btn)menu.classList.remove('open');});
-   }
- })();
-</script></body></html>'''
-ABOUT = ABOUT.replace("__ORDER_NAV__", order_nav).replace("__SWITCH__", switch_items)
+__FBSEARCH_JS__</body></html>'''
+ABOUT = ABOUT.replace("__ORDER_NAV__", order_nav).replace("__FBSEARCH_NAV__", FBSEARCH_NAV).replace("__FBSEARCH_JS__", FBSEARCH_JS)
 Path("docs/about.html").write_text(ABOUT)
 print("wrote docs/about.html")
