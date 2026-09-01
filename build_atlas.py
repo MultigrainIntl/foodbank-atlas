@@ -48,7 +48,8 @@ def load_foodbanks():
             continue
         if s.get("slug"):
             out.append({"name": s["name"], "slug": s["slug"],
-                        "region_label": s.get("region_label", s["name"])})
+                        "region_label": s.get("region_label", s["name"]),
+                        "state": s.get("state", "")})
     return sorted(out, key=lambda x: x["name"])
 
 
