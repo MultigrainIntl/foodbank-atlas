@@ -406,7 +406,7 @@ BRIEF_TPL = r'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta
  <h2>Funding to pursue</h2>
  <p><b>Federal &amp; national programs</b> (confirm current eligibility before applying):</p>
  <ul>__CHANNELS__</ul>
- <p>Food Aid Project can also source and ship a <a href="https://www.foodaidproject.org/food-banks.html">mixed truckload</a> of shelf-stable staples into these neighbourhoods.</p>
+ <p>Food Aid Project can also source and ship a <a href="https://foodbank-atlas.web.app/order">mixed truckload</a> of shelf-stable staples into these neighbourhoods.</p>
  <h2>The ask (template)</h2>
  <div class="ask">__NAME__ serves __REGION__, where __NHIGH__ neighbourhoods — approximately __HIGHPOP__ residents — face high food insecurity, with the low-income rate (LIM-AT) averaging __LIM__%. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighbourhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
  <div class="foot">Statistics Canada 2021 Census of Population (dissemination area) via the Census Profile SDMX web service · food-need score = min-max composite of LIM-AT prevalence, government-transfer share of income, and inverse median household income across scorable dissemination areas · Illustrative planning brief. Verify all figures and eligibility before use.</div>
