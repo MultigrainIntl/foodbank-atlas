@@ -129,14 +129,14 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
- const FOODBANKS=[{"name":"Harry Chapin Food Bank of Southwest Florida","slug":"harry-chapin","region_label":"Southwest Florida (Charlotte, Collier, Glades, Hendry, Lee)"},{"name":"Rhode Island Community Food Bank","slug":"rhode-island","region_label":"Rhode Island (statewide)"},{"name":"San Diego Food Bank","slug":"san-diego","region_label":"San Diego County, California"},{"name":"Saskatoon Food Bank & Learning Centre","slug":"saskatoon","region_label":"Saskatoon (CMA), Saskatchewan"},{"name":"The Campaign Against Hunger","slug":"campaign-against-hunger","region_label":"Brooklyn / Kings County, New York"}], SLUG="saskatoon";
+ const FOODBANKS=[{"name":"Calgary Food Bank","slug":"calgary","region_label":"Calgary (CMA), Alberta","state":"Canada"},{"name":"Daily Bread Food Bank","slug":"toronto","region_label":"Toronto (CMA), Ontario","state":"Canada"},{"name":"Edmonton's Food Bank","slug":"edmonton","region_label":"Edmonton (CMA), Alberta","state":"Canada"},{"name":"Feed Nova Scotia","slug":"halifax","region_label":"Halifax (CMA), Nova Scotia","state":"Canada"},{"name":"Greater Vancouver Food Bank","slug":"vancouver","region_label":"Vancouver (CMA), British Columbia","state":"Canada"},{"name":"Harry Chapin Food Bank of Southwest Florida","slug":"harry-chapin","region_label":"Southwest Florida (Charlotte, Collier, Glades, Hendry, Lee)","state":"Florida"},{"name":"Harvest Manitoba","slug":"winnipeg","region_label":"Winnipeg (CMA), Manitoba","state":"Canada"},{"name":"Moisson Montr\u00e9al","slug":"montreal","region_label":"Montr\u00e9al (CMA), Quebec","state":"Canada"},{"name":"Regina Food Bank","slug":"regina","region_label":"Regina (CMA), Saskatchewan","state":"Canada"},{"name":"Rhode Island Community Food Bank","slug":"rhode-island","region_label":"Rhode Island (statewide)","state":"Rhode Island"},{"name":"San Diego Food Bank","slug":"san-diego","region_label":"San Diego County, California","state":"California"},{"name":"Saskatoon Food Bank & Learning Centre","slug":"saskatoon","region_label":"Saskatoon (CMA), Saskatchewan","state":"Canada"},{"name":"The Campaign Against Hunger","slug":"campaign-against-hunger","region_label":"Brooklyn / Kings County, New York","state":"New York"}], SLUG="saskatoon";
  (function(){
    const inp=document.getElementById('fbsearch'), menu=document.getElementById('fbsearchMenu');
    if(!inp||!menu) return;
    const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
    const render=()=>{
      const t=inp.value.trim().toLowerCase();
-     const list=FOODBANKS.filter(f=>!t||(f.name+' '+(f.region_label||'')).toLowerCase().includes(t));
+     const list=FOODBANKS.filter(f=>!t||(f.name+' '+(f.region_label||'')+' '+(f.state||'')).toLowerCase().includes(t));
      menu.innerHTML=list.length?list.map(f=>`<a href="/${f.slug}"${f.slug===SLUG?' class="here"':''}>${esc(f.name)}<small>${esc(f.region_label||'')}</small></a>`).join(''):'<div class="fbsearch-empty">No food banks match.</div>';
    };
    const open=()=>{render();menu.classList.add('open');};

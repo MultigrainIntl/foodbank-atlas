@@ -139,14 +139,14 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
- const FOODBANKS=[{"name":"Harry Chapin Food Bank of Southwest Florida","slug":"harry-chapin","region_label":"Southwest Florida (Charlotte, Collier, Glades, Hendry, Lee)"},{"name":"Rhode Island Community Food Bank","slug":"rhode-island","region_label":"Rhode Island (statewide)"},{"name":"San Diego Food Bank","slug":"san-diego","region_label":"San Diego County, California"},{"name":"Saskatoon Food Bank & Learning Centre","slug":"saskatoon","region_label":"Saskatoon (CMA), Saskatchewan"},{"name":"The Campaign Against Hunger","slug":"campaign-against-hunger","region_label":"Brooklyn / Kings County, New York"}], SLUG="harry-chapin";
+ const FOODBANKS=[{"name":"Harry Chapin Food Bank of Southwest Florida","slug":"harry-chapin","region_label":"Southwest Florida (Charlotte, Collier, Glades, Hendry, Lee)","state":"Florida"},{"name":"Rhode Island Community Food Bank","slug":"rhode-island","region_label":"Rhode Island (statewide)","state":"Rhode Island"},{"name":"San Diego Food Bank","slug":"san-diego","region_label":"San Diego County, California","state":"California"},{"name":"Saskatoon Food Bank & Learning Centre","slug":"saskatoon","region_label":"Saskatoon (CMA), Saskatchewan","state":"Canada"},{"name":"The Campaign Against Hunger","slug":"campaign-against-hunger","region_label":"Brooklyn / Kings County, New York","state":"New York"}], SLUG="harry-chapin";
  (function(){
    const inp=document.getElementById('fbsearch'), menu=document.getElementById('fbsearchMenu');
    if(!inp||!menu) return;
    const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
    const render=()=>{
      const t=inp.value.trim().toLowerCase();
-     const list=FOODBANKS.filter(f=>!t||(f.name+' '+(f.region_label||'')).toLowerCase().includes(t));
+     const list=FOODBANKS.filter(f=>!t||(f.name+' '+(f.region_label||'')+' '+(f.state||'')).toLowerCase().includes(t));
      menu.innerHTML=list.length?list.map(f=>`<a href="/${f.slug}"${f.slug===SLUG?' class="here"':''}>${esc(f.name)}<small>${esc(f.region_label||'')}</small></a>`).join(''):'<div class="fbsearch-empty">No food banks match.</div>';
    };
    const open=()=>{render();menu.classList.add('open');};
