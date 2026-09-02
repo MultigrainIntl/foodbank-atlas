@@ -14,7 +14,7 @@ on:
       - "firebase.json"
       - ".github/workflows/deploy.yml"
   workflow_run:
-    workflows: ["Build Food-Need Atlas"]
+    workflows: ["Build Food-Need Atlas", "Build Canada only (debug)"]
     types: [completed]
   workflow_dispatch: {}
 
