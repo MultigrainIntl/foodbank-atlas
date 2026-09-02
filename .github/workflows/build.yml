@@ -90,6 +90,9 @@ jobs:
             python make_index.py
           fi
 
+      - name: Link guard - truckload/order links must point to on-site /order
+        run: python check_links.py docs
+
       - name: Commit generated maps
         run: |
           git config user.name  atlas-bot
