@@ -46,7 +46,7 @@
     "help": "The Canada Revenue Agency's List of Charities is the open Canadian analog of the U.S. 990 — every registered charity and private/public foundation files an annual T3010 return. Search your city or province, filter to foundations, and open each one's return to see its giving and gauge fit before you apply."
   },
   "order": {
-    "url": "https://www.foodaidproject.org/food-banks.html",
+    "url": "/order",
     "label": "Build a mixed truckload",
     "help": "Once the money's lined up, fill the trucks. Mix and match beans, lentils, chickpeas, oats, rice and grains to fill a 53-ft dry van — watch the load build to 26 pallets / 42,000 lb — then start a conversation with Food Aid Project, which sources and ships from Canada. Free planning tool, not a binding order."
   }
