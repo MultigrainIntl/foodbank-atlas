@@ -19,6 +19,7 @@ jobs:
           python-version: "3.12"
       - name: Refresh live funding data (Grants.gov + ProPublica 990-PF)
         continue-on-error: true      # never let a funding-API hiccup block the map build
+        timeout-minutes: 5           # cap a hung funding fetch
         run: |
           python pull_funding.py grants      || echo "grants pull skipped (kept existing)"
           python pull_funding.py foundations || echo "foundations pull skipped (kept existing)"
@@ -33,6 +34,7 @@ jobs:
           echo "== docs/ ==" && ls -la docs/
       - name: Build Canadian food banks (Statistics Canada, keyless)
         continue-on-error: true      # a StatCan hiccup shouldn't block the U.S. maps
+        timeout-minutes: 15          # cap hung StatCan downloads so the commit step still runs
         run: |
           if ls config/ca/*.json >/dev/null 2>&1; then
             python -m pip install --quiet geopandas pyogrio shapely
