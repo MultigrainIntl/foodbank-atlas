@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Los Angeles Regional Food Bank",
+    "slug": "la-regional",
+    "region_label": "Los Angeles County, California",
+    "county_fips": [
+      "06037"
+    ]
+  }
+]
