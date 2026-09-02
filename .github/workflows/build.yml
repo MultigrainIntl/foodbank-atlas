@@ -1,52 +1,95 @@
 name: Build Food-Need Atlas
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      rebuild_all:
+        description: "Rebuild every map (ignore change detection)"
+        type: boolean
+        default: false
   push:
     paths: ['config/**', 'build_atlas.py', 'template.html', 'make_index.py', 'build_ca.py', 'template_ca.html']
 permissions:
   contents: write
 concurrency:
   group: build-atlas
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Decide what to build (incremental)
+        id: plan
+        run: |
+          FULL=0
+          if [ "${{ github.event_name }}" != "push" ] || [ "${{ inputs.rebuild_all }}" = "true" ]; then
+            FULL=1
+          fi
+          CHANGED="$(git diff --name-only HEAD^ HEAD 2>/dev/null || true)"
+          if [ "$FULL" = "0" ]; then
+            if printf '%s\n' "$CHANGED" | grep -qE '(^|/)(build_atlas\.py|template\.html|make_index\.py|build_ca\.py|template_ca\.html)$'; then FULL=1; fi
+            if printf '%s\n' "$CHANGED" | grep -qE '^\.github/'; then FULL=1; fi
+            if [ -z "$CHANGED" ]; then FULL=1; fi
+          fi
+          echo "full=$FULL" >> "$GITHUB_OUTPUT"
+          {
+            echo "changed<<CHANGED_EOF"
+            printf '%s\n' "$CHANGED"
+            echo "CHANGED_EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "full=$FULL"; echo "changed files:"; printf '%s\n' "$CHANGED"
+
       - name: Refresh live funding data (Grants.gov + ProPublica 990-PF)
-        continue-on-error: true      # never let a funding-API hiccup block the map build
-        timeout-minutes: 5           # cap a hung funding fetch
+        continue-on-error: true
+        timeout-minutes: 5
         run: |
           python pull_funding.py grants      || echo "grants pull skipped (kept existing)"
           python pull_funding.py foundations || echo "foundations pull skipped (kept existing)"
-      - name: Build every configured food bank (keyless Census Reporter)
+
+      - name: Build US food banks (keyless Census Reporter)
         run: |
-          for c in config/*.json; do
+          if [ "${{ steps.plan.outputs.full }}" = "1" ]; then
+            LIST="$(ls config/*.json)"
+          else
+            LIST="$(printf '%s\n' '${{ steps.plan.outputs.changed }}' | grep -E '^config/[^/]+\.json$' || true)"
+          fi
+          echo "US build list: $LIST"
+          for c in $LIST; do
             case "$c" in */funding.json|*/grants.json|*/foundations_by_state.json) continue;; esac
+            [ -f "$c" ] || continue
             echo "== $c =="
             python build_atlas.py "$c" || echo "!! BUILD FAILED: $c"
           done
           python make_index.py
-          echo "== docs/ ==" && ls -la docs/
+
       - name: Build Canadian food banks (Statistics Canada, keyless)
-        continue-on-error: true      # a StatCan hiccup shouldn't block the U.S. maps
-        timeout-minutes: 15          # cap hung StatCan downloads so the commit step still runs
+        continue-on-error: true
+        timeout-minutes: 20
         run: |
+          RUN=0
+          [ "${{ steps.plan.outputs.full }}" = "1" ] && RUN=1
+          CA_CHANGED="$(printf '%s\n' '${{ steps.plan.outputs.changed }}' | grep -E '^config/ca/[^/]+\.json$' || true)"
+          [ -n "$CA_CHANGED" ] && RUN=1
+          if [ "$RUN" = "0" ]; then echo "no Canada changes; skipping Canada build"; exit 0; fi
           if ls config/ca/*.json >/dev/null 2>&1; then
             python -m pip install --quiet geopandas pyogrio shapely
-            for c in config/ca/*.json; do
+            if [ "${{ steps.plan.outputs.full }}" = "1" ]; then LIST="$(ls config/ca/*.json)"; else LIST="$CA_CHANGED"; fi
+            echo "CA build list: $LIST"
+            for c in $LIST; do
+              [ -f "$c" ] || continue
               echo "== $c =="
               python build_ca.py "$c" || echo "!! CA BUILD FAILED: $c"
             done
-            python make_index.py   # rebuild home page/switcher now that Canada summaries exist
-            echo "== docs/ ==" && ls -la docs/
-          else
-            echo "no Canadian configs yet"
+            python make_index.py
           fi
+
       - name: Commit generated maps
         run: |
           git config user.name  atlas-bot
@@ -54,7 +97,6 @@ jobs:
           git add -f docs/*.html docs/data/*.json
           git add -f config/grants.json config/foundations_by_state.json 2>/dev/null || true
           git commit -m "build: atlas $(date -u +%F)" || { echo "no changes"; exit 0; }
-          # Rebase onto any commits that landed during the (long) build, then push, with retries.
           for i in 1 2 3; do
             git pull --rebase --autostash origin main && git push && exit 0
             echo "push attempt $i rejected; retrying"; sleep 4
