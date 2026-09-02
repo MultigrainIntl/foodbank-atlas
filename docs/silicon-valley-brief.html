@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Second Harvest of Silicon Valley — Food Need & Funding Brief</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
+ .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+ .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
+ .btn{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+ .sheet{max-width:820px;margin:22px auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 40px;box-shadow:0 8px 26px rgba(20,40,34,.07)}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0}
+ .meta{color:var(--ink-faint);font-size:12.5px;margin:5px 0 0;font-family:"IBM Plex Mono",monospace}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ p{color:var(--ink-soft);margin:9px 0} b{color:var(--ink)}
+ .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+ .stat{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+ .stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1}
+ .stat .l{color:var(--ink-faint);font-size:11px;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+ th{text-align:left;color:var(--ink-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{padding:6px 8px;border-bottom:1px solid var(--line)} td.num{text-align:right;font-variant-numeric:tabular-nums} td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+ ul{margin:8px 0;padding-left:20px} li{margin:6px 0;font-size:13px;color:var(--ink-soft)} li a{color:var(--primary)} .mono{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
+ .ask{background:var(--ground);border:1px dashed var(--primary);border-radius:10px;padding:14px 16px;color:var(--ink-soft);font-size:13.5px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+ @media print{
+   .bar{display:none} body{background:#fff} .sheet{box-shadow:none;border:none;border-radius:0;margin:0;max-width:none;padding:0 8px}
+   h2{break-after:avoid} table,ul{break-inside:avoid} a{color:#1E6B57;text-decoration:none}
+ }
+</style></head><body>
+<div class="bar">
+ <a href="/silicon-valley">← Back to the map</a>
+ <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="sheet">
+ <p class="kick">Food Aid Project · Food-Need Atlas · Evidence Brief</p>
+ <h1>Second Harvest of Silicon Valley — Food Need &amp; Funding Brief</h1>
+ <p class="meta">Santa Clara &amp; San Mateo counties, California · generated September 2, 2026</p>
+
+ <p>Across Santa Clara &amp; San Mateo counties, California, the Food-Need Atlas scores every one of <b>580 neighborhoods</b> (census tracts of ~4,000 people) on poverty, share under 200% of the federal poverty line, SNAP receipt, and low income. <b>22 neighborhoods — about 83,671 people — register high food need</b> and are where distribution, mobile pantries, and the right product mix return the most.</p>
+
+ <p><b>SNAP gap:</b> an estimated <b>84,918 residents</b> across Santa Clara &amp; San Mateo counties, California appear income-eligible for SNAP (under ~130% of poverty) but are likely not enrolled — unclaimed federal grocery dollars that would directly ease demand on the food bank, and a concrete outreach target and funding argument.</p>
+ <div class="stats">
+  <div class="stat"><div class="n">22</div><div class="l">high-need neighborhoods</div></div>
+  <div class="stat"><div class="n">7.0%</div><div class="l">live in poverty (avg)</div></div>
+  <div class="stat"><div class="n">15.4%</div><div class="l">under 200% of poverty</div></div>
+  <div class="stat"><div class="n">6.6%</div><div class="l">receive SNAP (avg)</div></div>
+ </div>
+
+ <h2>Highest-need neighborhoods</h2>
+ <table>
+  <thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead>
+  <tbody><tr><td>San Jose</td><td class="mono">5009.02</td><td class="num"><b>89.9</b></td><td class="num">51.0%</td><td class="num">69.1%</td><td class="num">25.0%</td><td class="num">5,377</td></tr><tr><td>San Jose</td><td class="mono">5037.1</td><td class="num"><b>88.4</b></td><td class="num">19.5%</td><td class="num">51.5%</td><td class="num">42.0%</td><td class="num">3,046</td></tr><tr><td>San Jose</td><td class="mono">5037.12</td><td class="num"><b>87.9</b></td><td class="num">27.0%</td><td class="num">49.0%</td><td class="num">35.9%</td><td class="num">3,770</td></tr><tr><td>San Jose</td><td class="mono">5009.01</td><td class="num"><b>78.5</b></td><td class="num">35.8%</td><td class="num">51.7%</td><td class="num">11.8%</td><td class="num">4,298</td></tr><tr><td>San Jose</td><td class="mono">5116.08</td><td class="num"><b>77.0</b></td><td class="num">35.8%</td><td class="num">50.6%</td><td class="num">4.3%</td><td class="num">3,316</td></tr><tr><td>San Jose</td><td class="mono">5032.21</td><td class="num"><b>75.5</b></td><td class="num">23.2%</td><td class="num">38.4%</td><td class="num">28.0%</td><td class="num">2,433</td></tr><tr><td>San Jose</td><td class="mono">5031.22</td><td class="num"><b>74.8</b></td><td class="num">20.4%</td><td class="num">37.0%</td><td class="num">30.7%</td><td class="num">3,345</td></tr><tr><td>San Jose</td><td class="mono">5032.13</td><td class="num"><b>73.9</b></td><td class="num">15.9%</td><td class="num">45.5%</td><td class="num">32.8%</td><td class="num">4,920</td></tr><tr><td>San Jose</td><td class="mono">5016.02</td><td class="num"><b>73.1</b></td><td class="num">26.0%</td><td class="num">47.6%</td><td class="num">14.9%</td><td class="num">2,911</td></tr><tr><td>San Jose</td><td class="mono">5037.13</td><td class="num"><b>71.9</b></td><td class="num">15.4%</td><td class="num">49.1%</td><td class="num">26.4%</td><td class="num">3,082</td></tr><tr><td>San Jose</td><td class="mono">5010</td><td class="num"><b>71.8</b></td><td class="num">19.4%</td><td class="num">42.2%</td><td class="num">25.1%</td><td class="num">4,928</td></tr><tr><td>San Jose</td><td class="mono">5031.05</td><td class="num"><b>70.3</b></td><td class="num">19.9%</td><td class="num">29.5%</td><td class="num">33.1%</td><td class="num">2,012</td></tr></tbody>
+ </table>
+
+ <h2>Funding to pursue</h2>
+ <p><b>Open federal opportunities</b> (verify eligibility on Grants.gov before applying):</p>
+ <ul><li><a href="https://www.grants.gov/search-results-detail/362823">Fiscal Year 2027 Expanding Nutrition Services</a> — Health Resources and Services Administration · closes 2026-09-09</li><li><a href="https://www.grants.gov/search-results-detail/363631">Cold Chain Grants for Emergency Food Assistance</a> — Agricultural Marketing Service · closes 2026-10-01</li></ul>
+ <p><b>Local private foundations in California</b> (IRS 990-PF — check each one's giving history on grantmakers.io for food-relief fit):</p>
+ <ul><li><a href="https://www.grantmakers.io/profiles/v1/943377099-crankstart-foundation">Crankstart Foundation</a> <span class="mono">$3.9B</span> · San Jose</li><li><a href="https://www.grantmakers.io/profiles/v1/954686318-broad-foundation">Broad Foundation</a> <span class="mono">$1.8B</span> · Los Angeles</li><li><a href="https://www.grantmakers.io/profiles/v1/464347021-aphorism-foundation">Aphorism Foundation</a> <span class="mono">$1.1B</span> · San Francisco</li><li><a href="https://www.grantmakers.io/profiles/v1/956054814-weingart-foundation">Weingart Foundation</a> <span class="mono">$841M</span> · Los Angeles</li><li><a href="https://www.grantmakers.io/profiles/v1/113659133-skoll-foundation">Skoll Foundation</a> <span class="mono">$807M</span> · San Francisco</li><li><a href="https://www.grantmakers.io/profiles/v1/271208110-xie-foundation">Xie Foundation</a> <span class="mono">$725M</span> · Sunnyvale</li><li><a href="https://www.grantmakers.io/profiles/v1/510198509-tides-foundation">Tides Foundation</a> <span class="mono">$646M</span> · San Francisco</li><li><a href="https://www.grantmakers.io/profiles/v1/611583546-hellman-foundation">Hellman Foundation</a> <span class="mono">$636M</span> · San Francisco</li></ul>
+ <p>Standing federal programs (USDA TEFAP &amp; CSFP, state food-purchase) remain the backbone of supply — and Food Aid Project can source and ship a <a href="https://www.foodaidproject.org/food-banks.html">mixed truckload</a> of staples directly into these neighborhoods.</p>
+
+ <h2>The ask (template)</h2>
+ <div class="ask">Second Harvest of Silicon Valley serves Santa Clara &amp; San Mateo counties, California, where 22 neighborhoods — approximately 83,671 residents — face high food insecurity, with poverty averaging 7.0% and 6.6% relying on SNAP. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighborhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
+
+ <div class="foot">U.S. Census ACS 5-year estimates (tract) via Census Reporter · food-need score = min-max composite of poverty, &lt;200% FPL, SNAP, and inverse median income across residential tracts · funding via Grants.gov + IRS 990-PF (ProPublica / grantmakers.io) · Illustrative planning brief, not a Feeding America product. Verify all figures and eligibility before use.</div>
+</div>
+</body></html>

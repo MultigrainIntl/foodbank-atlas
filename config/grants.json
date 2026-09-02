@@ -1,7 +1,7 @@
 {
   "source": "Grants.gov Search2 API — open federal opportunities",
   "source_url": "https://www.grants.gov",
-  "pulled": "2026-09-01",
+  "pulled": "2026-09-02",
   "note": "Open federal opportunities matched to food-bank work by keyword and theme. Federal NOFOs a food bank can pursue directly are limited at any moment — verify eligibility and full details on grants.gov before applying.",
   "opportunities": [
     {
