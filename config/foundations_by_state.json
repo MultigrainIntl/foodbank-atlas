@@ -1,7 +1,7 @@
 {
   "source": "IRS Form 990-PF via ProPublica Nonprofit Explorer",
   "source_url": "https://projects.propublica.org/nonprofits/",
-  "compiled": "2026-09-01",
+  "compiled": "2026-09-03",
   "method": "Largest private grantmaking foundations (NTEE T, 501(c)(3)) headquartered in each food bank's state, ranked by total assets from the latest public 990-PF. Assets shown because a private foundation must pay out ~5% of assets in grants a year. Open each on grantmakers.io to see its actual giving history and judge food-relief fit before applying.",
   "states": {
     "CA": [
@@ -298,6 +298,598 @@
         "focus": "Private grantmaking foundation (IRS 990-PF)",
         "gm_url": "https://www.grantmakers.io/profiles/v1/882461260-banknewport-charitable-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/882461260"
+      }
+    ],
+    "AL": [
+      {
+        "name": "Haplotace Foundation",
+        "ein": "631182139",
+        "city": "Birmingham",
+        "assets_musd": 645,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/631182139-haplotace-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/631182139"
+      },
+      {
+        "name": "Regions Foundation",
+        "ein": "631144265",
+        "city": "Birmingham",
+        "assets_musd": 125,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/631144265-regions-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/631144265"
+      },
+      {
+        "name": "Wiregrass Foundation",
+        "ein": "200897153",
+        "city": "Dothan",
+        "assets_musd": 109,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/200897153-wiregrass-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/200897153"
+      },
+      {
+        "name": "Caring Foundation",
+        "ein": "631035261",
+        "city": "Hoover",
+        "assets_musd": 91,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/631035261-caring-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/631035261"
+      },
+      {
+        "name": "Alfa Foundation",
+        "ein": "721373145",
+        "city": "Montgomery",
+        "assets_musd": 29,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/721373145-alfa-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/721373145"
+      },
+      {
+        "name": "Pleiad Foundation",
+        "ein": "631159236",
+        "city": "Birmingham",
+        "assets_musd": 10,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/631159236-pleiad-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/631159236"
+      },
+      {
+        "name": "Propst Foundation",
+        "ein": "274341346",
+        "city": "Huntsville",
+        "assets_musd": 8,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/274341346-propst-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/274341346"
+      },
+      {
+        "name": "Anonymous Foundation",
+        "ein": "205224490",
+        "city": "Birmingham",
+        "assets_musd": 5,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/205224490-anonymous-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/205224490"
+      }
+    ],
+    "IL": [
+      {
+        "name": "Joyce Foundation",
+        "ein": "366079185",
+        "city": "Chicago",
+        "assets_musd": 1243,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/366079185-joyce-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/366079185"
+      },
+      {
+        "name": "1111 Foundation",
+        "ein": "461463656",
+        "city": "Highland Park",
+        "assets_musd": 542,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/461463656-1111-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/461463656"
+      },
+      {
+        "name": "Exelon Foundation",
+        "ein": "830499473",
+        "city": "Chicago",
+        "assets_musd": 108,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/830499473-exelon-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/830499473"
+      },
+      {
+        "name": "Dunham Foundation",
+        "ein": "842345560",
+        "city": "Aurora",
+        "assets_musd": 82,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/842345560-dunham-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/842345560"
+      },
+      {
+        "name": "Alphawood Foundation",
+        "ein": "363805338",
+        "city": "Chicago",
+        "assets_musd": 65,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/363805338-alphawood-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/363805338"
+      },
+      {
+        "name": "Gilmore Foundation",
+        "ein": "271400179",
+        "city": "Peoria",
+        "assets_musd": 63,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/271400179-gilmore-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/271400179"
+      },
+      {
+        "name": "Polsky Foundation",
+        "ein": "651164639",
+        "city": "Chicago",
+        "assets_musd": 63,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/651164639-polsky-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/651164639"
+      },
+      {
+        "name": "Wayfarer Foundation",
+        "ein": "862088032",
+        "city": "Highland Park",
+        "assets_musd": 55,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/862088032-wayfarer-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/862088032"
+      }
+    ],
+    "MN": [
+      {
+        "name": "Mcknight Foundation",
+        "ein": "410754835",
+        "city": "Minneapolis",
+        "assets_musd": 2661,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/410754835-mcknight-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/410754835"
+      },
+      {
+        "name": "Ghr Foundation",
+        "ein": "453996122",
+        "city": "Minneapolis",
+        "assets_musd": 1059,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/453996122-ghr-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/453996122"
+      },
+      {
+        "name": "Minneapolis Foundation",
+        "ein": "416029402",
+        "city": "Minneapolis",
+        "assets_musd": 1039,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/416029402-minneapolis-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/416029402"
+      },
+      {
+        "name": "Opus Foundation",
+        "ein": "411983284",
+        "city": "Minneapolis",
+        "assets_musd": 132,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/411983284-opus-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/411983284"
+      },
+      {
+        "name": "Northland Foundation",
+        "ein": "411554455",
+        "city": "Duluth",
+        "assets_musd": 115,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/411554455-northland-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/411554455"
+      },
+      {
+        "name": "Guilder Foundation",
+        "ein": "462693090",
+        "city": "Minneapolis",
+        "assets_musd": 107,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/462693090-guilder-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/462693090"
+      },
+      {
+        "name": "Kaena Foundation",
+        "ein": "462692867",
+        "city": "Minneapolis",
+        "assets_musd": 101,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/462692867-kaena-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/462692867"
+      },
+      {
+        "name": "Wilson Foundation",
+        "ein": "863212786",
+        "city": "Saint Paul",
+        "assets_musd": 86,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/863212786-wilson-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/863212786"
+      }
+    ],
+    "OH": [
+      {
+        "name": "Columbus Foundation",
+        "ein": "316044264",
+        "city": "Columbus",
+        "assets_musd": 2487,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/316044264-columbus-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/316044264"
+      },
+      {
+        "name": "Dayton Foundation",
+        "ein": "316027287",
+        "city": "Dayton",
+        "assets_musd": 583,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/316027287-dayton-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/316027287"
+      },
+      {
+        "name": "Troy Foundation",
+        "ein": "316018703",
+        "city": "Troy",
+        "assets_musd": 141,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/316018703-troy-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/316018703"
+      },
+      {
+        "name": "Youngstown Foundation",
+        "ein": "346515788",
+        "city": "Youngstown",
+        "assets_musd": 140,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/346515788-youngstown-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/346515788"
+      },
+      {
+        "name": "Springfield Foundation",
+        "ein": "316030764",
+        "city": "Springfield",
+        "assets_musd": 131,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/316030764-springfield-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/316030764"
+      },
+      {
+        "name": "Christ Foundation",
+        "ein": "237121546",
+        "city": "Hartville",
+        "assets_musd": 74,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/237121546-christ-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/237121546"
+      },
+      {
+        "name": "Edelweiss Foundation",
+        "ein": "883136523",
+        "city": "Cincinnati",
+        "assets_musd": 52,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/883136523-edelweiss-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/883136523"
+      },
+      {
+        "name": "Connor Foundation",
+        "ein": "473317026",
+        "city": "Independence",
+        "assets_musd": 37,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/473317026-connor-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/473317026"
+      }
+    ],
+    "OK": [
+      {
+        "name": "Inasmuch Foundation",
+        "ein": "731167188",
+        "city": "Oklahoma City",
+        "assets_musd": 403,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/731167188-inasmuch-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/731167188"
+      },
+      {
+        "name": "Lyon Foundation",
+        "ein": "237299980",
+        "city": "Bartlesville",
+        "assets_musd": 52,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/237299980-lyon-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/237299980"
+      },
+      {
+        "name": "Fugitt Foundation",
+        "ein": "201189418",
+        "city": "Mcalester",
+        "assets_musd": 31,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/201189418-fugitt-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/201189418"
+      },
+      {
+        "name": "Bokf Foundation",
+        "ein": "731580807",
+        "city": "Tulsa",
+        "assets_musd": 17,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/731580807-bokf-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/731580807"
+      },
+      {
+        "name": "Bezalel Foundation",
+        "ein": "50578856",
+        "city": "Tulsa",
+        "assets_musd": 16,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/50578856-bezalel-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/50578856"
+      },
+      {
+        "name": "Jexal Foundation",
+        "ein": "731372860",
+        "city": "Velma",
+        "assets_musd": 16,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/731372860-jexal-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/731372860"
+      },
+      {
+        "name": "Mano Foundation",
+        "ein": "881525219",
+        "city": "Tulsa",
+        "assets_musd": 13,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/881525219-mano-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/881525219"
+      },
+      {
+        "name": "Commonwealth Foundation",
+        "ein": "731463741",
+        "city": "Tulsa",
+        "assets_musd": 11,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/731463741-commonwealth-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/731463741"
+      }
+    ],
+    "OR": [
+      {
+        "name": "Knight Foundation",
+        "ein": "911791788",
+        "city": "Beaverton",
+        "assets_musd": 4230,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/911791788-knight-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/911791788"
+      },
+      {
+        "name": "Lemelson Foundation",
+        "ein": "880391959",
+        "city": "Portland",
+        "assets_musd": 417,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/880391959-lemelson-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/880391959"
+      },
+      {
+        "name": "Hollis Foundation",
+        "ein": "611900941",
+        "city": "Portland",
+        "assets_musd": 89,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/611900941-hollis-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/611900941"
+      },
+      {
+        "name": "Intel Foundation",
+        "ein": "943092928",
+        "city": "Hillsboro",
+        "assets_musd": 61,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/943092928-intel-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/943092928"
+      },
+      {
+        "name": "Anjulicia Foundation",
+        "ein": "261234177",
+        "city": "Bend",
+        "assets_musd": 48,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/261234177-anjulicia-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/261234177"
+      },
+      {
+        "name": "Pinetops Foundation",
+        "ein": "460477322",
+        "city": "Bend",
+        "assets_musd": 46,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/460477322-pinetops-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/460477322"
+      },
+      {
+        "name": "Rmf Foundation",
+        "ein": "800875249",
+        "city": "Beaverton",
+        "assets_musd": 38,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/800875249-rmf-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/800875249"
+      },
+      {
+        "name": "Nike Foundation",
+        "ein": "931159948",
+        "city": "Beaverton",
+        "assets_musd": 34,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/931159948-nike-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/931159948"
+      }
+    ],
+    "WA": [
+      {
+        "name": "Gates Foundation",
+        "ein": "562618866",
+        "city": "Seattle",
+        "assets_musd": 76951,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/562618866-gates-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/562618866"
+      },
+      {
+        "name": "Innovia Foundation",
+        "ein": "910941053",
+        "city": "Spokane",
+        "assets_musd": 217,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/910941053-innovia-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/910941053"
+      },
+      {
+        "name": "Wilburforce Foundation",
+        "ein": "943137894",
+        "city": "Seattle",
+        "assets_musd": 141,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/943137894-wilburforce-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/943137894"
+      },
+      {
+        "name": "Sahsen Foundation",
+        "ein": "271420373",
+        "city": "Seattle",
+        "assets_musd": 139,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/271420373-sahsen-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/271420373"
+      },
+      {
+        "name": "Apex Foundation",
+        "ein": "911950397",
+        "city": "Bellevue",
+        "assets_musd": 127,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/911950397-apex-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/911950397"
+      },
+      {
+        "name": "Samis Foundation",
+        "ein": "911641746",
+        "city": "Seattle",
+        "assets_musd": 108,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/911641746-samis-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/911641746"
+      },
+      {
+        "name": "Keller Foundation",
+        "ein": "911811697",
+        "city": "Vancouver",
+        "assets_musd": 91,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/911811697-keller-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/911811697"
+      },
+      {
+        "name": "Raikes Foundation",
+        "ein": "912173492",
+        "city": "Seattle",
+        "assets_musd": 90,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/912173492-raikes-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/912173492"
+      }
+    ],
+    "WI": [
+      {
+        "name": "Rdk Foundation",
+        "ein": "391524311",
+        "city": "Milwaukee",
+        "assets_musd": 399,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/391524311-rdk-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/391524311"
+      },
+      {
+        "name": "Chipstone Foundation",
+        "ein": "396096593",
+        "city": "Milwaukee",
+        "assets_musd": 71,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/396096593-chipstone-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/396096593"
+      },
+      {
+        "name": "Gainey Foundation",
+        "ein": "205632706",
+        "city": "Milwaukee",
+        "assets_musd": 38,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/205632706-gainey-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/205632706"
+      },
+      {
+        "name": "Longview Foundation",
+        "ein": "411957581",
+        "city": "Milwaukee",
+        "assets_musd": 16,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/411957581-longview-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/411957581"
+      },
+      {
+        "name": "Brookhill Foundation",
+        "ein": "205818635",
+        "city": "Milwaukee",
+        "assets_musd": 14,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/205818635-brookhill-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/205818635"
+      },
+      {
+        "name": "Brookwood Foundation",
+        "ein": "392012432",
+        "city": "Kenosha",
+        "assets_musd": 12,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/392012432-brookwood-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/392012432"
+      },
+      {
+        "name": "Macdonald Foundation",
+        "ein": "336269762",
+        "city": "Wausau",
+        "assets_musd": 12,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/336269762-macdonald-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/336269762"
+      },
+      {
+        "name": "Nabila Foundation",
+        "ein": "823740648",
+        "city": "Milwaukee",
+        "assets_musd": 10,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/823740648-nabila-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/823740648"
       }
     ]
   }
