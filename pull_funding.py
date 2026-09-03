@@ -224,6 +224,8 @@ def config_states():
             c = json.loads(Path(p).read_text())
         except Exception:
             continue
+        if isinstance(c, list):
+            c = c[0] if c else {}
         for fips in c.get("county_fips", []):
             ab = STATE_FIPS.get((fips or "")[:2])
             if ab:
