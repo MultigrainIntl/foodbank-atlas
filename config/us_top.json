@@ -1,39 +1,39 @@
 [
-  {
-    "name": "Second Harvest of Silicon Valley",
-    "slug": "silicon-valley",
-    "region_label": "Santa Clara & San Mateo counties, California",
-    "county_fips": [
-      "06085",
-      "06081"
-    ]
-  },
-  {
-    "name": "Greater Chicago Food Depository",
-    "slug": "chicago",
-    "region_label": "Cook County, Illinois",
-    "county_fips": [
-      "17031"
-    ]
-  },
-  {
-    "name": "Food Bank For New York City",
-    "slug": "nyc",
-    "region_label": "New York City (five boroughs)",
-    "county_fips": [
-      "36005",
-      "36047",
-      "36061",
-      "36081",
-      "36085"
-    ]
-  },
-  {
-    "name": "Alameda County Community Food Bank",
-    "slug": "alameda",
-    "region_label": "Alameda County, California",
-    "county_fips": [
-      "06001"
-    ]
-  }
+    {
+        "name": "Second Harvest of Silicon Valley",
+        "slug": "silicon-valley",
+        "region_label": "Santa Clara & San Mateo counties, California",
+        "county_fips": [
+            "06085",
+            "06081"
+        ]
+    },
+    {
+        "name": "Greater Chicago Food Depository",
+        "slug": "chicago",
+        "region_label": "Cook County, Illinois",
+        "county_fips": [
+            "17031"
+        ]
+    },
+    {
+        "name": "Food Bank For New York City",
+        "slug": "nyc",
+        "region_label": "New York City (five boroughs)",
+        "county_fips": [
+            "36005",
+            "36047",
+            "36061",
+            "36081",
+            "36085"
+        ]
+    },
+    {
+        "name": "Alameda County Community Food Bank",
+        "slug": "alameda",
+        "region_label": "Alameda County, California",
+        "county_fips": [
+            "06001"
+        ]
+    }
 ]
