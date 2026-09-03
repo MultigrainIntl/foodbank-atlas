@@ -1,1 +1,8 @@
-{"name":"San Diego Food Bank","slug":"san-diego","region_label":"San Diego County, California","county_fips":["06073"]}
+{
+    "name": "San Diego Food Bank",
+    "slug": "san-diego",
+    "region_label": "San Diego County, California",
+    "county_fips": [
+        "06073"
+    ]
+}
