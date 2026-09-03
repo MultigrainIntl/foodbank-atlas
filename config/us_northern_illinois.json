@@ -1,22 +1,22 @@
 [
-  {
-    "name": "Northern Illinois Food Bank",
-    "slug": "northern-illinois",
-    "region_label": "Northern Illinois (13 counties)",
-    "county_fips": [
-      "17007",
-      "17037",
-      "17043",
-      "17063",
-      "17089",
-      "17091",
-      "17093",
-      "17097",
-      "17111",
-      "17141",
-      "17177",
-      "17197",
-      "17201"
-    ]
-  }
+    {
+        "name": "Northern Illinois Food Bank",
+        "slug": "northern-illinois",
+        "region_label": "Northern Illinois (13 counties)",
+        "county_fips": [
+            "17007",
+            "17037",
+            "17043",
+            "17063",
+            "17089",
+            "17091",
+            "17093",
+            "17097",
+            "17111",
+            "17141",
+            "17177",
+            "17197",
+            "17201"
+        ]
+    }
 ]
