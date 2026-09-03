@@ -1,1 +1,12 @@
-{"name":"Rhode Island Community Food Bank","slug":"rhode-island","region_label":"Rhode Island (statewide)","county_fips":["44001","44003","44005","44007","44009"]}
+{
+    "name": "Rhode Island Community Food Bank",
+    "slug": "rhode-island",
+    "region_label": "Rhode Island (statewide)",
+    "county_fips": [
+        "44001",
+        "44003",
+        "44005",
+        "44007",
+        "44009"
+    ]
+}
