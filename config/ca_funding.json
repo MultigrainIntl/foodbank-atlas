@@ -65,6 +65,18 @@
                 "what": "$56.3M in annual revenue (FY2024); its \"Overcoming Poverty\" priority area explicitly names helping people meet short-term basic needs like food and shelter as a first step toward stability. The most directly food-relevant local funder for a Calgary food bank to approach. CRA BN 130229750RR0001.",
                 "url": "https://calgaryunitedway.org/"
             }
+        ],
+        "edmonton": [
+            {
+                "name": "Edmonton Community Foundation",
+                "what": "Community foundation with $160.9M in total revenue (FY2024, boosted by a large investment-gain year) and a broad, city-wide grant program supporting a vibrant, caring, healthy Edmonton — a food bank fits its general community-grant mandate. CRA BN 122437072RR0001.",
+                "url": "https://www.ecfoundation.org/"
+            },
+            {
+                "name": "United Way of the Alberta Capital Region",
+                "what": "$25.5M in annual revenue (FY ending March 2025); explicitly targets \"the root causes of poverty\" and the most vulnerable in the community through mental wellbeing, education and financial-security programs. The most directly poverty-focused local funder for an Edmonton food bank to approach. CRA BN 119260487RR0001.",
+                "url": "https://www.myunitedway.ca/"
+            }
         ]
     },
     "foundation_finder": {
