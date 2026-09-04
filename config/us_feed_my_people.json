@@ -1,23 +1,8 @@
 [
-    {
-        "name": "Feed My People Food Bank",
-        "slug": "feed-my-people",
-        "region_label": "Eau Claire & west-central Wisconsin (14 counties)",
-        "county_fips": [
-            "55005",
-            "55011",
-            "55017",
-            "55019",
-            "55033",
-            "55035",
-            "55053",
-            "55091",
-            "55099",
-            "55107",
-            "55113",
-            "55119",
-            "55121",
-            "55129"
-        ]
-    }
+  {
+    "name": "Feed My People Food Bank",
+    "slug": "feed-my-people",
+    "region_label": "Eau Claire & west-central Wisconsin (14 counties)",
+    "county_fips": ["55005","55011","55017","55019","55033","55035","55053","55091","55099","55107","55113","55119","55121","55129"]
+  }
 ]
