@@ -1,53 +1,69 @@
 {
-  "note": "The Canadian funding map is its own world — no SNAP, no TEFAP. Federal and national programs fund food infrastructure, northern and Indigenous food access, and the national/provincial food-bank networks. For foundations, use the CRA charity search (the Canadian analog of the U.S. 990). Confirm current eligibility and guidelines before applying.",
-  "federal_channels": [
-    {
-      "name": "Local Food Infrastructure Fund (AAFC)",
-      "what": "Agriculture and Agri-Food Canada grants for community organizations to buy equipment and infrastructure — refrigeration, trucks, storage — that expands local food access. Built for exactly the kind of capacity a food bank needs to move more food.",
-      "url": "https://agriculture.canada.ca/en/programs/local-food-infrastructure-fund"
+    "note": "The Canadian funding map is its own world — no SNAP, no TEFAP. Federal and national programs fund food infrastructure, northern and Indigenous food access, and the national/provincial food-bank networks. For foundations, use the CRA charity search (the Canadian analog of the U.S. 990). Confirm current eligibility and guidelines before applying.",
+    "federal_channels": [
+        {
+            "name": "Local Food Infrastructure Fund (AAFC)",
+            "what": "Agriculture and Agri-Food Canada grants for community organizations to buy equipment and infrastructure — refrigeration, trucks, storage — that expands local food access. Built for exactly the kind of capacity a food bank needs to move more food.",
+            "url": "https://agriculture.canada.ca/en/programs/local-food-infrastructure-fund"
+        },
+        {
+            "name": "Nutrition North Canada",
+            "what": "Retail subsidy that lowers the cost of nutritious food in isolated northern communities. The backbone federal program for the North, where food costs and food insecurity are highest.",
+            "url": "https://www.nutritionnorthcanada.gc.ca/"
+        },
+        {
+            "name": "Nutrition North — Harvesters Support Grant",
+            "what": "Funds Indigenous harvesting of traditional and country foods (hunting, fishing, gathering) in eligible communities — support on communities' own terms, and the closest Canadian analog to the U.S. FDPIR tribal food program. For northern and remote First Nations, Inuit and Métis communities, not urban centres.",
+            "url": "https://www.nutritionnorthcanada.gc.ca/eng/1586274027728/1586274048849"
+        },
+        {
+            "name": "Food Banks Canada",
+            "what": "The national network — national food sourcing and sharing, disaster response, and grant programs its member food banks can access. Membership plugs a food bank into national purchasing and support.",
+            "url": "https://foodbankscanada.ca/"
+        },
+        {
+            "name": "Reaching Home (ESDC)",
+            "what": "Canada's homelessness-strategy funding, delivered through community entities. Some food banks and their partners tap it for food-and-shelter programming that reaches the same households.",
+            "url": "https://www.canada.ca/en/employment-social-development/programs/homelessness.html"
+        }
+    ],
+    "provincial_by_province": {
+        "SK": [
+            {
+                "name": "Food Banks Saskatchewan",
+                "what": "The provincial association — provincial food sourcing, shared purchasing, and the channel through which recent Government of Saskatchewan food-bank funding flows. The first call for a Saskatchewan food bank.",
+                "url": "https://foodbankssk.ca/"
+            },
+            {
+                "name": "Government of Saskatchewan — community & social programs",
+                "what": "Provincial ministries (Social Services; Agriculture) periodically fund food security and community organizations. Check current provincial grant listings and recent food-bank commitments.",
+                "url": "https://www.saskatchewan.ca/government/government-structure/ministries/social-services"
+            }
+        ]
     },
-    {
-      "name": "Nutrition North Canada",
-      "what": "Retail subsidy that lowers the cost of nutritious food in isolated northern communities. The backbone federal program for the North, where food costs and food insecurity are highest.",
-      "url": "https://www.nutritionnorthcanada.gc.ca/"
+    "local_foundations_by_slug": {
+        "saskatoon": [
+            {
+                "name": "Saskatoon Community Foundation",
+                "what": "Community foundation with $20.1M in annual revenue (FY2025) and an open, broad-eligibility grant program. Its Quality of Life Grants ($1,000–$10,000, one-year term) fund registered charities across Saskatoon with no cause restriction — a food bank is squarely eligible. CRA BN 119140911RR0001.",
+                "url": "https://saskatooncommunityfoundation.ca/grants-partners/"
+            },
+            {
+                "name": "United Way of Saskatoon and Area",
+                "what": "Mission explicitly includes \"Moving People from Poverty to Possibility\"; distributed roughly $2M/year in gifts to member agencies (FY2025). The most directly poverty-focused local funder for a Saskatoon food bank to approach. CRA BN 119276509RR0001.",
+                "url": "https://www.unitedwaysaskatoon.ca/"
+            }
+        ]
     },
-    {
-      "name": "Nutrition North — Harvesters Support Grant",
-      "what": "Funds Indigenous harvesting of traditional and country foods (hunting, fishing, gathering) in eligible communities — support on communities' own terms, and the closest Canadian analog to the U.S. FDPIR tribal food program. For northern and remote First Nations, Inuit and Métis communities, not urban centres.",
-      "url": "https://www.nutritionnorthcanada.gc.ca/eng/1586274027728/1586274048849"
+    "foundation_finder": {
+        "url": "https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch?request_locale=en",
+        "label": "Find Canadian foundations that fund food relief",
+        "source": "CRA List of Charities",
+        "help": "The Canada Revenue Agency's List of Charities is the open Canadian analog of the U.S. 990 — every registered charity and private/public foundation files an annual T3010 return. Search your city or province, filter to foundations, and open each one's return to see its giving and gauge fit before you apply."
     },
-    {
-      "name": "Food Banks Canada",
-      "what": "The national network — national food sourcing and sharing, disaster response, and grant programs its member food banks can access. Membership plugs a food bank into national purchasing and support.",
-      "url": "https://foodbankscanada.ca/"
-    },
-    {
-      "name": "Reaching Home (ESDC)",
-      "what": "Canada's homelessness-strategy funding, delivered through community entities. Some food banks and their partners tap it for food-and-shelter programming that reaches the same households.",
-      "url": "https://www.canada.ca/en/employment-social-development/programs/homelessness.html"
+    "order": {
+        "url": "/order",
+        "label": "Build a mixed truckload",
+        "help": "Once the money's lined up, fill the trucks. Mix and match beans, lentils, chickpeas, oats, rice and grains to fill a 53-ft dry van — watch the load build to 26 pallets / 42,000 lb — then start a conversation with Food Aid Project, which sources and ships from Canada. Free planning tool, not a binding order."
     }
-  ],
-  "provincial": [
-    {
-      "name": "Food Banks Saskatchewan",
-      "what": "The provincial association — provincial food sourcing, shared purchasing, and the channel through which recent Government of Saskatchewan food-bank funding flows. The first call for a Saskatchewan food bank.",
-      "url": "https://foodbankssk.ca/"
-    },
-    {
-      "name": "Government of Saskatchewan — community & social programs",
-      "what": "Provincial ministries (Social Services; Agriculture) periodically fund food security and community organizations. Check current provincial grant listings and recent food-bank commitments.",
-      "url": "https://www.saskatchewan.ca/government/government-structure/ministries/social-services"
-    }
-  ],
-  "foundation_finder": {
-    "url": "https://apps.cra-arc.gc.ca/ebci/hacc/srch/pub/dsplyBscSrch?request_locale=en",
-    "label": "Find Canadian foundations that fund food relief",
-    "source": "CRA List of Charities",
-    "help": "The Canada Revenue Agency's List of Charities is the open Canadian analog of the U.S. 990 — every registered charity and private/public foundation files an annual T3010 return. Search your city or province, filter to foundations, and open each one's return to see its giving and gauge fit before you apply."
-  },
-  "order": {
-    "url": "/order",
-    "label": "Build a mixed truckload",
-    "help": "Once the money's lined up, fill the trucks. Mix and match beans, lentils, chickpeas, oats, rice and grains to fill a 53-ft dry van — watch the load build to 26 pallets / 42,000 lb — then start a conversation with Food Aid Project, which sources and ships from Canada. Free planning tool, not a binding order."
-  }
 }
