@@ -1,21 +1,8 @@
 [
-    {
-        "name": "Community Food Bank of Central Alabama",
-        "slug": "central-alabama",
-        "region_label": "Birmingham & Central Alabama (12 counties)",
-        "county_fips": [
-            "01009",
-            "01015",
-            "01019",
-            "01027",
-            "01029",
-            "01055",
-            "01073",
-            "01115",
-            "01117",
-            "01121",
-            "01127",
-            "01133"
-        ]
-    }
+  {
+    "name": "Community Food Bank of Central Alabama",
+    "slug": "central-alabama",
+    "region_label": "Birmingham & Central Alabama (12 counties)",
+    "county_fips": ["01009","01015","01019","01027","01029","01055","01073","01115","01117","01121","01127","01133"]
+  }
 ]
