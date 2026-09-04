@@ -113,6 +113,18 @@
                 "what": "$3.4M in annual revenue (FY ending June 2025); mission explicitly includes moving people from \"Poverty to Possibility\" as one of its 3 focus areas. The most directly poverty-focused local funder for a Regina food bank to approach. CRA BN 119278372RR0001.",
                 "url": "https://www.unitedwayregina.ca/"
             }
+        ],
+        "toronto": [
+            {
+                "name": "Toronto Foundation",
+                "what": "Toronto's community foundation, registered since 1981, with $68.6M in total revenue (FY2025). Mobilizes charitable funds and strategic granting to strengthen communities across Toronto — a food bank fits its general community-strengthening mandate. CRA BN 136491875RR0001.",
+                "url": "https://torontofoundation.ca/"
+            },
+            {
+                "name": "United Way of Greater Toronto",
+                "what": "$164.3M in annual revenue (FY ending March 2025); explicitly works to address the root causes of poverty across Peel, Toronto and York Regions. The most directly poverty-focused local funder for a Toronto-area food bank to approach. CRA BN 119278216RR0001.",
+                "url": "https://www.unitedwaygt.org/"
+            }
         ]
     },
     "foundation_finder": {
