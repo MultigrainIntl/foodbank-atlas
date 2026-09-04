@@ -101,6 +101,18 @@
                 "what": "$88.5M in annual revenue (FY ending March 2025); mission explicitly supports vulnerable people and the organizations that help them. The most directly relevant local funder for a Montreal food bank to approach. CRA BN 118842517RR0001.",
                 "url": "https://www.centraide-mtl.org/"
             }
+        ],
+        "regina": [
+            {
+                "name": "Saskatchewan Community Foundation (South Saskatchewan Community Foundation)",
+                "what": "Community foundation headquartered in Regina, registered since 1969, with $46.2M in total revenue (FY2025). Broad mandate: grants and qualifying disbursements to support other charitable organizations, capacity building, and community giving — a food bank is squarely eligible under its general grantmaking. CRA BN 890271448RR0001.",
+                "url": "https://www.sscf.ca/"
+            },
+            {
+                "name": "United Way of Regina",
+                "what": "$3.4M in annual revenue (FY ending June 2025); mission explicitly includes moving people from \"Poverty to Possibility\" as one of its 3 focus areas. The most directly poverty-focused local funder for a Regina food bank to approach. CRA BN 119278372RR0001.",
+                "url": "https://www.unitedwayregina.ca/"
+            }
         ]
     },
     "foundation_finder": {
