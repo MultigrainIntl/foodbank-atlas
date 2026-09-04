@@ -137,6 +137,18 @@
                 "what": "$49.9M in annual revenue (FY ending March 2025); runs an explicit Food Security Initiative with 29 Regional Community Food Hubs helping British Columbians access nutritious food. The most directly food-relevant local funder for a Vancouver-area food bank to approach. CRA BN 108160185RR0001.",
                 "url": "https://uwbc.ca/"
             }
+        ],
+        "winnipeg": [
+            {
+                "name": "The Winnipeg Foundation",
+                "what": "Canada's first community foundation, registered since 1967, with $307.9M in total revenue (FY2025). Connects donors with local charitable organizations across Winnipeg and Manitoba through broad endowment-based grantmaking — a food bank fits its general community-support mandate. CRA BN 119300960RR0001.",
+                "url": "https://www.wpgfdn.org/"
+            },
+            {
+                "name": "United Way of Winnipeg",
+                "what": "$40.6M in annual revenue (FY ending March 2025); funds social service programs and community economic development that address root causes of poverty. The most directly poverty-focused local funder for a Winnipeg food bank to approach. CRA BN 119278513RR0001.",
+                "url": "https://unitedwaywinnipeg.mb.ca/"
+            }
         ]
     },
     "foundation_finder": {
