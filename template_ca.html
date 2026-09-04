@@ -152,6 +152,8 @@
    const esc=s=>String(s==null?'':s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
    const chans=(F.federal_channels||[]);
    const fedHtml='<ul class="fund-fed">'+chans.map(c=>`<li><b>${esc(c.name)}</b> — ${esc(c.what)}${c.url?` <a href="${c.url}" target="_blank" rel="noopener">details →</a>`:''}</li>`).join('')+'</ul>';
+   const lf=(F.local_foundations||[]);
+   const lfHtml=lf.length?('<ul class="fund-fed">'+lf.map(c=>`<li><b>${esc(c.name)}</b> — ${esc(c.what)}${c.url?` <a href="${c.url}" target="_blank" rel="noopener">details →</a>`:''}</li>`).join('')+'</ul>'):'';
    const ff=F.foundation_finder;
    const fdnHtml=ff?`<div class="fund-card"><a href="${ff.url}" target="_blank" rel="noopener" class="fund-name">${esc(ff.label)} →</a><div class="fund-focus">${esc(ff.help)}</div><div class="fund-links"><a href="${ff.url}" target="_blank" rel="noopener">Open ${esc(ff.source||'the charity search')} →</a></div></div>`:'';
    const prov=(F.provincial||[]);
@@ -163,7 +165,7 @@
       <p class="fund-lead">Money a Canadian food bank can pursue to buy and move food into the neighbourhoods above. The funding world here is its own map — no SNAP or TEFAP; confirm current eligibility before applying.</p>
       <div class="fund-grid">
         <div class="fund-col"><h3>Federal &amp; national programs</h3>${fedHtml}${provHtml}</div>
-        <div class="fund-col"><h3>Local foundations</h3>${fdnHtml}</div>
+        <div class="fund-col"><h3>Local foundations</h3>${lfHtml}${fdnHtml}</div>
       </div>${orderHtml}`;
  })();
  const DATA=__DATA__;
