@@ -77,6 +77,18 @@
                 "what": "$25.5M in annual revenue (FY ending March 2025); explicitly targets \"the root causes of poverty\" and the most vulnerable in the community through mental wellbeing, education and financial-security programs. The most directly poverty-focused local funder for an Edmonton food bank to approach. CRA BN 119260487RR0001.",
                 "url": "https://www.myunitedway.ca/"
             }
+        ],
+        "halifax": [
+            {
+                "name": "Community Foundation of Nova Scotia",
+                "what": "Provincial community foundation headquartered in Halifax, with $8.5M in annual revenue (FY2024) and a broad, open grant program supporting communities across Nova Scotia. A food bank is squarely eligible under its general charitable-support mandate. CRA BN 870389368RR0001.",
+                "url": "https://cfns-fcne.ca/"
+            },
+            {
+                "name": "United Way Maritimes (United Way Halifax)",
+                "what": "$13.0M in annual revenue (FY ending March 2026); explicitly funds programs for people experiencing poverty, including keeping people \"housed, fed, safer and healthier.\" The most directly food-relevant local funder for a Halifax food bank to approach. CRA BN 119278232RR0001.",
+                "url": "https://unitedwayhalifax.ca/"
+            }
         ]
     },
     "foundation_finder": {
