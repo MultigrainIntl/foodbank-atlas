@@ -53,6 +53,18 @@
                 "what": "Mission explicitly includes \"Moving People from Poverty to Possibility\"; distributed roughly $2M/year in gifts to member agencies (FY2025). The most directly poverty-focused local funder for a Saskatoon food bank to approach. CRA BN 119276509RR0001.",
                 "url": "https://www.unitedwaysaskatoon.ca/"
             }
+        ],
+        "calgary": [
+            {
+                "name": "The Calgary Foundation",
+                "what": "Community foundation with $124.2M in annual revenue (FY2025) and five priority granting areas, the first of which is explicitly Reducing Poverty. A major, active, broad-eligibility grantmaker — a food bank fits squarely within its poverty-relief focus. CRA BN 108074436RR0001.",
+                "url": "https://calgaryfoundation.org/"
+            },
+            {
+                "name": "United Way of Calgary and Area",
+                "what": "$56.3M in annual revenue (FY2024); its \"Overcoming Poverty\" priority area explicitly names helping people meet short-term basic needs like food and shelter as a first step toward stability. The most directly food-relevant local funder for a Calgary food bank to approach. CRA BN 130229750RR0001.",
+                "url": "https://calgaryunitedway.org/"
+            }
         ]
     },
     "foundation_finder": {
