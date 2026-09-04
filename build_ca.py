@@ -254,12 +254,36 @@ def summarize(cfg, fc):
     }
 
 
-def _funding():
+PRUID_ABBR = {
+    "10": "NL", "11": "PE", "12": "NS", "13": "NB", "24": "QC", "35": "ON",
+    "46": "MB", "47": "SK", "48": "AB", "59": "BC", "60": "YT", "61": "NT", "62": "NU",
+}
+
+
+def _funding(cfg=None):
+    """Funding panel for one food bank page. federal_channels/foundation_finder/order
+    are shared across all Canada pages; provincial and local_foundations are keyed by
+    the food bank's province (pruid) and slug respectively, so e.g. Saskatoon's
+    curated local foundations don't leak onto Regina's page (same province, different
+    city), and Saskatchewan's provincial info doesn't leak onto Toronto/Calgary/etc."""
     p = Path(__file__).parent / "config" / "ca_funding.json"
     try:
-        return json.loads(p.read_text()) if p.exists() else {}
+        raw = json.loads(p.read_text()) if p.exists() else {}
     except Exception:
         return {}
+    out = {
+        "note": raw.get("note", ""),
+        "federal_channels": raw.get("federal_channels", []),
+        "foundation_finder": raw.get("foundation_finder"),
+        "order": raw.get("order"),
+        "provincial": [],
+        "local_foundations": [],
+    }
+    if cfg:
+        pr = PRUID_ABBR.get(str(cfg.get("pruid", "")), "")
+        out["provincial"] = raw.get("provincial_by_province", {}).get(pr, [])
+        out["local_foundations"] = raw.get("local_foundations_by_slug", {}).get(cfg.get("slug", ""), [])
+    return out
 
 
 def load_foodbanks():
@@ -287,7 +311,7 @@ def html(cfg, fc):
                .replace("__SLUG__", json.dumps(cfg["slug"]))
                .replace("__BRIEF__", "/" + cfg["slug"] + "-brief")
                .replace("__FOODBANKS__", json.dumps(load_foodbanks(), separators=(",", ":")))
-               .replace("__FUNDING__", json.dumps(_funding(), separators=(",", ":")))
+               .replace("__FUNDING__", json.dumps(_funding(cfg), separators=(",", ":")))
                .replace("__DATA__", geo))
 
 
@@ -309,7 +333,7 @@ def brief_html(cfg, fc):
     high_pop = sum(p.get("pop") or 0 for p in high)
     indig_tot = sum((f["properties"].get("indn") or 0) for f in feats)
     top = sorted((f["properties"] for f in feats), key=lambda p: -(p.get("score") or 0))[:12]
-    fund = _funding()
+    fund = _funding(cfg)
     chans = fund.get("federal_channels", [])[:7]
 
     rows = "".join(
