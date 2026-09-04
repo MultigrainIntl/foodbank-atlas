@@ -1,1 +1,8 @@
-{"name":"Greater Vancouver Food Bank","slug":"vancouver","country":"Canada","region_label":"Vancouver (CMA), British Columbia","cma_uid":"933","pruid":"59"}
+{
+  "name": "Greater Vancouver Food Bank",
+  "slug": "vancouver",
+  "country": "Canada",
+  "region_label": "Vancouver (CMA), British Columbia",
+  "cma_uid": "933",
+  "pruid": "59"
+}
