@@ -1,1 +1,8 @@
-{"name":"Daily Bread Food Bank","slug":"toronto","country":"Canada","region_label":"Toronto (CMA), Ontario","cma_uid":"535","pruid":"35"}
+{
+  "name": "Daily Bread Food Bank",
+  "slug": "toronto",
+  "country": "Canada",
+  "region_label": "Toronto (CMA), Ontario",
+  "cma_uid": "535",
+  "pruid": "35"
+}
