@@ -89,6 +89,18 @@
                 "what": "$13.0M in annual revenue (FY ending March 2026); explicitly funds programs for people experiencing poverty, including keeping people \"housed, fed, safer and healthier.\" The most directly food-relevant local funder for a Halifax food bank to approach. CRA BN 119278232RR0001.",
                 "url": "https://unitedwayhalifax.ca/"
             }
+        ],
+        "montreal": [
+            {
+                "name": "The Foundation of Greater Montreal",
+                "what": "Community foundation with $79.3M in total revenue (FY2024) and grant programs spanning arts, education, social development, environment, sports and health — a food bank fits under its social-development granting. CRA BN 881979124RR0001.",
+                "url": "https://fgmtl.org/"
+            },
+            {
+                "name": "Centraide du Grand Montréal",
+                "what": "$88.5M in annual revenue (FY ending March 2025); mission explicitly supports vulnerable people and the organizations that help them. The most directly relevant local funder for a Montreal food bank to approach. CRA BN 118842517RR0001.",
+                "url": "https://www.centraide-mtl.org/"
+            }
         ]
     },
     "foundation_finder": {
