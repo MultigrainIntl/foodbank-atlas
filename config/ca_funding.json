@@ -125,6 +125,18 @@
                 "what": "$164.3M in annual revenue (FY ending March 2025); explicitly works to address the root causes of poverty across Peel, Toronto and York Regions. The most directly poverty-focused local funder for a Toronto-area food bank to approach. CRA BN 119278216RR0001.",
                 "url": "https://www.unitedwaygt.org/"
             }
+        ],
+        "vancouver": [
+            {
+                "name": "Vancouver Foundation",
+                "what": "Community foundation registered since 1967, with $256.6M in total revenue (FY2025). Broad grant programs (Neighbourhood Small Grants, Transforming Systems Grants, and more) fund charitable organizations across the region — a food bank is squarely eligible. CRA BN 119281640RR0001.",
+                "url": "https://www.vancouverfoundation.ca/"
+            },
+            {
+                "name": "United Way British Columbia",
+                "what": "$49.9M in annual revenue (FY ending March 2025); runs an explicit Food Security Initiative with 29 Regional Community Food Hubs helping British Columbians access nutritious food. The most directly food-relevant local funder for a Vancouver-area food bank to approach. CRA BN 108160185RR0001.",
+                "url": "https://uwbc.ca/"
+            }
         ]
     },
     "foundation_finder": {
