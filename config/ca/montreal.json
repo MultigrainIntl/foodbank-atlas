@@ -1,1 +1,8 @@
-{"name":"Moisson Montréal","slug":"montreal","country":"Canada","region_label":"Montréal (CMA), Quebec","cma_uid":"462","pruid":"24"}
+{
+  "name": "Moisson Montréal",
+  "slug": "montreal",
+  "country": "Canada",
+  "region_label": "Montréal (CMA), Quebec",
+  "cma_uid": "462",
+  "pruid": "24"
+}
