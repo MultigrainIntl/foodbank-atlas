@@ -8,13 +8,23 @@ shaded-polygon map. Same code for every food bank == guaranteed consistency.
 Runs on GitHub Actions (open internet reaches Census Reporter + the Census geocoder).
 Usage:  python build_atlas.py config/<foodbank>.json  ->  site/<slug>.html
 """
-import json, sys, time, urllib.request, urllib.parse
+import json, sys, time, os, hashlib, urllib.request, urllib.parse
 from pathlib import Path
 
 CR = "https://api.censusreporter.org/1.0"
 GEOCODER = "https://geocoding.geo.census.gov/geocoder/geographies/coordinates"
 TABLES = "B01003,B17001,C17002,B22003,B19013,B26001,B02001"
 HEAT = ['#3F8F74', '#8DA65E', '#E4B24A', '#DE7C3B', '#C0442E']
+
+# On-disk HTTP cache. Every Census Reporter + geocoder response is keyed by its URL,
+# so a rebuild reuses saved results instead of re-fetching per tract (maps rebuild in
+# seconds). Persisted across GitHub Actions runs via the actions/cache step in build.yml.
+# Point ATLAS_CACHE elsewhere, or delete the dir, to force a fresh pull (e.g. new ACS year).
+CACHE_DIR = Path(os.environ.get("ATLAS_CACHE", ".atlas_cache")) / "http"
+
+
+def _cache_path(url):
+    return CACHE_DIR / (hashlib.sha256(url.encode("utf-8")).hexdigest() + ".json")
 
 STATE_FIPS = {
     "01": ("Alabama", "AL"), "02": ("Alaska", "AK"), "04": ("Arizona", "AZ"),
@@ -75,12 +85,24 @@ def summarize(cfg, fc):
     }
 
 
-def _get(url, tries=3):
+def _get(url, tries=3, timeout=90):
+    cp = _cache_path(url)
+    if cp.exists():
+        try:
+            return json.loads(cp.read_text())
+        except Exception:
+            pass  # corrupt/partial cache entry -> fall through and refetch
     for i in range(tries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "food-bank-atlas/1.0"})
-            with urllib.request.urlopen(req, timeout=90) as r:
-                return json.load(r)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                obj = json.load(r)
+            try:
+                cp.parent.mkdir(parents=True, exist_ok=True)
+                cp.write_text(json.dumps(obj, separators=(",", ":")))
+            except Exception:
+                pass  # cache write is best-effort; never fail a build over it
+            return obj
         except Exception as e:
             if i == tries - 1:
                 raise
@@ -172,7 +194,9 @@ def place_of(lat, lon):
         "vintage": "Current_Current",
         "layers": "Incorporated Places,County Subdivisions", "format": "json"})
     try:
-        g = _get(f"{GEOCODER}?{q}")["result"]["geographies"]
+        # Cosmetic field only: 1 try / short timeout so a slow geocoder yields a blank
+        # place name instead of stalling the whole build (past hour-long hangs). Cached.
+        g = _get(f"{GEOCODER}?{q}", tries=1, timeout=20)["result"]["geographies"]
         for key in ("Incorporated Places", "County Subdivisions"):
             arr = g.get(key) or []
             if arr:
