@@ -1,20 +1,9 @@
 {
   "source": "Grants.gov Search2 API — open federal opportunities",
   "source_url": "https://www.grants.gov",
-  "pulled": "2026-09-04",
+  "pulled": "2026-09-07",
   "note": "Open federal opportunities matched to food-bank work by keyword and theme. Federal NOFOs a food bank can pursue directly are limited at any moment — verify eligibility and full details on grants.gov before applying.",
   "opportunities": [
-    {
-      "number": "HRSA-27-099",
-      "title": "Fiscal Year 2027 Expanding Nutrition Services",
-      "agency": "Health Resources and Services Administration",
-      "close": "2026-09-09",
-      "cfda": "93.224",
-      "themes": [
-        "nutrition"
-      ],
-      "url": "https://www.grants.gov/search-results-detail/362823"
-    },
     {
       "number": "USDA-AMS-TM-CCG-G-26-0001",
       "title": "Cold Chain Grants for Emergency Food Assistance",
