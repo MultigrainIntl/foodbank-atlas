@@ -1,0 +1,14 @@
+{
+    "name": "Second Harvest North Central Food Bank",
+    "slug": "second-harvest-north-central",
+    "region_label": "Grand Rapids & North Central Minnesota",
+    "county_fips": [
+        "27061",
+        "27001",
+        "27021",
+        "27035",
+        "27065",
+        "27071",
+        "27095"
+    ]
+}
