@@ -1,0 +1,11 @@
+{
+    "name": "FeedMore WNY",
+    "slug": "feedmore-wny",
+    "region_label": "Buffalo & Western New York",
+    "county_fips": [
+        "36029",
+        "36063",
+        "36009",
+        "36013"
+    ]
+}
