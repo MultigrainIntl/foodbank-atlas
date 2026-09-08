@@ -1113,6 +1113,154 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/461678866-mookerji-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/461678866"
       }
+    ],
+    "CO": [
+      {
+        "name": "Anschutz Foundation",
+        "ein": "742316617",
+        "city": "Denver",
+        "assets_musd": 1558,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/742316617-anschutz-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/742316617"
+      },
+      {
+        "name": "Catena Foundation",
+        "ein": "813783868",
+        "city": "Carbondale",
+        "assets_musd": 574,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/813783868-catena-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/813783868"
+      },
+      {
+        "name": "Zoma Foundation",
+        "ein": "814630003",
+        "city": "Denver",
+        "assets_musd": 505,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/814630003-zoma-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/814630003"
+      },
+      {
+        "name": "Ryobi Foundation",
+        "ein": "742517850",
+        "city": "Carbondale",
+        "assets_musd": 292,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/742517850-ryobi-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/742517850"
+      },
+      {
+        "name": "Boettcher Foundation",
+        "ein": "840404274",
+        "city": "Denver",
+        "assets_musd": 271,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/840404274-boettcher-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/840404274"
+      },
+      {
+        "name": "Bohemian Foundation",
+        "ein": "841605993",
+        "city": "Fort Collins",
+        "assets_musd": 188,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/841605993-bohemian-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/841605993"
+      },
+      {
+        "name": "Norwood Foundation",
+        "ein": "10705471",
+        "city": "Colorado Spgs",
+        "assets_musd": 56,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/10705471-norwood-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/10705471"
+      },
+      {
+        "name": "Prologis Foundation",
+        "ein": "364439409",
+        "city": "Denver",
+        "assets_musd": 56,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/364439409-prologis-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/364439409"
+      }
+    ],
+    "WY": [
+      {
+        "name": "Cumming Foundation",
+        "ein": "870440091",
+        "city": "Jackson",
+        "assets_musd": 207,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/870440091-cumming-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/870440091"
+      },
+      {
+        "name": "Pharos Foundation",
+        "ein": "461127429",
+        "city": "Jackson",
+        "assets_musd": 36,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/461127429-pharos-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/461127429"
+      },
+      {
+        "name": "Ucross Foundation",
+        "ein": "742188539",
+        "city": "Clearmont",
+        "assets_musd": 35,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/742188539-ucross-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/742188539"
+      },
+      {
+        "name": "Mcmurry Foundation",
+        "ein": "830323982",
+        "city": "Casper",
+        "assets_musd": 33,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/830323982-mcmurry-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/830323982"
+      },
+      {
+        "name": "Tyrrell Foundation",
+        "ein": "61469527",
+        "city": "Teton Village",
+        "assets_musd": 15,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/61469527-tyrrell-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/61469527"
+      },
+      {
+        "name": "Tw Foundation",
+        "ein": "352451182",
+        "city": "Casper",
+        "assets_musd": 7,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/352451182-tw-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/352451182"
+      },
+      {
+        "name": "Spence Foundation",
+        "ein": "916413193",
+        "city": "Jackson",
+        "assets_musd": 3,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/916413193-spence-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/916413193"
+      },
+      {
+        "name": "Teapot Foundation",
+        "ein": "873878379",
+        "city": "Casper",
+        "assets_musd": 3,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/873878379-teapot-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/873878379"
+      }
     ]
   }
 }
