@@ -1,0 +1,16 @@
+{
+    "name": "Philabundance",
+    "slug": "philabundance",
+    "region_label": "Philadelphia, Pennsylvania & South Jersey",
+    "county_fips": [
+        "42101",
+        "42017",
+        "42029",
+        "42045",
+        "42091",
+        "34005",
+        "34007",
+        "34015",
+        "34033"
+    ]
+}
