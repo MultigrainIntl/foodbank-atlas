@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Idaho Foodbank — Food Need & Funding Brief</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
+ .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+ .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
+ .btn{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+ .sheet{max-width:820px;margin:22px auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 40px;box-shadow:0 8px 26px rgba(20,40,34,.07)}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0}
+ .meta{color:var(--ink-faint);font-size:12.5px;margin:5px 0 0;font-family:"IBM Plex Mono",monospace}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ p{color:var(--ink-soft);margin:9px 0} b{color:var(--ink)}
+ .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+ .stat{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+ .stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1}
+ .stat .l{color:var(--ink-faint);font-size:11px;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+ th{text-align:left;color:var(--ink-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{padding:6px 8px;border-bottom:1px solid var(--line)} td.num{text-align:right;font-variant-numeric:tabular-nums} td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+ ul{margin:8px 0;padding-left:20px} li{margin:6px 0;font-size:13px;color:var(--ink-soft)} li a{color:var(--primary)} .mono{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
+ .ask{background:var(--ground);border:1px dashed var(--primary);border-radius:10px;padding:14px 16px;color:var(--ink-soft);font-size:13.5px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+ @media print{
+   .bar{display:none} body{background:#fff} .sheet{box-shadow:none;border:none;border-radius:0;margin:0;max-width:none;padding:0 8px}
+   h2{break-after:avoid} table,ul{break-inside:avoid} a{color:#1E6B57;text-decoration:none}
+ }
+</style></head><body>
+<div class="bar">
+ <a href="/idaho">← Back to the map</a>
+ <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="sheet">
+ <p class="kick">Food Aid Project · Food-Need Atlas · Evidence Brief</p>
+ <h1>The Idaho Foodbank — Food Need &amp; Funding Brief</h1>
+ <p class="meta">Boise &amp; southern Idaho · generated September 8, 2026</p>
+
+ <p>Across Boise &amp; southern Idaho, the Food-Need Atlas scores every one of <b>394 neighborhoods</b> (census tracts of ~4,000 people) on poverty, share under 200% of the federal poverty line, SNAP receipt, and low income. <b>14 neighborhoods — about 54,359 people — register high food need</b> and are where distribution, mobile pantries, and the right product mix return the most.</p>
+
+ <p><b>SNAP gap:</b> an estimated <b>112,317 residents</b> across Boise &amp; southern Idaho appear income-eligible for SNAP (under ~130% of poverty) but are likely not enrolled — unclaimed federal grocery dollars that would directly ease demand on the food bank, and a concrete outreach target and funding argument.</p>
+ <div class="stats">
+  <div class="stat"><div class="n">14</div><div class="l">high-need neighborhoods</div></div>
+  <div class="stat"><div class="n">10.7%</div><div class="l">live in poverty (avg)</div></div>
+  <div class="stat"><div class="n">29.0%</div><div class="l">under 200% of poverty</div></div>
+  <div class="stat"><div class="n">7.6%</div><div class="l">receive SNAP (avg)</div></div>
+ </div>
+
+ <h2>Highest-need neighborhoods</h2>
+ <table>
+  <thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead>
+  <tbody><tr><td>South Lewis</td><td class="mono">9503</td><td class="num"><b>91.2</b></td><td class="num">62.1%</td><td class="num">79.3%</td><td class="num">61.5%</td><td class="num">29</td></tr><tr><td>Boise City</td><td class="mono">10.02</td><td class="num"><b>85.4</b></td><td class="num">73.2%</td><td class="num">89.0%</td><td class="num">15.0%</td><td class="num">2,606</td></tr><tr><td>Rexburg</td><td class="mono">9503.01</td><td class="num"><b>75.3</b></td><td class="num">57.5%</td><td class="num">91.3%</td><td class="num">14.5%</td><td class="num">8,564</td></tr><tr><td>Nampa</td><td class="mono">205.06</td><td class="num"><b>72.1</b></td><td class="num">34.8%</td><td class="num">68.5%</td><td class="num">26.0%</td><td class="num">2,866</td></tr><tr><td>Rexburg</td><td class="mono">9503.03</td><td class="num"><b>71.9</b></td><td class="num">56.0%</td><td class="num">76.6%</td><td class="num">12.7%</td><td class="num">12,065</td></tr><tr><td>Pocatello</td><td class="mono">9</td><td class="num"><b>71.8</b></td><td class="num">28.4%</td><td class="num">51.1%</td><td class="num">34.3%</td><td class="num">2,325</td></tr><tr><td>Pocatello</td><td class="mono">8</td><td class="num"><b>69.2</b></td><td class="num">28.8%</td><td class="num">64.2%</td><td class="num">23.9%</td><td class="num">3,085</td></tr><tr><td>Boise City</td><td class="mono">1.02</td><td class="num"><b>67.0</b></td><td class="num">22.2%</td><td class="num">61.3%</td><td class="num">27.3%</td><td class="num">3,049</td></tr><tr><td>Pocatello</td><td class="mono">10</td><td class="num"><b>66.1</b></td><td class="num">18.3%</td><td class="num">55.3%</td><td class="num">32.0%</td><td class="num">3,075</td></tr><tr><td>Boise City</td><td class="mono">1.01</td><td class="num"><b>65.9</b></td><td class="num">37.5%</td><td class="num">64.6%</td><td class="num">14.0%</td><td class="num">1,744</td></tr><tr><td>Nampa</td><td class="mono">202</td><td class="num"><b>64.8</b></td><td class="num">25.8%</td><td class="num">57.8%</td><td class="num">25.9%</td><td class="num">4,614</td></tr><tr><td>Blackfoot</td><td class="mono">9400</td><td class="num"><b>61.5</b></td><td class="num">31.1%</td><td class="num">48.6%</td><td class="num">21.2%</td><td class="num">2,601</td></tr></tbody>
+ </table>
+
+ <h2>Funding to pursue</h2>
+ <p><b>Open federal opportunities</b> (verify eligibility on Grants.gov before applying):</p>
+ <ul><li><a href="https://www.grants.gov/search-results-detail/363631">Cold Chain Grants for Emergency Food Assistance</a> — Agricultural Marketing Service · closes 2026-10-01</li></ul>
+ <p><b>Local private foundations in Idaho</b> (IRS 990-PF — check each one's giving history on grantmakers.io for food-relief fit):</p>
+ <ul><li><a href="https://www.grantmakers.io/profiles/v1/911663838-islands-foundation">Islands Foundation</a> <span class="mono">$228M</span> · Boise</li><li><a href="https://www.grantmakers.io/profiles/v1/260587332-kissler-family-foundation">Kissler Family Foundation</a> <span class="mono">$22M</span> · Boise</li><li><a href="https://www.grantmakers.io/profiles/v1/812200028-bews-foundation">Bews Foundation</a> <span class="mono">$18M</span> · Twin Falls</li><li><a href="https://www.grantmakers.io/profiles/v1/261728023-hecla-charitable-foundation">Hecla Charitable Foundation</a> <span class="mono">$11M</span> · Coeur D Alene</li><li><a href="https://www.grantmakers.io/profiles/v1/276361969-langan-barber-foundation">Langan Barber Foundation</a> <span class="mono">$10M</span> · Boise</li><li><a href="https://www.grantmakers.io/profiles/v1/854386244-hansberger-foundation">Hansberger Foundation</a> <span class="mono">$10M</span> · Boise</li><li><a href="https://www.grantmakers.io/profiles/v1/843926658-arvy-foundation-inc">Arvy Foundation Inc</a> <span class="mono">$9M</span> · Meridian</li><li><a href="https://www.grantmakers.io/profiles/v1/474005922-bates-family-foundation">Bates Family Foundation</a> <span class="mono">$8M</span> · Boise</li></ul>
+ <p>Standing federal programs (USDA TEFAP &amp; CSFP, state food-purchase) remain the backbone of supply — and Food Aid Project can source and ship a <a href="https://foodbank-atlas.web.app/order">mixed truckload</a> of staples directly into these neighborhoods.</p>
+
+ <h2>The ask (template)</h2>
+ <div class="ask">The Idaho Foodbank serves Boise &amp; southern Idaho, where 14 neighborhoods — approximately 54,359 residents — face high food insecurity, with poverty averaging 10.7% and 7.6% relying on SNAP. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighborhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
+
+ <div class="foot">U.S. Census ACS 5-year estimates (tract) via Census Reporter · food-need score = min-max composite of poverty, &lt;200% FPL, SNAP, and inverse median income across residential tracts · funding via Grants.gov + IRS 990-PF (ProPublica / grantmakers.io) · Illustrative planning brief, not a Feeding America product. Verify all figures and eligibility before use.</div>
+</div>
+</body></html>

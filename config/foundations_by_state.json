@@ -1465,6 +1465,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/113789260-brenden-mann-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/113789260"
       }
+    ],
+    "ID": [
+      {
+        "name": "Islands Foundation",
+        "ein": "911663838",
+        "city": "Boise",
+        "assets_musd": 228,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/911663838-islands-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/911663838"
+      },
+      {
+        "name": "Kissler Family Foundation",
+        "ein": "260587332",
+        "city": "Boise",
+        "assets_musd": 22,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/260587332-kissler-family-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/260587332"
+      },
+      {
+        "name": "Bews Foundation",
+        "ein": "812200028",
+        "city": "Twin Falls",
+        "assets_musd": 18,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/812200028-bews-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/812200028"
+      },
+      {
+        "name": "Hecla Charitable Foundation",
+        "ein": "261728023",
+        "city": "Coeur D Alene",
+        "assets_musd": 11,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/261728023-hecla-charitable-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/261728023"
+      },
+      {
+        "name": "Langan Barber Foundation",
+        "ein": "276361969",
+        "city": "Boise",
+        "assets_musd": 10,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/276361969-langan-barber-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/276361969"
+      },
+      {
+        "name": "Hansberger Foundation",
+        "ein": "854386244",
+        "city": "Boise",
+        "assets_musd": 10,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/854386244-hansberger-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/854386244"
+      },
+      {
+        "name": "Arvy Foundation Inc",
+        "ein": "843926658",
+        "city": "Meridian",
+        "assets_musd": 9,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/843926658-arvy-foundation-inc",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/843926658"
+      },
+      {
+        "name": "Bates Family Foundation",
+        "ein": "474005922",
+        "city": "Boise",
+        "assets_musd": 8,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/474005922-bates-family-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/474005922"
+      }
     ]
   }
 }
