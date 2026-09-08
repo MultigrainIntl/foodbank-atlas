@@ -1539,6 +1539,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/474005922-bates-family-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/474005922"
       }
+    ],
+    "UT": [
+      {
+        "name": "Call Foundation",
+        "ein": "208389909",
+        "city": "Salt Lake Cty",
+        "assets_musd": 75,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/208389909-call-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/208389909"
+      },
+      {
+        "name": "Sparkjoy Foundation",
+        "ein": "471760883",
+        "city": "Salt Lake Cty",
+        "assets_musd": 67,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/471760883-sparkjoy-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/471760883"
+      },
+      {
+        "name": "Meldrum Foundation",
+        "ein": "870657244",
+        "city": "Salt Lake Cty",
+        "assets_musd": 27,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/870657244-meldrum-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/870657244"
+      },
+      {
+        "name": "Wadman Foundation",
+        "ein": "841392243",
+        "city": "Ogden",
+        "assets_musd": 10,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/841392243-wadman-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/841392243"
+      },
+      {
+        "name": "Blh Foundation",
+        "ein": "883612201",
+        "city": "Salt Lake Cty",
+        "assets_musd": 9,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/883612201-blh-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/883612201"
+      },
+      {
+        "name": "Wcf Foundation",
+        "ein": "812893553",
+        "city": "Sandy",
+        "assets_musd": 9,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/812893553-wcf-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/812893553"
+      },
+      {
+        "name": "Catalyst Foundation",
+        "ein": "870666762",
+        "city": "Salt Lake Cty",
+        "assets_musd": 6,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/870666762-catalyst-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/870666762"
+      },
+      {
+        "name": "Jnf Foundation",
+        "ein": "260523149",
+        "city": "Salt Lake Cty",
+        "assets_musd": 6,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/260523149-jnf-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/260523149"
+      }
     ]
   }
 }

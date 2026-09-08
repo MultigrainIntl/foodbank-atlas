@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Utah Food Bank — Food Need & Funding Brief</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
+ .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+ .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
+ .btn{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+ .sheet{max-width:820px;margin:22px auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 40px;box-shadow:0 8px 26px rgba(20,40,34,.07)}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0}
+ .meta{color:var(--ink-faint);font-size:12.5px;margin:5px 0 0;font-family:"IBM Plex Mono",monospace}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ p{color:var(--ink-soft);margin:9px 0} b{color:var(--ink)}
+ .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+ .stat{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+ .stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1}
+ .stat .l{color:var(--ink-faint);font-size:11px;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+ th{text-align:left;color:var(--ink-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{padding:6px 8px;border-bottom:1px solid var(--line)} td.num{text-align:right;font-variant-numeric:tabular-nums} td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+ ul{margin:8px 0;padding-left:20px} li{margin:6px 0;font-size:13px;color:var(--ink-soft)} li a{color:var(--primary)} .mono{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
+ .ask{background:var(--ground);border:1px dashed var(--primary);border-radius:10px;padding:14px 16px;color:var(--ink-soft);font-size:13.5px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+ @media print{
+   .bar{display:none} body{background:#fff} .sheet{box-shadow:none;border:none;border-radius:0;margin:0;max-width:none;padding:0 8px}
+   h2{break-after:avoid} table,ul{break-inside:avoid} a{color:#1E6B57;text-decoration:none}
+ }
+</style></head><body>
+<div class="bar">
+ <a href="/utah">← Back to the map</a>
+ <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="sheet">
+ <p class="kick">Food Aid Project · Food-Need Atlas · Evidence Brief</p>
+ <h1>Utah Food Bank — Food Need &amp; Funding Brief</h1>
+ <p class="meta">Salt Lake City &amp; all of Utah · generated September 8, 2026</p>
+
+ <p>Across Salt Lake City &amp; all of Utah, the Food-Need Atlas scores every one of <b>710 neighborhoods</b> (census tracts of ~4,000 people) on poverty, share under 200% of the federal poverty line, SNAP receipt, and low income. <b>22 neighborhoods — about 85,399 people — register high food need</b> and are where distribution, mobile pantries, and the right product mix return the most.</p>
+
+ <p><b>SNAP gap:</b> an estimated <b>224,063 residents</b> across Salt Lake City &amp; all of Utah appear income-eligible for SNAP (under ~130% of poverty) but are likely not enrolled — unclaimed federal grocery dollars that would directly ease demand on the food bank, and a concrete outreach target and funding argument.</p>
+ <div class="stats">
+  <div class="stat"><div class="n">22</div><div class="l">high-need neighborhoods</div></div>
+  <div class="stat"><div class="n">8.6%</div><div class="l">live in poverty (avg)</div></div>
+  <div class="stat"><div class="n">23.1%</div><div class="l">under 200% of poverty</div></div>
+  <div class="stat"><div class="n">5.0%</div><div class="l">receive SNAP (avg)</div></div>
+ </div>
+
+ <h2>Highest-need neighborhoods</h2>
+ <table>
+  <thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead>
+  <tbody><tr><td>Oljato</td><td class="mono">9421</td><td class="num"><b>80.0</b></td><td class="num">35.3%</td><td class="num">60.4%</td><td class="num">32.2%</td><td class="num">2,493</td></tr><tr><td>Provo</td><td class="mono">18.01</td><td class="num"><b>75.3</b></td><td class="num">67.1%</td><td class="num">84.2%</td><td class="num">2.3%</td><td class="num">6,873</td></tr><tr><td>Salt Lake City</td><td class="mono">1027.02</td><td class="num"><b>73.9</b></td><td class="num">33.7%</td><td class="num">63.0%</td><td class="num">24.3%</td><td class="num">3,018</td></tr><tr><td>Provo</td><td class="mono">16.02</td><td class="num"><b>73.0</b></td><td class="num">74.6%</td><td class="num">95.4%</td><td class="num">0.0%</td><td class="num">4,824</td></tr><tr><td>Provo</td><td class="mono">9803</td><td class="num"><b>72.9</b></td><td class="num">33.5%</td><td class="num">59.0%</td><td class="num">26.0%</td><td class="num">3,715</td></tr><tr><td>Casa del Eco Mesa-White Mesa</td><td class="mono">9420</td><td class="num"><b>71.5</b></td><td class="num">30.1%</td><td class="num">56.1%</td><td class="num">27.8%</td><td class="num">3,318</td></tr><tr><td>Provo</td><td class="mono">16.01</td><td class="num"><b>68.9</b></td><td class="num">47.8%</td><td class="num">79.1%</td><td class="num">5.7%</td><td class="num">4,880</td></tr><tr><td>Salt Lake City</td><td class="mono">9800</td><td class="num"><b>66.9</b></td><td class="num">0.0%</td><td class="num">73.7%</td><td class="num">26.3%</td><td class="num">19</td></tr><tr><td>Salt Lake City</td><td class="mono">1014.02</td><td class="num"><b>66.1</b></td><td class="num">29.1%</td><td class="num">61.8%</td><td class="num">16.0%</td><td class="num">4,302</td></tr><tr><td>Ogden</td><td class="mono">2019</td><td class="num"><b>65.5</b></td><td class="num">20.9%</td><td class="num">44.0%</td><td class="num">27.2%</td><td class="num">1,231</td></tr><tr><td>Provo</td><td class="mono">18.02</td><td class="num"><b>65.4</b></td><td class="num">48.4%</td><td class="num">79.2%</td><td class="num">1.6%</td><td class="num">8,076</td></tr><tr><td>Provo</td><td class="mono">9802</td><td class="num"><b>64.3</b></td><td class="num">36.8%</td><td class="num">81.7%</td><td class="num">2.1%</td><td class="num">2,525</td></tr></tbody>
+ </table>
+
+ <h2>Funding to pursue</h2>
+ <p><b>Open federal opportunities</b> (verify eligibility on Grants.gov before applying):</p>
+ <ul><li><a href="https://www.grants.gov/search-results-detail/363631">Cold Chain Grants for Emergency Food Assistance</a> — Agricultural Marketing Service · closes 2026-10-01</li></ul>
+ <p><b>Local private foundations in Utah</b> (IRS 990-PF — check each one's giving history on grantmakers.io for food-relief fit):</p>
+ <ul><li><a href="https://www.grantmakers.io/profiles/v1/208389909-call-foundation">Call Foundation</a> <span class="mono">$75M</span> · Salt Lake Cty</li><li><a href="https://www.grantmakers.io/profiles/v1/471760883-sparkjoy-foundation">Sparkjoy Foundation</a> <span class="mono">$67M</span> · Salt Lake Cty</li><li><a href="https://www.grantmakers.io/profiles/v1/870657244-meldrum-foundation">Meldrum Foundation</a> <span class="mono">$27M</span> · Salt Lake Cty</li><li><a href="https://www.grantmakers.io/profiles/v1/841392243-wadman-foundation">Wadman Foundation</a> <span class="mono">$10M</span> · Ogden</li><li><a href="https://www.grantmakers.io/profiles/v1/883612201-blh-foundation">Blh Foundation</a> <span class="mono">$9M</span> · Salt Lake Cty</li><li><a href="https://www.grantmakers.io/profiles/v1/812893553-wcf-foundation">Wcf Foundation</a> <span class="mono">$9M</span> · Sandy</li><li><a href="https://www.grantmakers.io/profiles/v1/870666762-catalyst-foundation">Catalyst Foundation</a> <span class="mono">$6M</span> · Salt Lake Cty</li><li><a href="https://www.grantmakers.io/profiles/v1/260523149-jnf-foundation">Jnf Foundation</a> <span class="mono">$6M</span> · Salt Lake Cty</li></ul>
+ <p>Standing federal programs (USDA TEFAP &amp; CSFP, state food-purchase) remain the backbone of supply — and Food Aid Project can source and ship a <a href="https://foodbank-atlas.web.app/order">mixed truckload</a> of staples directly into these neighborhoods.</p>
+
+ <h2>The ask (template)</h2>
+ <div class="ask">Utah Food Bank serves Salt Lake City &amp; all of Utah, where 22 neighborhoods — approximately 85,399 residents — face high food insecurity, with poverty averaging 8.6% and 5.0% relying on SNAP. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighborhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
+
+ <div class="foot">U.S. Census ACS 5-year estimates (tract) via Census Reporter · food-need score = min-max composite of poverty, &lt;200% FPL, SNAP, and inverse median income across residential tracts · funding via Grants.gov + IRS 990-PF (ProPublica / grantmakers.io) · Illustrative planning brief, not a Feeding America product. Verify all figures and eligibility before use.</div>
+</div>
+</body></html>
