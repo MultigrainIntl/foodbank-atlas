@@ -1039,6 +1039,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/300892103-allone-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/300892103"
       }
+    ],
+    "GA": [
+      {
+        "name": "Speedwell Foundation",
+        "ein": "223764378",
+        "city": "Atlanta",
+        "assets_musd": 160,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/223764378-speedwell-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/223764378"
+      },
+      {
+        "name": "Halle Foundation",
+        "ein": "586201529",
+        "city": "Atlanta",
+        "assets_musd": 93,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/586201529-halle-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/586201529"
+      },
+      {
+        "name": "Cbf Foundation",
+        "ein": "822450365",
+        "city": "Atlanta",
+        "assets_musd": 32,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/822450365-cbf-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/822450365"
+      },
+      {
+        "name": "Fthree Foundation",
+        "ein": "943376857",
+        "city": "Carrollton",
+        "assets_musd": 30,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/943376857-fthree-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/943376857"
+      },
+      {
+        "name": "Tome Foundation",
+        "ein": "842782103",
+        "city": "Atlanta",
+        "assets_musd": 15,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/842782103-tome-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/842782103"
+      },
+      {
+        "name": "Simmons Foundation",
+        "ein": "272931165",
+        "city": "Brookhaven",
+        "assets_musd": 11,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/272931165-simmons-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/272931165"
+      },
+      {
+        "name": "Invesco Foundation",
+        "ein": "760522586",
+        "city": "Atlanta",
+        "assets_musd": 10,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/760522586-invesco-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/760522586"
+      },
+      {
+        "name": "Mookerji Foundation",
+        "ein": "461678866",
+        "city": "Atlanta",
+        "assets_musd": 9,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/461678866-mookerji-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/461678866"
+      }
     ]
   }
 }
