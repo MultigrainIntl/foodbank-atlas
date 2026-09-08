@@ -68,8 +68,9 @@ FBSEARCH_NAV = ('<div class="fbsearch"><input class="fbsearch-in" id="fbsearch" 
 FBSEARCH_JS = '<script>\nvar FBS=' + fbs_json + ';\n' + r'''(function(){
   var inp=document.getElementById("fbsearch"),menu=document.getElementById("fbsearchMenu");if(!inp||!menu)return;
   function esc(s){return String(s==null?"":s).replace(/[<>&]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];});}
-  function render(){var t=inp.value.trim().toLowerCase();
-    var list=FBS.filter(function(f){return !t||(f.name+" "+(f.region_label||"")+" "+(f.state||"")).toLowerCase().indexOf(t)>=0;});
+  function norm(s){return String(s==null?"":s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();}
+  function render(){var t=norm(inp.value.trim());
+    var list=FBS.filter(function(f){return !t||norm(f.name+" "+(f.region_label||"")+" "+(f.state||"")).indexOf(t)>=0;});
     menu.innerHTML=list.length?list.map(function(f){return '<a href="/'+f.slug+'">'+esc(f.name)+'<small>'+esc(f.region_label||"")+'</small></a>';}).join(""):'<div class="fbsearch-empty">No food banks match.</div>';}
   function openM(){render();menu.classList.add("open");}function closeM(){menu.classList.remove("open");}
   inp.addEventListener("focus",openM);inp.addEventListener("input",openM);
@@ -174,11 +175,12 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
  // search filter
  const q=document.getElementById('q'), empty=document.getElementById('empty');
  q.addEventListener('input',()=>{{
-   const t=q.value.trim().toLowerCase(); let any=false;
+   const nrm=s=>String(s==null?'':s).normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase();
+   const t=nrm(q.value.trim()); let any=false;
    document.querySelectorAll('.grp').forEach(g=>{{
      let shown=0;
      g.querySelectorAll('.fbcard').forEach(c=>{{
-       const hit=!t||c.dataset.s.includes(t); c.style.display=hit?'':'none'; if(hit)shown++;
+       const hit=!t||nrm(c.dataset.s).includes(t); c.style.display=hit?'':'none'; if(hit)shown++;
      }});
      g.style.display=shown?'':'none'; if(shown)any=true;
    }});
