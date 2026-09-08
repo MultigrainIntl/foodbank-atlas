@@ -8,6 +8,8 @@ on:
         default: false
   push:
     paths: ['config/**', 'build_atlas.py', 'template.html', 'make_index.py', 'build_ca.py', 'template_ca.html']
+  schedule:
+    - cron: '0 11 * * 1'
 permissions:
   contents: write
 concurrency:
