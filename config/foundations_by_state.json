@@ -1335,6 +1335,62 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/364798042-nelson-family-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/364798042"
       }
+    ],
+    "MT": [
+      {
+        "name": "Mac Foundation",
+        "ein": "473093382",
+        "city": "Missoula",
+        "assets_musd": 22,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/473093382-mac-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/473093382"
+      },
+      {
+        "name": "Amicus Foundation",
+        "ein": "472605358",
+        "city": "Cameron",
+        "assets_musd": 9,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/472605358-amicus-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/472605358"
+      },
+      {
+        "name": "Rieschel Foundation",
+        "ein": "833594839",
+        "city": "Bozeman",
+        "assets_musd": 9,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/833594839-rieschel-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/833594839"
+      },
+      {
+        "name": "Dcm Foundation",
+        "ein": "475546903",
+        "city": "Condon",
+        "assets_musd": 4,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/475546903-dcm-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/475546903"
+      },
+      {
+        "name": "Foreside Foundation",
+        "ein": "43358317",
+        "city": "Livingston",
+        "assets_musd": 3,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/43358317-foreside-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/43358317"
+      },
+      {
+        "name": "Gem Foundation",
+        "ein": "202016199",
+        "city": "Kalispell",
+        "assets_musd": 2,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/202016199-gem-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/202016199"
+      }
     ]
   }
 }
