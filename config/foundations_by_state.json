@@ -891,6 +891,154 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/823740648-nabila-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/823740648"
       }
+    ],
+    "NJ": [
+      {
+        "name": "Kaplen Foundation",
+        "ein": "226048152",
+        "city": "Tenafly",
+        "assets_musd": 56,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/226048152-kaplen-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/226048152"
+      },
+      {
+        "name": "Hickory Foundation",
+        "ein": "223472805",
+        "city": "Lambertville",
+        "assets_musd": 42,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/223472805-hickory-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/223472805"
+      },
+      {
+        "name": "Roemer Foundation",
+        "ein": "232870277",
+        "city": "Riverton",
+        "assets_musd": 42,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/232870277-roemer-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/232870277"
+      },
+      {
+        "name": "Fourten Foundation",
+        "ein": "863735206",
+        "city": "Cranford",
+        "assets_musd": 41,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/863735206-fourten-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/863735206"
+      },
+      {
+        "name": "Gff Foundation",
+        "ein": "270977514",
+        "city": "Woodbury",
+        "assets_musd": 29,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/270977514-gff-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/270977514"
+      },
+      {
+        "name": "Aldrich Foundation",
+        "ein": "873136736",
+        "city": "Short Hills",
+        "assets_musd": 28,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/873136736-aldrich-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/873136736"
+      },
+      {
+        "name": "Adp Foundation",
+        "ein": "222222589",
+        "city": "Roseland",
+        "assets_musd": 26,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/222222589-adp-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/222222589"
+      },
+      {
+        "name": "Verizon Foundation",
+        "ein": "133319048",
+        "city": "Basking Ridge",
+        "assets_musd": 26,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/133319048-verizon-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/133319048"
+      }
+    ],
+    "PA": [
+      {
+        "name": "Philadelphia Foundation",
+        "ein": "231581832",
+        "city": "Philadelphia",
+        "assets_musd": 631,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/231581832-philadelphia-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/231581832"
+      },
+      {
+        "name": "Wyncote Foundation",
+        "ein": "263535044",
+        "city": "Philadelphia",
+        "assets_musd": 581,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/263535044-wyncote-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/263535044"
+      },
+      {
+        "name": "Colcom Foundation",
+        "ein": "311479839",
+        "city": "Pittsburgh",
+        "assets_musd": 438,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/311479839-colcom-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/311479839"
+      },
+      {
+        "name": "High Foundation",
+        "ein": "833271708",
+        "city": "Lancaster",
+        "assets_musd": 242,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/833271708-high-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/833271708"
+      },
+      {
+        "name": "Arconic Foundation",
+        "ein": "843049720",
+        "city": "Pittsburgh",
+        "assets_musd": 170,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/843049720-arconic-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/843049720"
+      },
+      {
+        "name": "Alcoa Foundation",
+        "ein": "364831759",
+        "city": "Pittsburgh",
+        "assets_musd": 142,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/364831759-alcoa-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/364831759"
+      },
+      {
+        "name": "Highmark Foundation",
+        "ein": "251876666",
+        "city": "Pittsburgh",
+        "assets_musd": 116,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/251876666-highmark-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/251876666"
+      },
+      {
+        "name": "Allone Foundation",
+        "ein": "300892103",
+        "city": "Wilkes Barre",
+        "assets_musd": 110,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/300892103-allone-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/300892103"
+      }
     ]
   }
 }
