@@ -1261,6 +1261,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/873878379-teapot-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/873878379"
       }
+    ],
+    "ND": [
+      {
+        "name": "Centurion Foundation",
+        "ein": "873351799",
+        "city": "West Fargo",
+        "assets_musd": 151,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/873351799-centurion-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/873351799"
+      },
+      {
+        "name": "North Dakota Community Foundation",
+        "ein": "450336015",
+        "city": "Bismarck",
+        "assets_musd": 139,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/450336015-north-dakota-community-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/450336015"
+      },
+      {
+        "name": "The Barry Foundation",
+        "ein": "205767275",
+        "city": "Fargo",
+        "assets_musd": 49,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/205767275-the-barry-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/205767275"
+      },
+      {
+        "name": "R B Nordick Foundation",
+        "ein": "450442920",
+        "city": "West Fargo",
+        "assets_musd": 39,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/450442920-r-b-nordick-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/450442920"
+      },
+      {
+        "name": "Zachary Arthaud Foundation",
+        "ein": "854398414",
+        "city": "Dickinson",
+        "assets_musd": 8,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/854398414-zachary-arthaud-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/854398414"
+      },
+      {
+        "name": "Impact Foundation",
+        "ein": "200520386",
+        "city": "Fargo",
+        "assets_musd": 7,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/200520386-impact-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/200520386"
+      },
+      {
+        "name": "Egc Foundation Trust",
+        "ein": "931380988",
+        "city": "Neche",
+        "assets_musd": 7,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/931380988-egc-foundation-trust",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/931380988"
+      },
+      {
+        "name": "Nelson Family Foundation",
+        "ein": "364798042",
+        "city": "Bismarck",
+        "assets_musd": 6,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/364798042-nelson-family-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/364798042"
+      }
     ]
   }
 }

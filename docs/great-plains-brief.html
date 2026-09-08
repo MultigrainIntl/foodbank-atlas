@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Great Plains Food Bank — Food Need & Funding Brief</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
+ .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+ .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
+ .btn{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+ .sheet{max-width:820px;margin:22px auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 40px;box-shadow:0 8px 26px rgba(20,40,34,.07)}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0}
+ .meta{color:var(--ink-faint);font-size:12.5px;margin:5px 0 0;font-family:"IBM Plex Mono",monospace}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ p{color:var(--ink-soft);margin:9px 0} b{color:var(--ink)}
+ .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+ .stat{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+ .stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1}
+ .stat .l{color:var(--ink-faint);font-size:11px;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+ th{text-align:left;color:var(--ink-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{padding:6px 8px;border-bottom:1px solid var(--line)} td.num{text-align:right;font-variant-numeric:tabular-nums} td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+ ul{margin:8px 0;padding-left:20px} li{margin:6px 0;font-size:13px;color:var(--ink-soft)} li a{color:var(--primary)} .mono{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
+ .ask{background:var(--ground);border:1px dashed var(--primary);border-radius:10px;padding:14px 16px;color:var(--ink-soft);font-size:13.5px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+ @media print{
+   .bar{display:none} body{background:#fff} .sheet{box-shadow:none;border:none;border-radius:0;margin:0;max-width:none;padding:0 8px}
+   h2{break-after:avoid} table,ul{break-inside:avoid} a{color:#1E6B57;text-decoration:none}
+ }
+</style></head><body>
+<div class="bar">
+ <a href="/great-plains">← Back to the map</a>
+ <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="sheet">
+ <p class="kick">Food Aid Project · Food-Need Atlas · Evidence Brief</p>
+ <h1>Great Plains Food Bank — Food Need &amp; Funding Brief</h1>
+ <p class="meta">Fargo &amp; all of North Dakota · generated September 8, 2026</p>
+
+ <p>Across Fargo &amp; all of North Dakota, the Food-Need Atlas scores every one of <b>244 neighborhoods</b> (census tracts of ~4,000 people) on poverty, share under 200% of the federal poverty line, SNAP receipt, and low income. <b>13 neighborhoods — about 39,422 people — register high food need</b> and are where distribution, mobile pantries, and the right product mix return the most.</p>
+
+ <p><b>SNAP gap:</b> an estimated <b>59,933 residents</b> across Fargo &amp; all of North Dakota appear income-eligible for SNAP (under ~130% of poverty) but are likely not enrolled — unclaimed federal grocery dollars that would directly ease demand on the food bank, and a concrete outreach target and funding argument.</p>
+ <div class="stats">
+  <div class="stat"><div class="n">13</div><div class="l">high-need neighborhoods</div></div>
+  <div class="stat"><div class="n">10.8%</div><div class="l">live in poverty (avg)</div></div>
+  <div class="stat"><div class="n">24.3%</div><div class="l">under 200% of poverty</div></div>
+  <div class="stat"><div class="n">6.7%</div><div class="l">receive SNAP (avg)</div></div>
+ </div>
+
+ <h2>Highest-need neighborhoods</h2>
+ <table>
+  <thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead>
+  <tbody><tr><td>Fort Yates UT</td><td class="mono">9409</td><td class="num"><b>94.4</b></td><td class="num">48.2%</td><td class="num">68.0%</td><td class="num">38.8%</td><td class="num">2,251</td></tr><tr><td>Grand Forks</td><td class="mono">103.02</td><td class="num"><b>85.6</b></td><td class="num">58.7%</td><td class="num">79.2%</td><td class="num">16.5%</td><td class="num">2,667</td></tr><tr><td>Moorhead</td><td class="mono">204</td><td class="num"><b>79.8</b></td><td class="num">46.2%</td><td class="num">54.8%</td><td class="num">24.7%</td><td class="num">4,242</td></tr><tr><td>Fargo</td><td class="mono">5.02</td><td class="num"><b>78.3</b></td><td class="num">56.4%</td><td class="num">70.8%</td><td class="num">5.1%</td><td class="num">4,649</td></tr><tr><td>East Grant UT</td><td class="mono">9408</td><td class="num"><b>76.8</b></td><td class="num">36.0%</td><td class="num">56.8%</td><td class="num">33.4%</td><td class="num">1,489</td></tr><tr><td>Fargo</td><td class="mono">6.02</td><td class="num"><b>74.1</b></td><td class="num">34.5%</td><td class="num">48.2%</td><td class="num">33.0%</td><td class="num">2,356</td></tr><tr><td>Lallie township</td><td class="mono">9401</td><td class="num"><b>73.5</b></td><td class="num">34.2%</td><td class="num">57.4%</td><td class="num">26.1%</td><td class="num">1,954</td></tr><tr><td>Grand Forks</td><td class="mono">103.01</td><td class="num"><b>72.2</b></td><td class="num">63.0%</td><td class="num">82.2%</td><td class="num">0.0%</td><td class="num">1,867</td></tr><tr><td>Fargo</td><td class="mono">101.06</td><td class="num"><b>68.1</b></td><td class="num">34.6%</td><td class="num">55.8%</td><td class="num">16.5%</td><td class="num">5,500</td></tr><tr><td>Big Bend township</td><td class="mono">9401</td><td class="num"><b>66.7</b></td><td class="num">40.7%</td><td class="num">67.3%</td><td class="num">8.8%</td><td class="num">1,180</td></tr><tr><td>North Rolette UT</td><td class="mono">9517</td><td class="num"><b>66.3</b></td><td class="num">26.8%</td><td class="num">45.6%</td><td class="num">28.5%</td><td class="num">4,231</td></tr><tr><td>Mission township</td><td class="mono">9402</td><td class="num"><b>62.9</b></td><td class="num">26.6%</td><td class="num">46.9%</td><td class="num">26.2%</td><td class="num">2,031</td></tr></tbody>
+ </table>
+
+ <h2>Funding to pursue</h2>
+ <p><b>Open federal opportunities</b> (verify eligibility on Grants.gov before applying):</p>
+ <ul><li><a href="https://www.grants.gov/search-results-detail/363631">Cold Chain Grants for Emergency Food Assistance</a> — Agricultural Marketing Service · closes 2026-10-01</li></ul>
+ <p><b>Local private foundations in North Dakota</b> (IRS 990-PF — check each one's giving history on grantmakers.io for food-relief fit):</p>
+ <ul><li><a href="https://www.grantmakers.io/profiles/v1/873351799-centurion-foundation">Centurion Foundation</a> <span class="mono">$151M</span> · West Fargo</li><li><a href="https://www.grantmakers.io/profiles/v1/450336015-north-dakota-community-foundation">North Dakota Community Foundation</a> <span class="mono">$139M</span> · Bismarck</li><li><a href="https://www.grantmakers.io/profiles/v1/205767275-the-barry-foundation">The Barry Foundation</a> <span class="mono">$49M</span> · Fargo</li><li><a href="https://www.grantmakers.io/profiles/v1/450442920-r-b-nordick-foundation">R B Nordick Foundation</a> <span class="mono">$39M</span> · West Fargo</li><li><a href="https://www.grantmakers.io/profiles/v1/854398414-zachary-arthaud-foundation">Zachary Arthaud Foundation</a> <span class="mono">$8M</span> · Dickinson</li><li><a href="https://www.grantmakers.io/profiles/v1/200520386-impact-foundation">Impact Foundation</a> <span class="mono">$7M</span> · Fargo</li><li><a href="https://www.grantmakers.io/profiles/v1/931380988-egc-foundation-trust">Egc Foundation Trust</a> <span class="mono">$7M</span> · Neche</li><li><a href="https://www.grantmakers.io/profiles/v1/364798042-nelson-family-foundation">Nelson Family Foundation</a> <span class="mono">$6M</span> · Bismarck</li></ul>
+ <p>Standing federal programs (USDA TEFAP &amp; CSFP, state food-purchase) remain the backbone of supply — and Food Aid Project can source and ship a <a href="https://foodbank-atlas.web.app/order">mixed truckload</a> of staples directly into these neighborhoods.</p>
+
+ <h2>The ask (template)</h2>
+ <div class="ask">Great Plains Food Bank serves Fargo &amp; all of North Dakota, where 13 neighborhoods — approximately 39,422 residents — face high food insecurity, with poverty averaging 10.8% and 6.7% relying on SNAP. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighborhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
+
+ <div class="foot">U.S. Census ACS 5-year estimates (tract) via Census Reporter · food-need score = min-max composite of poverty, &lt;200% FPL, SNAP, and inverse median income across residential tracts · funding via Grants.gov + IRS 990-PF (ProPublica / grantmakers.io) · Illustrative planning brief, not a Feeding America product. Verify all figures and eligibility before use.</div>
+</div>
+</body></html>
