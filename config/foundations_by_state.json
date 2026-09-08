@@ -1613,6 +1613,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/260523149-jnf-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/260523149"
       }
+    ],
+    "KS": [
+      {
+        "name": "Goldstein Foundation",
+        "ein": "270439529",
+        "city": "Manhattan",
+        "assets_musd": 196,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/270439529-goldstein-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/270439529"
+      },
+      {
+        "name": "Wichita Foundation",
+        "ein": "481022361",
+        "city": "Wichita",
+        "assets_musd": 102,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/481022361-wichita-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/481022361"
+      },
+      {
+        "name": "Finnup Foundation",
+        "ein": "480845233",
+        "city": "Garden City",
+        "assets_musd": 32,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/480845233-finnup-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/480845233"
+      },
+      {
+        "name": "Roc Foundation",
+        "ein": "882415003",
+        "city": "Overland Park",
+        "assets_musd": 29,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/882415003-roc-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/882415003"
+      },
+      {
+        "name": "Quinn Foundation",
+        "ein": "204268916",
+        "city": "Leawood",
+        "assets_musd": 20,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/204268916-quinn-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/204268916"
+      },
+      {
+        "name": "Lair Foundation",
+        "ein": "260600516",
+        "city": "Wichita",
+        "assets_musd": 16,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/260600516-lair-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/260600516"
+      },
+      {
+        "name": "Mcintyre Foundation",
+        "ein": "391876841",
+        "city": "Lawrence",
+        "assets_musd": 12,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/391876841-mcintyre-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/391876841"
+      },
+      {
+        "name": "Belin Foundation",
+        "ein": "200474310",
+        "city": "Wichita",
+        "assets_musd": 5,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/200474310-belin-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/200474310"
+      }
     ]
   }
 }
