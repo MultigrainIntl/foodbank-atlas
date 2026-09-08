@@ -1687,6 +1687,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/200474310-belin-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/200474310"
       }
+    ],
+    "NM": [
+      {
+        "name": "Thornburg Foundation",
+        "ein": "850457010",
+        "city": "Santa Fe",
+        "assets_musd": 147,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/850457010-thornburg-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/850457010"
+      },
+      {
+        "name": "Lannan Foundation",
+        "ein": "366062451",
+        "city": "Santa Fe",
+        "assets_musd": 115,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/366062451-lannan-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/366062451"
+      },
+      {
+        "name": "Corio Foundation",
+        "ein": "814737356",
+        "city": "Los Ranchos",
+        "assets_musd": 63,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/814737356-corio-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/814737356"
+      },
+      {
+        "name": "Py Foundation",
+        "ein": "460951214",
+        "city": "Artesia",
+        "assets_musd": 56,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/460951214-py-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/460951214"
+      },
+      {
+        "name": "Lineberry Foundation",
+        "ein": "331047391",
+        "city": "Albuquerque",
+        "assets_musd": 38,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/331047391-lineberry-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/331047391"
+      },
+      {
+        "name": "Chase Foundation",
+        "ein": "367466258",
+        "city": "Artesia",
+        "assets_musd": 35,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/367466258-chase-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/367466258"
+      },
+      {
+        "name": "Brindle Foundation",
+        "ein": "30466957",
+        "city": "Santa Fe",
+        "assets_musd": 32,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/30466957-brindle-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/30466957"
+      },
+      {
+        "name": "Slayton Foundation",
+        "ein": "850484361",
+        "city": "Roswell",
+        "assets_musd": 28,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/850484361-slayton-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/850484361"
+      }
     ]
   }
 }

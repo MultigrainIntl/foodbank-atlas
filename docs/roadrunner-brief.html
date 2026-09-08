@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roadrunner Food Bank — Food Need & Funding Brief</title>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
+ :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
+ @media (prefers-color-scheme:dark){:root{--ground:#0C1411;--paper:#14201C;--ink:#E6EEE9;--ink-soft:#9EB0A8;--ink-faint:#71827A;--line:#253431;--primary:#53BF9F;}}
+ *{box-sizing:border-box} body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:14.5px;line-height:1.55}
+ .bar{background:var(--paper);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+ .bar a{color:var(--ink-soft);text-decoration:none;font-size:13px} .bar a:hover{color:var(--primary)}
+ .btn{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+ .sheet{max-width:820px;margin:22px auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:34px 40px;box-shadow:0 8px 26px rgba(20,40,34,.07)}
+ .kick{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:0 0 6px}
+ h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0}
+ .meta{color:var(--ink-faint);font-size:12.5px;margin:5px 0 0;font-family:"IBM Plex Mono",monospace}
+ h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.12rem;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+ p{color:var(--ink-soft);margin:9px 0} b{color:var(--ink)}
+ .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+ .stat{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+ .stat .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1}
+ .stat .l{color:var(--ink-faint);font-size:11px;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px}
+ th{text-align:left;color:var(--ink-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{padding:6px 8px;border-bottom:1px solid var(--line)} td.num{text-align:right;font-variant-numeric:tabular-nums} td.mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+ ul{margin:8px 0;padding-left:20px} li{margin:6px 0;font-size:13px;color:var(--ink-soft)} li a{color:var(--primary)} .mono{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint)}
+ .ask{background:var(--ground);border:1px dashed var(--primary);border-radius:10px;padding:14px 16px;color:var(--ink-soft);font-size:13.5px}
+ .foot{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-faint);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+ @media print{
+   .bar{display:none} body{background:#fff} .sheet{box-shadow:none;border:none;border-radius:0;margin:0;max-width:none;padding:0 8px}
+   h2{break-after:avoid} table,ul{break-inside:avoid} a{color:#1E6B57;text-decoration:none}
+ }
+</style></head><body>
+<div class="bar">
+ <a href="/roadrunner">← Back to the map</a>
+ <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+<div class="sheet">
+ <p class="kick">Food Aid Project · Food-Need Atlas · Evidence Brief</p>
+ <h1>Roadrunner Food Bank — Food Need &amp; Funding Brief</h1>
+ <p class="meta">Albuquerque &amp; all of New Mexico · generated September 8, 2026</p>
+
+ <p>Across Albuquerque &amp; all of New Mexico, the Food-Need Atlas scores every one of <b>601 neighborhoods</b> (census tracts of ~4,000 people) on poverty, share under 200% of the federal poverty line, SNAP receipt, and low income. <b>108 neighborhoods — about 345,508 people — register high food need</b> and are where distribution, mobile pantries, and the right product mix return the most.</p>
+
+ <p><b>SNAP gap:</b> an estimated <b>99,479 residents</b> across Albuquerque &amp; all of New Mexico appear income-eligible for SNAP (under ~130% of poverty) but are likely not enrolled — unclaimed federal grocery dollars that would directly ease demand on the food bank, and a concrete outreach target and funding argument.</p>
+ <div class="stats">
+  <div class="stat"><div class="n">108</div><div class="l">high-need neighborhoods</div></div>
+  <div class="stat"><div class="n">17.9%</div><div class="l">live in poverty (avg)</div></div>
+  <div class="stat"><div class="n">37.4%</div><div class="l">under 200% of poverty</div></div>
+  <div class="stat"><div class="n">19.9%</div><div class="l">receive SNAP (avg)</div></div>
+ </div>
+
+ <h2>Highest-need neighborhoods</h2>
+ <table>
+  <thead><tr><th>Neighborhood</th><th>Tract</th><th class="num">Score</th><th class="num">Poverty</th><th class="num">&lt;200% FPL</th><th class="num">SNAP</th><th class="num">Population</th></tr></thead>
+  <tbody><tr><td>Albuquerque</td><td class="mono">7.15</td><td class="num"><b>97.8</b></td><td class="num">59.4%</td><td class="num">91.0%</td><td class="num">67.8%</td><td class="num">2,797</td></tr><tr><td>Las Cruces</td><td class="mono">9.01</td><td class="num"><b>94.6</b></td><td class="num">58.6%</td><td class="num">89.3%</td><td class="num">61.3%</td><td class="num">2,492</td></tr><tr><td>Anthony</td><td class="mono">18.07</td><td class="num"><b>92.4</b></td><td class="num">64.1%</td><td class="num">79.1%</td><td class="num">56.2%</td><td class="num">1,788</td></tr><tr><td>Red Rock</td><td class="mono">9460.03</td><td class="num"><b>84.2</b></td><td class="num">50.8%</td><td class="num">75.8%</td><td class="num">53.2%</td><td class="num">1,969</td></tr><tr><td>Red Rock</td><td class="mono">9457.02</td><td class="num"><b>83.2</b></td><td class="num">41.4%</td><td class="num">84.6%</td><td class="num">53.4%</td><td class="num">1,345</td></tr><tr><td>Navajo Nation</td><td class="mono">9438.01</td><td class="num"><b>81.6</b></td><td class="num">50.9%</td><td class="num">73.3%</td><td class="num">50.4%</td><td class="num">2,252</td></tr><tr><td>Crownpoint</td><td class="mono">9440</td><td class="num"><b>80.3</b></td><td class="num">45.5%</td><td class="num">78.1%</td><td class="num">50.0%</td><td class="num">1,881</td></tr><tr><td>Albuquerque</td><td class="mono">47.6</td><td class="num"><b>79.4</b></td><td class="num">37.6%</td><td class="num">73.6%</td><td class="num">55.7%</td><td class="num">3,470</td></tr><tr><td>Cuba</td><td class="mono">9409</td><td class="num"><b>78.3</b></td><td class="num">44.6%</td><td class="num">65.8%</td><td class="num">51.9%</td><td class="num">3,245</td></tr><tr><td>Albuquerque</td><td class="mono">9.08</td><td class="num"><b>77.6</b></td><td class="num">41.2%</td><td class="num">70.8%</td><td class="num">52.4%</td><td class="num">5,470</td></tr><tr><td>Roswell</td><td class="mono">4</td><td class="num"><b>77.3</b></td><td class="num">44.8%</td><td class="num">75.8%</td><td class="num">43.8%</td><td class="num">4,722</td></tr><tr><td>Las Cruces</td><td class="mono">4.01</td><td class="num"><b>77.0</b></td><td class="num">46.3%</td><td class="num">70.8%</td><td class="num">42.4%</td><td class="num">2,085</td></tr></tbody>
+ </table>
+
+ <h2>Funding to pursue</h2>
+ <p><b>Open federal opportunities</b> (verify eligibility on Grants.gov before applying):</p>
+ <ul><li><a href="https://www.grants.gov/search-results-detail/363631">Cold Chain Grants for Emergency Food Assistance</a> — Agricultural Marketing Service · closes 2026-10-01</li></ul>
+ <p><b>Local private foundations in New Mexico</b> (IRS 990-PF — check each one's giving history on grantmakers.io for food-relief fit):</p>
+ <ul><li><a href="https://www.grantmakers.io/profiles/v1/850457010-thornburg-foundation">Thornburg Foundation</a> <span class="mono">$147M</span> · Santa Fe</li><li><a href="https://www.grantmakers.io/profiles/v1/366062451-lannan-foundation">Lannan Foundation</a> <span class="mono">$115M</span> · Santa Fe</li><li><a href="https://www.grantmakers.io/profiles/v1/814737356-corio-foundation">Corio Foundation</a> <span class="mono">$63M</span> · Los Ranchos</li><li><a href="https://www.grantmakers.io/profiles/v1/460951214-py-foundation">Py Foundation</a> <span class="mono">$56M</span> · Artesia</li><li><a href="https://www.grantmakers.io/profiles/v1/331047391-lineberry-foundation">Lineberry Foundation</a> <span class="mono">$38M</span> · Albuquerque</li><li><a href="https://www.grantmakers.io/profiles/v1/367466258-chase-foundation">Chase Foundation</a> <span class="mono">$35M</span> · Artesia</li><li><a href="https://www.grantmakers.io/profiles/v1/30466957-brindle-foundation">Brindle Foundation</a> <span class="mono">$32M</span> · Santa Fe</li><li><a href="https://www.grantmakers.io/profiles/v1/850484361-slayton-foundation">Slayton Foundation</a> <span class="mono">$28M</span> · Roswell</li></ul>
+ <p>Standing federal programs (USDA TEFAP &amp; CSFP, state food-purchase) remain the backbone of supply — and Food Aid Project can source and ship a <a href="https://foodbank-atlas.web.app/order">mixed truckload</a> of staples directly into these neighborhoods.</p>
+
+ <h2>The ask (template)</h2>
+ <div class="ask">Roadrunner Food Bank serves Albuquerque &amp; all of New Mexico, where 108 neighborhoods — approximately 345,508 residents — face high food insecurity, with poverty averaging 17.9% and 19.9% relying on SNAP. We are seeking <b>$______</b> to <b>[expand mobile distribution / purchase and move food / launch a new pantry site]</b> in the highest-need neighborhoods identified above, reaching an estimated <b>______ people</b> in the first year.</div>
+
+ <div class="foot">U.S. Census ACS 5-year estimates (tract) via Census Reporter · food-need score = min-max composite of poverty, &lt;200% FPL, SNAP, and inverse median income across residential tracts · funding via Grants.gov + IRS 990-PF (ProPublica / grantmakers.io) · Illustrative planning brief, not a Feeding America product. Verify all figures and eligibility before use.</div>
+</div>
+</body></html>
