@@ -1,0 +1,25 @@
+{
+    "name": "Feeding the Valley Food Bank",
+    "slug": "feeding-the-valley",
+    "region_label": "Columbus & West Central Georgia",
+    "county_fips": [
+        "13215",
+        "13037",
+        "13053",
+        "13061",
+        "13095",
+        "13145",
+        "13177",
+        "13197",
+        "13199",
+        "13239",
+        "13243",
+        "13249",
+        "13259",
+        "13263",
+        "13273",
+        "13285",
+        "13307",
+        "01113"
+    ]
+}
