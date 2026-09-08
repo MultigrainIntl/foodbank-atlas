@@ -1,0 +1,8 @@
+{
+    "name": "Second Harvest Food Bank of Orange County",
+    "slug": "orange-county",
+    "region_label": "Orange County, California",
+    "county_fips": [
+        "06059"
+    ]
+}
