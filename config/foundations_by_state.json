@@ -1391,6 +1391,80 @@
         "gm_url": "https://www.grantmakers.io/profiles/v1/202016199-gem-foundation",
         "pp_url": "https://projects.propublica.org/nonprofits/organizations/202016199"
       }
+    ],
+    "SD": [
+      {
+        "name": "Sanford Health Foundation",
+        "ein": "363297853",
+        "city": "Sioux Falls",
+        "assets_musd": 1197,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/363297853-sanford-health-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/363297853"
+      },
+      {
+        "name": "Houston Family Foundation",
+        "ein": "203853573",
+        "city": "Sioux Falls",
+        "assets_musd": 61,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/203853573-houston-family-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/203853573"
+      },
+      {
+        "name": "Watertown Community Foundation",
+        "ein": "460350319",
+        "city": "Watertown",
+        "assets_musd": 33,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/460350319-watertown-community-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/460350319"
+      },
+      {
+        "name": "Denny Sanford Foundation",
+        "ein": "204942461",
+        "city": "Sioux Falls",
+        "assets_musd": 27,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/204942461-denny-sanford-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/204942461"
+      },
+      {
+        "name": "Oahe Foundation",
+        "ein": "363309554",
+        "city": "Pierre",
+        "assets_musd": 25,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/363309554-oahe-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/363309554"
+      },
+      {
+        "name": "Raft Charitable Foundation",
+        "ein": "376439235",
+        "city": "Sioux Falls",
+        "assets_musd": 21,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/376439235-raft-charitable-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/376439235"
+      },
+      {
+        "name": "Rlb Charitable Foundation",
+        "ein": "844051197",
+        "city": "Sioux Falls",
+        "assets_musd": 19,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/844051197-rlb-charitable-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/844051197"
+      },
+      {
+        "name": "Brenden Mann Foundation",
+        "ein": "113789260",
+        "city": "Sioux Falls",
+        "assets_musd": 18,
+        "focus": "Private grantmaking foundation (IRS 990-PF)",
+        "gm_url": "https://www.grantmakers.io/profiles/v1/113789260-brenden-mann-foundation",
+        "pp_url": "https://projects.propublica.org/nonprofits/organizations/113789260"
+      }
     ]
   }
 }
