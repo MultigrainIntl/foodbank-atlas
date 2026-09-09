@@ -152,6 +152,8 @@ function showCard(){
     t.push(`<span class="tag">#${RANK[sel.n]} of ${DEST.length}</span>`);
     t.push(`<span class="tag ${sel.repack==="Y"?"y":sel.repack==="?"?"q":""}">${sel.repack==="Y"?"repacks":sel.repack==="?"?"repack unknown":"no repack"}</span>`);
     if(sel.u) t.push('<span class="tag q">unverified</span>');
+    if(sel.buy){const B={Y:['y','buys food centrally'],L:['q','buys local produce only'],N:['','does not buy food'],'?':['q','buying unknown — call them']}[sel.buy];
+      if(B) t.push(`<span class="tag ${B[0]}">${B[1]}</span>`);}
     if(sel.cust) t.push('<span class="tag y">customer</span>');
   }
   c.innerHTML=`<h2>${esc(sel.n)}</h2><div class="loc">${esc(sel.sub||(sel.c+", "+sel.s))}</div>
