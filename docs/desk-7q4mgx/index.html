@@ -75,7 +75,7 @@ button.ghost{background:transparent;color:var(--ink);border-color:var(--rule);ma
 
   <label for="q">Food bank or city</label>
   <input id="q" type="search" placeholder="Name, or a city — Brooklyn, NY" autocomplete="off">
-  <p id="hint">Ranked by freight, reach and repack. Type any city and press <b>Enter</b> to look it up.</p>
+  <p id="hint">Ranked by freight, reach and repack. Confirmed non-buyers sit at the bottom. Type any city and press <b>Enter</b> to look it up.</p>
   <div id="list"></div>
 
   <div id="card" hidden></div>
@@ -115,7 +115,7 @@ const $=s=>document.querySelector(s);
 let map=null,layers=[],sel=null,routes=[],active=0,places=[],saveT=null;
 
 const W={f:40,r:30,p:30};
-function fit(d){return (W.f*Math.max(0,100-gc(d)/25)+W.r*d.reach+W.p*(d.repack==="Y"?100:d.repack==="?"?50:20))/(W.f+W.r+W.p)}
+function fit(d){const s=(W.f*Math.max(0,100-gc(d)/25)+W.r*d.reach+W.p*(d.repack==="Y"?100:d.repack==="?"?50:20))/(W.f+W.r+W.p);return d.buy==="N"?s*0.05:s}
 function gc(d){const R=x=>x*Math.PI/180,[a,b]=ORIGIN;
  const h=Math.sin(R(d.lat-a)/2)**2+Math.cos(R(a))*Math.cos(R(d.lat))*Math.sin(R(d.lon-b)/2)**2;
  return 2*6371*Math.asin(Math.sqrt(h))*0.621371*1.18}
