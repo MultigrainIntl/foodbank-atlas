@@ -1,0 +1,236 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Sales Desk — Food Aid Project</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#f1f3f2;--panel:#e7ebe9;--panel2:#dde3e0;--ink:#16201e;--ink2:#3b4a46;
+ --rule:#c5cec9;--muted:#65756f;--accent:#8d6412;--ok:#2c6349;--unk:#8d6412;--no:#8b968f;
+ --r1:#1e3c39;--r2:#a8541f;--r3:#4a6fa5;}
+@media(prefers-color-scheme:dark){:root{--paper:#0f1614;--panel:#18211f;--panel2:#1f2a27;
+ --ink:#e7edea;--ink2:#b3c0bb;--rule:#2b3835;--muted:#8b9a94;--accent:#d7a441;--ok:#5fae87;
+ --unk:#d7a441;--no:#77837d;--r1:#7fb3a6;--r2:#e0894f;--r3:#7fa5d9;}}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:flex;
+ font:14px/1.5 Archivo,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#rail{width:400px;min-width:400px;height:100vh;overflow-y:auto;border-right:1px solid var(--rule);padding:16px 16px 48px}
+#map{flex:1;height:100vh;position:sticky;top:0}
+@media(max-width:900px){body{display:block}#rail{width:auto;min-width:0;height:auto;border-right:0;
+ border-bottom:1px solid var(--rule)}#map{height:62vh;position:static}}
+h1{font:700 19px/1.1 Archivo;letter-spacing:-.02em;margin:0}
+.sub{font:11px/1.4 "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.08em;
+ text-transform:uppercase;margin:3px 0 14px}
+label{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:12px 0 4px}
+input,select,textarea{width:100%;padding:8px 9px;border:1px solid var(--rule);background:var(--panel);
+ color:var(--ink);border-radius:2px;font:13px Archivo,sans-serif}
+input[type=number]{font-family:"IBM Plex Mono",monospace}
+textarea{min-height:74px;resize:vertical;font-size:13px;line-height:1.45}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#hint{font-size:11px;color:var(--muted);margin:5px 0 0;line-height:1.35}
+#hint b{color:var(--ink2)}
+#list{max-height:230px;overflow-y:auto;border:1px solid var(--rule);background:var(--panel);
+ border-radius:2px;margin-top:6px}
+.item{padding:7px 9px;border-bottom:1px solid var(--rule);cursor:pointer;font-size:12.5px;line-height:1.3}
+.item:last-child{border-bottom:0}
+.item:hover{background:var(--panel2)}
+.item small{display:block;font:10.5px "IBM Plex Mono",monospace;opacity:.72}
+.item.place{border-left:3px solid var(--accent)}
+.item.act{font-style:italic;color:var(--accent)}
+.item .rk{float:right;font:600 10px "IBM Plex Mono",monospace;color:var(--muted)}
+.item .hasmap{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);
+ margin-right:5px;vertical-align:1px}
+#card{margin-top:14px;padding:12px;border:1px solid var(--rule);background:var(--panel);border-radius:2px}
+#card h2{margin:0 0 3px;font:600 15px Archivo;letter-spacing:-.01em;line-height:1.25}
+#card .loc{font:11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:600 10px Archivo;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;
+ border-radius:2px;border:1px solid var(--rule);color:var(--ink2)}
+.tag.y{border-color:var(--ok);color:var(--ok)}
+.tag.q{border-color:var(--unk);color:var(--unk)}
+.maplink{display:inline-block;margin-top:9px;font:600 12px Archivo;color:var(--accent);text-decoration:none}
+.maplink:hover{text-decoration:underline}
+button{width:100%;margin-top:12px;padding:10px;border:1px solid var(--accent);background:var(--accent);
+ color:var(--paper);font:600 13px Archivo;border-radius:2px;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+button.ghost{background:transparent;color:var(--ink);border-color:var(--rule);margin-top:6px}
+.rt{border:1px solid var(--rule);border-left-width:4px;background:var(--panel);padding:9px 11px;
+ margin-bottom:8px;border-radius:2px;cursor:pointer}
+.rt h3{margin:0 0 5px;font:600 12.5px Archivo;display:flex;justify-content:space-between;gap:8px}
+.rt .mi{font:600 16px "IBM Plex Mono",monospace}
+.rt .meta{font:11px "IBM Plex Mono",monospace;color:var(--muted)}
+.rt .cost{font:600 20px "IBM Plex Mono",monospace;color:var(--accent);margin-top:6px;letter-spacing:-.02em}
+.rt .per{font:11px "IBM Plex Mono",monospace;color:var(--ink2);margin-top:2px}
+.best{font:600 9.5px Archivo;letter-spacing:.08em;text-transform:uppercase;background:var(--r1);
+ color:var(--paper);padding:1px 5px;border-radius:2px}
+.saved{font:11px "IBM Plex Mono",monospace;color:var(--ok);margin-top:4px;min-height:14px}
+.note{font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:18px;padding-top:12px;
+ border-top:1px solid var(--rule)}
+.leaflet-container{background:var(--panel2)}
+</style></head><body>
+<div id="rail">
+  <h1>Sales Desk</h1>
+  <p class="sub">Melfort, SK · 52.8561 N 104.6178 W</p>
+
+  <label for="q">Food bank or city</label>
+  <input id="q" type="search" placeholder="Name, or a city — Brooklyn, NY" autocomplete="off">
+  <p id="hint">Ranked by freight, reach and repack. Type any city and press <b>Enter</b> to look it up.</p>
+  <div id="list"></div>
+
+  <div id="card" hidden></div>
+
+  <div class="row2">
+    <div><label for="rate">Rate $/mile</label><input id="rate" type="number" value="3.00" step="0.05" min="0"></div>
+    <div><label for="lbs">Load lb</label><input id="lbs" type="number" value="42000" step="1000" min="1"></div>
+  </div>
+
+  <button id="go" disabled>Route it</button>
+  <button id="clear" class="ghost">Clear</button>
+
+  <div id="out"></div>
+
+  <div id="notewrap" hidden>
+    <label for="notes">Notes</label>
+    <textarea id="notes" placeholder="What they buy, packaging, who to call back, when…"></textarea>
+    <div class="saved" id="savedmsg"></div>
+  </div>
+
+  <p class="note">Miles are real driving distance. <b>Via Canada</b> forces the load east through
+  Thunder Bay and Toronto before turning south, so you can compare it against dropping into the US.
+  Rate × miles is linehaul only — no fuel surcharge, border brokerage or detention.
+  Notes are saved in this browser on this device.</p>
+</div>
+<div id="map"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data.js"></script>
+<script>
+const ORIGIN=[52.8561,-104.6178];
+const VIA=[[48.3809,-89.2477],[43.6532,-79.3832]];
+const OSRM="https://router.project-osrm.org/route/v1/driving/";
+const NOM="https://nominatim.openstreetmap.org/search?format=json&limit=5&q=";
+const ATLAS="https://foodbank-atlas.web.app/";
+const CK=["--r1","--r2","--r3"];
+const $=s=>document.querySelector(s);
+let map=null,layers=[],sel=null,routes=[],active=0,places=[],saveT=null;
+
+const W={f:40,r:30,p:30};
+function fit(d){return (W.f*Math.max(0,100-gc(d)/25)+W.r*d.reach+W.p*(d.repack==="Y"?100:d.repack==="?"?50:20))/(W.f+W.r+W.p)}
+function gc(d){const R=x=>x*Math.PI/180,[a,b]=ORIGIN;
+ const h=Math.sin(R(d.lat-a)/2)**2+Math.cos(R(a))*Math.cos(R(d.lat))*Math.sin(R(d.lon-b)/2)**2;
+ return 2*6371*Math.asin(Math.sqrt(h))*0.621371*1.18}
+const RANKED=DEST.map(d=>({d,s:fit(d)})).sort((x,y)=>y.s-x.s);
+const RANK={}; RANKED.forEach((x,i)=>RANK[x.d.n]=i+1);
+
+try{
+  map=L.map('map').setView([50,-98],4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:12}).addTo(map);
+  L.circleMarker(ORIGIN,{radius:8,color:'#fff',weight:2,fillColor:'#8d6412',fillOpacity:1}).addTo(map)
+   .bindTooltip("Melfort, SK — origin");
+}catch(e){ $("#map").innerHTML='<p style="padding:28px;color:var(--muted)">Map unavailable. Miles and costs still work.</p>' }
+
+const esc=s=>String(s==null?"":s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt=n=>n.toLocaleString(undefined,{maximumFractionDigits:0});
+const money=n=>"$"+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+
+function renderList(f){
+  const q=(f||"").toLowerCase().trim();
+  const hits=(q?RANKED.filter(x=>(x.d.n+" "+x.d.c+" "+x.d.s).toLowerCase().includes(q)):RANKED).slice(0,400);
+  let html=places.map((p,i)=>`<div class="item place" data-p="${i}">${esc(p.short)}<small>${esc(p.full)}</small></div>`).join("");
+  html+=hits.map(x=>`<div class="item" data-n="${encodeURIComponent(x.d.n)}"><span class="rk">#${RANK[x.d.n]}</span>${x.d.map?'<i class="hasmap"></i>':''}${esc(x.d.n)}<small>${esc(x.d.c)}, ${esc(x.d.s)}</small></div>`).join("");
+  if(q) html=`<div class="item act" id="geo">Look up "${esc(f.trim())}" as a place — press Enter</div>`+html;
+  $("#list").innerHTML=html||'<div class="item">no match</div>';
+}
+function noteKey(){return "fapdesk:"+(sel?sel.n:"")}
+function showCard(){
+  const c=$("#card");
+  if(!sel){c.hidden=true;$("#notewrap").hidden=true;return}
+  c.hidden=false;
+  const t=[];
+  if(!sel.place){
+    t.push(`<span class="tag">#${RANK[sel.n]} of ${DEST.length}</span>`);
+    t.push(`<span class="tag ${sel.repack==="Y"?"y":sel.repack==="?"?"q":""}">${sel.repack==="Y"?"repacks":sel.repack==="?"?"repack unknown":"no repack"}</span>`);
+    if(sel.u) t.push('<span class="tag q">unverified</span>');
+    if(sel.cust) t.push('<span class="tag y">customer</span>');
+  }
+  c.innerHTML=`<h2>${esc(sel.n)}</h2><div class="loc">${esc(sel.sub||(sel.c+", "+sel.s))}</div>
+    <div class="tags">${t.join("")}</div>
+    ${sel.map?`<a class="maplink" href="${ATLAS}${sel.map}" target="_blank" rel="noopener">Open their food-need map →</a>`:
+      (sel.place?"":'<div class="loc" style="margin-top:8px">no map built yet</div>')}`;
+  $("#notewrap").hidden=!!sel.place;
+  if(!sel.place){ try{$("#notes").value=localStorage.getItem(noteKey())||""}catch(e){} $("#savedmsg").textContent=""; }
+}
+async function geocode(t){
+  t=(t||"").trim(); if(!t) return;
+  $("#list").innerHTML='<div class="item act">Looking up "'+esc(t)+'"…</div>';
+  try{
+    const j=await fetch(NOM+encodeURIComponent(t),{headers:{Accept:'application/json'}}).then(r=>r.json());
+    places=j.map(x=>({short:x.display_name.split(",").slice(0,2).join(","),full:x.display_name,lat:+x.lat,lon:+x.lon}));
+    places.length?renderList($("#q").value):$("#list").innerHTML='<div class="item">no place found — add the state or province</div>';
+  }catch(e){ $("#list").innerHTML='<div class="item">lookup failed — check your connection</div>' }
+}
+async function osrm(pts,alts){
+  const u=OSRM+pts.map(p=>p[1]+","+p[0]).join(";")+"?overview=simplified&geometries=geojson&alternatives="+(alts?"true":"false");
+  const r=await fetch(u); if(!r.ok) throw new Error("routing "+r.status);
+  const j=await r.json(); if(j.code!=="Ok") throw new Error(j.code); return j.routes;
+}
+function clearMap(){if(map)layers.forEach(l=>map.removeLayer(l));layers=[]}
+function draw(){
+  if(!map)return; clearMap();
+  routes.forEach((rt,i)=>{
+    const ln=L.polyline(rt.geo,{color:css(CK[i%3]),weight:i===active?5:3,opacity:i===active?.95:.45,
+      dashArray:rt.via?"8 6":null}).addTo(map);
+    ln.on('click',()=>{active=i;draw();paint()}); layers.push(ln);
+  });
+  if(layers.length) map.fitBounds(L.featureGroup(layers).getBounds(),{padding:[30,30]});
+}
+function paint(){
+  const rate=parseFloat($("#rate").value)||0, lbs=parseFloat($("#lbs").value)||1;
+  const best=Math.min(...routes.map(r=>r.mi));
+  $("#out").innerHTML=routes.map((r,i)=>{
+    const cost=r.mi*rate;
+    return `<div class="rt${i===active?' on':''}" data-i="${i}" style="border-left-color:${css(CK[i%3])}">
+      <h3><span>${r.label}</span>${r.mi===best?'<span class="best">shortest</span>':''}</h3>
+      <div><span class="mi">${fmt(r.mi)}</span> <span class="meta">mi · ${r.hrs} h</span></div>
+      <div class="cost">${money(cost)}</div>
+      <div class="per">${money(cost/(lbs/100))}/cwt · ${money(cost/lbs)}/lb · at ${money(rate)}/mi</div></div>`}).join("");
+  document.querySelectorAll('.rt').forEach(el=>el.addEventListener('click',()=>{active=+el.dataset.i;draw();paint()}));
+}
+$("#list").addEventListener('click',e=>{
+  const el=e.target.closest('.item'); if(!el) return;
+  if(el.id==='geo'){geocode($("#q").value);return}
+  if(el.dataset.p!==undefined){const p=places[+el.dataset.p];sel={n:p.short,sub:p.full,lat:p.lat,lon:p.lon,place:true,map:""}}
+  else if(el.dataset.n!==undefined){sel=DEST.find(d=>d.n===decodeURIComponent(el.dataset.n))}
+  else return;
+  $("#go").disabled=false; showCard(); renderList($("#q").value);
+});
+$("#q").addEventListener('input',e=>{places=[];renderList(e.target.value)});
+$("#q").addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();geocode(e.target.value)}});
+$("#notes").addEventListener('input',()=>{
+  clearTimeout(saveT);
+  saveT=setTimeout(()=>{try{localStorage.setItem(noteKey(),$("#notes").value);
+    $("#savedmsg").textContent="saved "+new Date().toLocaleTimeString()}catch(e){$("#savedmsg").textContent="could not save"}},500);
+});
+$("#go").addEventListener('click',async()=>{
+  if(!sel)return;
+  $("#go").disabled=true;$("#go").textContent="Routing…";$("#out").innerHTML="";routes=[];active=0;
+  try{
+    const dir=await osrm([ORIGIN,[sel.lat,sel.lon]],true);
+    dir.slice(0,2).forEach((r,i)=>routes.push({label:i?"Direct — alternate":"Direct — fastest",
+      mi:Math.round(r.distance/1609.34),hrs:(r.duration/3600).toFixed(1),
+      geo:r.geometry.coordinates.map(c=>[c[1],c[0]]),via:false}));
+    if(sel.lon>-95){ try{
+      const r=(await osrm([ORIGIN,...VIA,[sel.lat,sel.lon]],false))[0];
+      routes.push({label:"Via Canada — Thunder Bay & Toronto",mi:Math.round(r.distance/1609.34),
+        hrs:(r.duration/3600).toFixed(1),geo:r.geometry.coordinates.map(c=>[c[1],c[0]]),via:true});
+    }catch(e){} }
+    draw();paint();
+  }catch(e){ $("#out").innerHTML='<p style="color:var(--r2);font-size:12px;margin-top:10px">Could not reach the routing service — '+esc(e.message)+'</p>' }
+  $("#go").disabled=false;$("#go").textContent="Route it";
+});
+$("#clear").addEventListener('click',()=>{clearMap();routes=[];sel=null;places=[];$("#out").innerHTML="";
+  $("#q").value="";showCard();renderList("");if(map)map.setView([50,-98],4)});
+["rate","lbs"].forEach(id=>$("#"+id).addEventListener('input',()=>{if(routes.length)paint()}));
+renderList("");
+</script></body></html>
