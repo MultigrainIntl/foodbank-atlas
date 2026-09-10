@@ -1,0 +1,19 @@
+{
+    "name": "Feeding Northeast Florida",
+    "slug": "feeding-northeast-florida",
+    "region_label": "Jacksonville & Northeast Florida",
+    "county_fips": [
+        "12031",
+        "12001",
+        "12003",
+        "12007",
+        "12019",
+        "12035",
+        "12041",
+        "12075",
+        "12089",
+        "12107",
+        "12109",
+        "12125"
+    ]
+}
