@@ -41,18 +41,32 @@ jobs:
       - name: No committed secrets
         run: |
           set -e
-          PAT='(AIza[0-9A-Za-z_-]{35}|sk-[A-Za-z0-9]{32,}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[baprs]-[A-Za-z0-9-]{10,})'
-          HITS=$(grep -rIEl "$PAT" . \
-                  --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist \
-                  --exclude-dir=build --exclude-dir=.next --exclude-dir=vendor \
-                  --exclude='*.lock' --exclude='package-lock.json' \
-                  --exclude='joieos-compliance.yml' 2>/dev/null || true)
+          EX="--exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist
+              --exclude-dir=build --exclude-dir=.next --exclude-dir=vendor
+              --exclude=*.lock --exclude=package-lock.json --exclude=joieos-compliance.yml"
+
+          # SERVER-SIDE SECRETS — these are never safe in a repo. Hard failure.
+          SECRET='(sk-[A-Za-z0-9]{32,}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16}|"private_key_id"|service_account)'
+          HITS=$(grep -rIEl "$SECRET" . $EX 2>/dev/null || true)
           if [ -n "$HITS" ]; then
-            echo "FAIL CONTROL-SECRET-001: credential-shaped strings committed in:"
+            echo "FAIL CONTROL-SECRET-001: server-side credential committed in:"
             echo "$HITS"
+            echo "Rotate the credential first, then remove it from the repository and its history."
             exit 1
           fi
-          echo "OK  no credential patterns found"
+          echo "OK  no server-side credentials"
+
+          # CLIENT-SIDE API KEYS (Firebase/Maps AIza...) are public by design: they ship in
+          # the browser bundle. Not a breach, so not a failure — but they must be restricted
+          # at the provider, because that is the only thing protecting them.
+          CLIENT=$(grep -rIEl 'AIza[0-9A-Za-z_-]{35}' . $EX 2>/dev/null || true)
+          if [ -n "$CLIENT" ]; then
+            echo "NOTE CONTROL-SECRET-002: client-side API key present in:"
+            echo "$CLIENT"
+            echo "This is expected for Firebase/Maps web config. Security depends entirely on"
+            echo "provider-side restrictions (Firestore/Storage rules, HTTP referrer limits),"
+            echo "not on secrecy. Confirm those restrictions exist."
+          fi
 
       - name: No unverified success claims in governance records
         run: |
