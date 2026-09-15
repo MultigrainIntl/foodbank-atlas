@@ -274,7 +274,7 @@ print("wrote docs/about.html")
 
 METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Methodology — Food-Need Atlas</title>
+<title>Methodology: Food-Need Atlas</title>
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap');
  :root{--ground:#EDF1EE;--paper:#FBFCFB;--ink:#16211D;--ink-soft:#4F615A;--ink-faint:#7B8C84;--line:#D8E1DC;--primary:#1E6B57;}
@@ -305,6 +305,9 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  .src{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--ink-soft);margin:14px 0}
  .src b{color:var(--ink)}
  .cta{display:inline-block;background:var(--primary);color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:11px 18px;margin-top:6px}
+ .tldr{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:12px;padding:6px 20px 16px;margin:22px 0 6px}
+ .tldr-h{font-size:1rem;margin:14px 0 6px}
+ .tldr ul{margin:0;padding-left:18px} .tldr li{color:var(--ink-soft);margin:7px 0;font-size:14.5px}
  h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1rem;margin:22px 0 6px;color:var(--ink)}
  .eq{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:8px;padding:12px 16px;margin:12px 0;font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:var(--ink);overflow-x:auto}
  .mono{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
@@ -315,105 +318,117 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a>__ORDER_NAV____FBSEARCH_NAV__</div>
 </header>
 <div class="wrap">
- <p class="kick">Methodology · Version 1.2 · 15 September 2026</p>
+ <p class="kick">Methodology · Version 1.3 · 15 September 2026</p>
  <h1>How the food-need score is built</h1>
  <p class="lead">This page states the exact formula, the weights, the missing-data rule, what the score can and cannot be compared against, how old the data is, and what has and has not been validated. It exists so a food bank can evaluate the Atlas before citing it in a grant application or a board report.</p>
 
- <div class="src"><b>Version 1.2</b> · published 15 September 2026 · applies to all 41 maps. <b>U.S. maps last rebuilt</b> 14 September 2026. <b>Canadian maps last rebuilt</b> 8 September 2026. Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
+ <div class="src"><b>Version 1.3</b> · published 15 September 2026 · applies to all 41 maps. <b>U.S. maps last rebuilt</b> 14 September 2026. <b>Canadian maps last rebuilt</b> 8 September 2026. Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
+
+ <div class="tldr">
+  <h2 class="tldr-h">The short version</h2>
+  <ul>
+   <li><b>What the score is.</b> A 0–100 ranking of neighbourhoods by measured food need, built from official census statistics.</li>
+   <li><b>How it is built.</b> Three indicators in Canada (low income, government transfers, median income), four in the United States. Each is put on the same scale, then averaged. <b>Equal weight</b>: one-third each in Canada, one-quarter each in the US.</li>
+   <li><b>What you may compare.</b> Neighbourhoods <em>within one food bank's map</em>. <b>Never between food banks, cities or countries</b>. Each map is scaled to its own service area.</li>
+   <li><b>How old the data is.</b> Canada: the 2021 Census, with income figures referring to 2020. United States: the latest ACS 5-year estimates. Neither reflects conditions today.</li>
+   <li><b>Where data is missing.</b> Suppressed neighbourhoods are either left unscored or scored on the indicators that remain. Nothing is invented to fill a gap.</li>
+   <li><b>What has not been tested.</b> Whether the score predicts where people actually go hungry. It has not been checked against food bank demand or food-insecurity surveys. Cite it as a measure of disadvantage, not a count of hunger.</li>
+  </ul>
+ </div>
 
  <h2>1. The formula</h2>
  <p>Every neighbourhood gets one score from 0 to 100. The calculation runs in three steps, in this order.</p>
- <p><b>Step one — put each indicator on the same 0-to-1 scale.</b> For each indicator, take the lowest and highest values found across the reference set of neighbourhoods in that food bank's service area (defined in section 3), then rescale:</p>
+ <p><b>Step one: put each indicator on the same 0-to-1 scale.</b> For each indicator, take the lowest and highest values found across the reference set of neighbourhoods in that food bank's service area (defined in section 3), then rescale:</p>
  <div class="eq">n = ( x − min ) / ( max − min )</div>
  <p>For median household income the direction is flipped, because <em>less</em> income means <em>more</em> need:</p>
  <div class="eq">n = 1 − ( x − min ) / ( max − min )</div>
  <p>The result is clamped to the range 0 to 1, so a neighbourhood outside the reference set cannot push past either end.</p>
- <p><b>Step two — average the rescaled indicators.</b> Add them up and divide by how many there are.</p>
- <p><b>Step three — express it out of 100</b> and round to one decimal place.</p>
+ <p><b>Step two: average the rescaled indicators.</b> Add them up and divide by how many there are.</p>
+ <p><b>Step three: express it out of 100</b> and round to one decimal place.</p>
  <div class="eq">score = 100 × ( n<sub>1</sub> + n<sub>2</sub> + … + n<sub>k</sub> ) ÷ k</div>
- <p>There is no second rescaling after the average. That is why the highest-scoring neighbourhood on a map is usually not exactly 100 — Saskatoon's peak is 95.3, Regina's 95.7 — and why no neighbourhood ever scores 0 unless it sits at the bottom of every indicator at once.</p>
+ <p>There is no second rescaling after the average. That is why the highest-scoring neighbourhood on a map is usually not exactly 100 (Saskatoon's peak is 95.3, Regina's 95.7), and why no neighbourhood ever scores 0 unless it sits at the bottom of every indicator at once.</p>
 
  <h2>2. The indicators and their weights</h2>
  <p><b>The weights are equal.</b> No indicator is given more influence than another. In Canada each of the three indicators carries one-third of the score; in the United States each of the four carries one-quarter. This was a deliberate choice: there is no published evidence base that would justify a particular unequal weighting, and an arbitrary one would be harder to defend than an equal one.</p>
- <div class="src"><b>Canada — three indicators, one-third each.</b> Statistics Canada 2021 Census Profile, dissemination-area level, characteristic codes in brackets.<br>
- · <b>Low-income measure, after tax (LIM-AT)</b> — prevalence, % of population [331]<br>
- · <b>Government transfers</b> — share of total household income, % [144]<br>
- · <b>Median total household income</b> — dollars, <b>inverted</b> [229]</div>
- <div class="src"><b>United States — four indicators, one-quarter each.</b> U.S. Census American Community Survey 5-year estimates, tract level, via Census Reporter; ACS table in brackets.<br>
- · <b>Poverty rate</b> — % below the federal poverty line [B17001]<br>
- · <b>Share under 200% of the federal poverty line</b> — % [C17002]<br>
- · <b>SNAP receipt</b> — % of households [B22003]<br>
- · <b>Median household income</b> — dollars, <b>inverted</b> [B19013]</div>
+ <div class="src"><b>Canada: three indicators, one-third each.</b> Statistics Canada 2021 Census Profile, dissemination-area level, characteristic codes in brackets.<br>
+ · <b>Low-income measure, after tax (LIM-AT)</b>: prevalence, % of population [331]<br>
+ · <b>Government transfers</b>: share of total household income, % [144]<br>
+ · <b>Median total household income</b>: dollars, <b>inverted</b> [229]</div>
+ <div class="src"><b>United States: four indicators, one-quarter each.</b> U.S. Census American Community Survey 5-year estimates, tract level, via Census Reporter; ACS table in brackets.<br>
+ · <b>Poverty rate</b>: % below the federal poverty line [B17001]<br>
+ · <b>Share under 200% of the federal poverty line</b>: % [C17002]<br>
+ · <b>SNAP receipt</b>: % of households [B22003]<br>
+ · <b>Median household income</b>: dollars, <b>inverted</b> [B19013]</div>
  <p>The two countries are scored on different indicators because the two statistical systems publish different things. There is no Canadian equivalent of SNAP receipt, and no U.S. equivalent of LIM-AT at this geography.</p>
 
  <h2>3. What the scale is measured against</h2>
- <p>The minimum and maximum in step one are not national. They are taken from the <b>reference set</b> — the neighbourhoods inside that one food bank's service area that are eligible to set the scale.</p>
+ <p>The minimum and maximum in step one are not national. They are taken from the <b>reference set</b>: the neighbourhoods inside that one food bank's service area that are eligible to set the scale.</p>
  <p><b>In Canada</b>, the reference set is every dissemination area with a population above zero whose low-income and income figures are not both suppressed.</p>
- <p><b>In the United States</b>, the reference set is every tract with a population above zero that is not flagged as group quarters. A tract is flagged as group quarters if its population is under 1,200 <em>or</em> at least half its residents live in group quarters — dormitories, military housing, senior facilities, shelters, correctional facilities. That flag is a rule applied by the Atlas, not a label published by the Census Bureau.</p>
- <p>Neighbourhoods outside the reference set are still scored and still drawn on the map — they are marked with a dashed purple outline rather than hidden — but they do not set the ends of the scale, and their scores are clamped to the 0–100 range.</p>
+ <p><b>In the United States</b>, the reference set is every tract with a population above zero that is not flagged as group quarters. A tract is flagged as group quarters if its population is under 1,200 <em>or</em> at least half its residents live in group quarters: dormitories, military housing, senior facilities, shelters, correctional facilities. That flag is a rule applied by the Atlas, not a label published by the Census Bureau.</p>
+ <p>Neighbourhoods outside the reference set are still scored and still drawn on the map, and are marked with a dashed purple outline rather than hidden, but they do not set the ends of the scale, and their scores are clamped to the 0–100 range.</p>
 
  <h2>4. Missing and suppressed data</h2>
  <p>Statistics Canada suppresses figures for small or sparsely populated areas to protect privacy, and ACS estimates are sometimes absent. The rule is the same in both countries: <b>a missing indicator is dropped, and the remaining indicators are averaged among themselves.</b> The divisor <em>k</em> in the formula is the number of indicators actually available for that neighbourhood, not the full three or four. Missing values are never imputed, never filled with a national average, and never treated as zero.</p>
  <p>This means a neighbourhood can be scored on fewer indicators than its neighbours. <b>That is a real limitation and it should be read as one.</b> The numbers, verified against the live maps on 15 September 2026:</p>
- <div class="src"><b>Canada</b> — 24,420 dissemination areas across 9 maps. <b>23,836</b> are scored. <b>584</b> have both low-income and income suppressed and are left unscored entirely — they carry no score at all rather than a partial one. Of those scored, <b>444</b> (1.9%) rest on one or two indicators instead of three.<br><br>
- <b>United States</b> — 26,882 tracts across 32 maps. All are scored. Of those, <b>186</b> (0.7%) rest on fewer than four indicators. <b>555</b> are flagged as group quarters.</div>
+ <div class="src"><b>Canada</b>: 24,420 dissemination areas across 9 maps. <b>23,836</b> are scored. <b>584</b> have both low-income and income suppressed and are left unscored entirely, carrying no score at all rather than a partial one. Of those scored, <b>444</b> (1.9%) rest on one or two indicators instead of three.<br><br>
+ <b>United States</b>: 26,882 tracts across 32 maps. All are scored. Of those, <b>186</b> (0.7%) rest on fewer than four indicators. <b>555</b> are flagged as group quarters.</div>
  <p>A neighbourhood scored on one indicator is a weaker estimate than one scored on three. Click any neighbourhood on a map to see which indicators it actually has; a suppressed figure is shown as blank, not as a number.</p>
 
- <h2>5. What the score can be compared against — and what it cannot</h2>
+ <h2>5. What the score can be compared against, and what it cannot</h2>
  <p>Because the scale is built from the highest and lowest values <em>inside each service area</em>, the score is a <b>local ranking</b>. This is the single most important limitation on the page.</p>
  <p><b>Valid:</b> comparing neighbourhoods within one food bank's map. A neighbourhood scoring 90 has substantially higher measured need than one scoring 40 in the same service area. That is what the score is for, and what it does well.</p>
  <p><b>Not valid:</b> comparing scores between food banks, between cities, between provinces, or between countries. Saskatoon's highest-need neighbourhood scores 95.3 and Toronto's scores 99.9. This does <b>not</b> mean need in Toronto is greater. Each map's scale is stretched to its own range, so almost every map has a top neighbourhood somewhere in the 80s or 90s regardless of the absolute conditions there. Two neighbourhoods in different cities with identical poverty and income can receive very different scores.</p>
  <p><b>Not valid across the border under any circumstances:</b> the Canadian and U.S. scores are built from different indicators drawn from different statistical systems with different definitions. They share a 0–100 presentation and nothing else.</p>
- <p>If you need figures that are comparable between regions, use the underlying indicators themselves — the LIM-AT rate, the poverty rate, the median income — which are shown for every neighbourhood and are comparable, rather than the composite score.</p>
+ <p>If you need figures that are comparable between regions, use the underlying indicators themselves. The LIM-AT rate, the poverty rate and the median income are shown for every neighbourhood and are comparable, rather than the composite score.</p>
 
  <h2>6. How old the data is</h2>
- <p><b>Canada: the 2021 Census of Population.</b> It was collected in May 2021, and its income and low-income measures refer to the <b>2020 tax year</b>. As of September 2026 that makes the income figures roughly six years old. This matters: they describe conditions before the sharp food-price inflation of 2022–23, and Canadian food-bank visits have risen substantially since. The Atlas is useful here for showing <em>where</em> need concentrates, and unreliable for showing <em>how much</em> need there is now. The next Canadian refresh depends on Statistics Canada — the 2026 Census was collected in May 2026, and dissemination-area profile data is expected in 2027–28.</p>
+ <p><b>Canada: the 2021 Census of Population.</b> It was collected in May 2021, and its income and low-income measures refer to the <b>2020 tax year</b>. As of September 2026 that makes the income figures roughly six years old. This matters: they describe conditions before the sharp food-price inflation of 2022–23, and Canadian food-bank visits have risen substantially since. The Atlas is useful here for showing <em>where</em> need concentrates, and unreliable for showing <em>how much</em> need there is now. The next Canadian refresh depends on Statistics Canada. The 2026 Census was collected in May 2026, and dissemination-area profile data is expected in 2027–28.</p>
  <p><b>United States: the American Community Survey 5-year estimates.</b> The builder requests the latest 5-year release available at the time each map is built; the release current as of September 2026 is the <b>2024 5-year</b> file, covering 2020–2024. A 5-year estimate is an average across five years, so its midpoint is about three years behind the present even when the file is brand new. Tract boundaries come from the 2023 TIGER release.</p>
  <p><b>When the maps were last built.</b> The U.S. maps were last rebuilt on 14 September 2026 and the Canadian maps on 8 September 2026. New underlying data exists only when the statistical agencies publish it: the Census Bureau releases a new ACS 5-year file each December, and Statistics Canada releases dissemination-area Census Profile data after each census. Anyone relying on these figures should check the build dates in the version box above rather than assume a schedule.</p>
  <p><b>A known gap in version 1.0:</b> the specific ACS release used for each individual map is not currently recorded on that map's page, and the build caches census responses, so a rebuild does not by itself guarantee freshly pulled data. Until each map carries its own data stamp, treat the rebuild dates in the version box above as the build date, not as proof of the data vintage.</p>
 
- <h2>7. Validation — what has and has not been tested</h2>
+ <h2>7. Validation: what has and has not been tested</h2>
  <p>This section is deliberately blunt, because a food bank citing the Atlas in a funding application needs to know exactly how much weight it will bear. It separates what has been tested from what has not.</p>
 
  <h3>Tested: does the index reproduce, and does the weighting hold up?</h3>
  <p>Two things have been tested across <b>all 41 maps and 49,634 neighbourhoods</b> with complete indicator data.</p>
- <p><b>Reproducibility — passed exactly.</b> Every published score was recomputed from the formula in section 1 using only the indicator values shown on the maps. All 50,718 scored neighbourhoods matched to the decimal place. The tool computes what this page says it computes.</p>
- <p><b>Weighting sensitivity — the equal weighting is supported by the data.</b> The obvious objection is that one-third each is an arbitrary choice. So the data was allowed to pick the weights instead, using a standard statistical method that reads the weights out of how the indicators move together. It picked weights almost exactly equal — and ranked the neighbourhoods in the same order:</p>
+ <p><b>Reproducibility: passed exactly.</b> Every published score was recomputed from the formula in section 1 using only the indicator values shown on the maps. All 50,718 scored neighbourhoods matched to the decimal place. The tool computes what this page says it computes.</p>
+ <p><b>Weighting sensitivity: the equal weighting is supported by the data.</b> The obvious objection is that one-third each is an arbitrary choice. So the data was allowed to pick the weights instead, using a standard statistical method that reads the weights out of how the indicators move together. It picked weights almost exactly equal, and ranked the neighbourhoods in the same order:</p>
  <div class="src"><b>Weights the data chooses, against the equal weights actually used</b><br>
- · <b>Canada</b> — equal: 0.333 / 0.333 / 0.333. Data-derived: <b>0.333 / 0.327 / 0.340</b> (LIM-AT / transfers / income).<br>
- · <b>United States</b> — equal: 0.250 each. Data-derived: <b>0.250 / 0.267 / 0.241 / 0.242</b> (poverty / under-200% / SNAP / income).<br>
+ · <b>Canada</b>. Equal: 0.333 / 0.333 / 0.333. Data-derived: <b>0.333 / 0.327 / 0.340</b> (LIM-AT / transfers / income).<br>
+ · <b>United States</b>. Equal: 0.250 each. Data-derived: <b>0.250 / 0.267 / 0.241 / 0.242</b> (poverty / under-200% / SNAP / income).<br>
  · Rank correlation between the equal-weighted and data-weighted scores: <b>1.000</b> in both countries.<br>
- · The indicators overlap heavily — about <b>78% (Canada) and 80% (United States)</b> of the variation between neighbourhoods is one common pattern, which is what makes combining them into a single score reasonable.</div>
+ · The indicators overlap heavily. About <b>78% (Canada) and 80% (United States)</b> of the variation between neighbourhoods is one common pattern, which is what makes combining them into a single score reasonable.</div>
  <p>In plain terms: the three (or four) indicators largely measure one underlying thing, and the equal weighting is not a shortcut that distorts the result. It is what the data itself points to.</p>
- <p><b>Missing-data rule — holds.</b> Dropping any single indicator and rescoring changes the neighbourhood ranking very little: rank correlation with the full score stays between 0.90 and 0.98 in Canada and 0.96 and 0.99 in the United States. This is direct evidence that the neighbourhoods scored on fewer indicators (section 4) are not badly misplaced.</p>
- <p><b>The composite does more than any one indicator.</b> No single indicator reproduces it — the worst-matching single indicator correlates 0.66 (Canada) and 0.74 (United States) with the composite.</p>
- <p><b>An honest limit found by this testing.</b> The exact membership of the top 10% of neighbourhoods is somewhat sensitive to weighting. Under 500 randomly drawn weightings, an average of 77% (Canada) and 79% (United States) of the top-decile neighbourhoods are the same ones the published score picks, and under the least favourable weightings that falls to roughly 45%. <b>Read the high-need band as a band, not as a ranked list</b> — the difference between the 6th and 16th highest-scoring neighbourhood is not meaningful; the difference between the top decile and the bottom half is.</p>
+ <p><b>Missing-data rule: holds.</b> Dropping any single indicator and rescoring changes the neighbourhood ranking very little: rank correlation with the full score stays between 0.90 and 0.98 in Canada and 0.96 and 0.99 in the United States. This is direct evidence that the neighbourhoods scored on fewer indicators (section 4) are not badly misplaced.</p>
+ <p><b>The composite does more than any one indicator.</b> No single indicator reproduces it. The worst-matching single indicator correlates 0.66 (Canada) and 0.74 (United States) with the composite.</p>
+ <p><b>An honest limit found by this testing.</b> The exact membership of the top 10% of neighbourhoods is somewhat sensitive to weighting. Under 500 randomly drawn weightings, an average of 77% (Canada) and 79% (United States) of the top-decile neighbourhoods are the same ones the published score picks, and under the least favourable weightings that falls to roughly 45%. <b>Read the high-need band as a band, not as a ranked list</b>. The difference between the 6th and 16th highest-scoring neighbourhood is not meaningful; the difference between the top decile and the bottom half is.</p>
 
  <h3>Not tested: does the score predict actual food need?</h3>
  <p><b>The index has not been validated against any observed outcome.</b> It has not been compared with food-bank visit counts, client registrations, or distribution volumes. It has not been compared with Canadian Income Survey or Household Food Security Survey Module food-insecurity estimates, with Statistics Canada's Canadian Index of Multiple Deprivation, or with Feeding America's Map the Meal Gap. No external statistical or academic review has been carried out. No confidence intervals are reported, and ACS margins of error are not propagated into the score.</p>
  <p>Everything in the tested section above is <b>internal</b>: it shows the index is arithmetically sound, stable, and not an artefact of an arbitrary weighting choice. None of it shows that the composite predicts where people actually go hungry. That is a different question and it remains open.</p>
- <p><b>What this means for citation.</b> The Atlas is defensible as a transparent, reproducible, weighting-robust index of measured socioeconomic disadvantage at neighbourhood level, built from official statistics. It is not a validated measure of food insecurity and should not be cited as one. The honest framing in a grant application is that the Atlas identifies where recognised drivers of food need concentrate within a service area — not that it counts food-insecure people.</p>
+ <p><b>What this means for citation.</b> The Atlas is defensible as a transparent, reproducible, weighting-robust index of measured socioeconomic disadvantage at neighbourhood level, built from official statistics. It is not a validated measure of food insecurity and should not be cited as one. The honest framing in a grant application is that the Atlas identifies where recognised drivers of food need concentrate within a service area, not that it counts food-insecure people.</p>
  <p>If your food bank holds aggregate service data and wants the score tested against real demand in your own area, get in touch and we will look at it with you.</p>
 
  <h2>8. Related and complementary sources</h2>
- <p>In Canada, <a href="https://foodbankscanada.ca/" target="_blank" rel="noopener">Food Banks Canada</a>'s Poverty Vulnerability Map covers Federal Electoral Districts and Census Metropolitan Areas with a broader set of vulnerability indicators and an established methodology. It is the better instrument for national research and advocacy. The Atlas works at a far finer geography — dissemination areas of 400–700 people — for operational planning inside a single service area. The two are complementary, and where they disagree the national research resource should be treated as authoritative.</p>
+ <p>In Canada, <a href="https://foodbankscanada.ca/" target="_blank" rel="noopener">Food Banks Canada</a>'s Poverty Vulnerability Map covers Federal Electoral Districts and Census Metropolitan Areas with a broader set of vulnerability indicators and an established methodology. It is the better instrument for national research and advocacy. The Atlas works at a far finer geography, dissemination areas of 400 to 700 people, for operational planning inside a single service area. The two are complementary, and where they disagree the national research resource should be treated as authoritative.</p>
  <p>In the United States, Feeding America's Map the Meal Gap provides county-level food-insecurity rates and meal-cost estimates. The Atlas does not replace it and does not produce dollar or meal estimates.</p>
 
  <h2>9. How to cite the Atlas</h2>
- <div class="src">Food Aid Project. <em>Food-Need Atlas</em> — [food bank name] service area. Methodology version 1.2, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
+ <div class="src">Food Aid Project. <em>Food-Need Atlas</em>, [food bank name] service area. Methodology version 1.3, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
  When citing a score, state the geography and the limitation, for example: "Dissemination area 47110567 scores 95.3 on the Food-Need Atlas composite index, the highest relative score within the Saskatoon service area. The index ranks neighbourhoods within a service area and is not comparable between regions."</div>
 
  <h2>10. Reproducing the calculation</h2>
- <p>The score for every neighbourhood can be recomputed from the values shown on the map itself, using the formula in section 1. The build code is open: <a href="https://github.com/MultigrainIntl/foodbank-atlas" target="_blank" rel="noopener">github.com/MultigrainIntl/foodbank-atlas</a> — the scoring function is <span class="mono">score()</span> in <span class="mono">build_ca.py</span> for Canada and <span class="mono">build_atlas.py</span> for the United States. If your recomputation disagrees with a published score by more than rounding, that is a defect and we want to hear about it.</p>
+ <p>The score for every neighbourhood can be recomputed from the values shown on the map itself, using the formula in section 1. The build code is open: <a href="https://github.com/MultigrainIntl/foodbank-atlas" target="_blank" rel="noopener">github.com/MultigrainIntl/foodbank-atlas</a>. The scoring function is <span class="mono">score()</span> in <span class="mono">build_ca.py</span> for Canada and <span class="mono">build_atlas.py</span> for the United States. If your recomputation disagrees with a published score by more than rounding, that is a defect and we want to hear about it.</p>
 
  <h2>Changelog</h2>
- <div class="src"><b>Version 1.2 — 15 September 2026.</b> Plain-language rewrite of the weighting-test explanation in section 7. No change to the method or the results.<br><b>Version 1.1 — 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0 — 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
+ <div class="src"><b>Version 1.3, 15 September 2026.</b> Added a plain-language summary at the top of the page.<br><b>Version 1.2, 15 September 2026.</b> Plain-language rewrite of the weighting-test explanation in section 7. No change to the method or the results.<br><b>Version 1.1, 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0, 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
 
  <h2>Questions about the method</h2>
  <p>If something on this page is unclear, insufficient, or wrong, say so. Corrections and challenges to the method are welcome.</p>
  <a class="cta" href="https://www.foodaidproject.org/food-banks.html" target="_blank" rel="noopener">Talk to Food Aid Project →</a>
 
- <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.2 · illustrative, not a Feeding America product</div>
+ <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.3 · illustrative, not a Feeding America product</div>
 </div>
 __FBSEARCH_JS__</body></html>'''
 METHOD = METHOD.replace("__ORDER_NAV__", order_nav).replace("__FBSEARCH_NAV__", FBSEARCH_NAV).replace("__FBSEARCH_JS__", FBSEARCH_JS)
