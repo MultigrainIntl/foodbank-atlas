@@ -1,8 +1,9 @@
 """Verify every checkable factual claim on the methodology page against the
 live map data and the build code. Prints PASS/FAIL per claim."""
-import json, glob, os, re, statistics as st, numpy as np
+import json, glob, os, re, sys, statistics as st, numpy as np
 
-REPO = 'foodbank-atlas'
+# Resolve the repo from this file's own location, so the script works from any directory.
+REPO = os.path.dirname(os.path.abspath(__file__))
 def load(p):
     t = open(p, encoding='utf-8').read(); i = t.find('const DATA=')
     if i < 0: return None
@@ -27,6 +28,8 @@ maps = {}
 for f in sorted(glob.glob(f'{REPO}/docs/*.html')):
     r = load(f)
     if r: maps[os.path.basename(f)[:-5]] = r
+if not maps:
+    sys.exit(f'no map pages found under {REPO}/docs -- nothing to verify')
 ca = {k:v for k,v in maps.items() if 'dauid' in v[0]}
 us = {k:v for k,v in maps.items() if 'dauid' not in v[0]}
 
@@ -176,3 +179,4 @@ print(f"\n{len(R)-len(fails)}/{len(R)} claims verified.")
 if fails:
     print("\nFAILED:")
     for _,c,g in fails: print(f"  - {c}   actual: {g}")
+sys.exit(1 if fails else 0)
