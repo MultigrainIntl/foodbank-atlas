@@ -305,6 +305,9 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  .src{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--ink-soft);margin:14px 0}
  .src b{color:var(--ink)}
  .cta{display:inline-block;background:var(--primary);color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:11px 18px;margin-top:6px}
+ .tldr{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:12px;padding:6px 20px 16px;margin:22px 0 6px}
+ .tldr-h{font-size:1rem;margin:14px 0 6px}
+ .tldr ul{margin:0;padding-left:18px} .tldr li{color:var(--ink-soft);margin:7px 0;font-size:14.5px}
  h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1rem;margin:22px 0 6px;color:var(--ink)}
  .eq{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:8px;padding:12px 16px;margin:12px 0;font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:var(--ink);overflow-x:auto}
  .mono{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
@@ -315,11 +318,23 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a>__ORDER_NAV____FBSEARCH_NAV__</div>
 </header>
 <div class="wrap">
- <p class="kick">Methodology · Version 1.2 · 15 September 2026</p>
+ <p class="kick">Methodology · Version 1.3 · 15 September 2026</p>
  <h1>How the food-need score is built</h1>
  <p class="lead">This page states the exact formula, the weights, the missing-data rule, what the score can and cannot be compared against, how old the data is, and what has and has not been validated. It exists so a food bank can evaluate the Atlas before citing it in a grant application or a board report.</p>
 
- <div class="src"><b>Version 1.2</b> · published 15 September 2026 · applies to all 41 maps. <b>U.S. maps last rebuilt</b> 14 September 2026. <b>Canadian maps last rebuilt</b> 8 September 2026. Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
+ <div class="src"><b>Version 1.3</b> · published 15 September 2026 · applies to all 41 maps. <b>U.S. maps last rebuilt</b> 14 September 2026. <b>Canadian maps last rebuilt</b> 8 September 2026. Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
+
+ <div class="tldr">
+  <h2 class="tldr-h">The short version</h2>
+  <ul>
+   <li><b>What the score is.</b> A 0–100 ranking of neighbourhoods by measured food need, built from official census statistics.</li>
+   <li><b>How it is built.</b> Three indicators in Canada (low income, government transfers, median income), four in the United States. Each is put on the same scale, then averaged. <b>Equal weight</b> — one-third each in Canada, one-quarter each in the US.</li>
+   <li><b>What you may compare.</b> Neighbourhoods <em>within one food bank's map</em>. <b>Never between food banks, cities or countries</b> — each map is scaled to its own service area.</li>
+   <li><b>How old the data is.</b> Canada: the 2021 Census, with income figures referring to 2020. United States: the latest ACS 5-year estimates. Neither reflects conditions today.</li>
+   <li><b>Where data is missing.</b> Suppressed neighbourhoods are either left unscored or scored on the indicators that remain. Nothing is invented to fill a gap.</li>
+   <li><b>What has not been tested.</b> Whether the score predicts where people actually go hungry. It has not been checked against food bank demand or food-insecurity surveys. Cite it as a measure of disadvantage, not a count of hunger.</li>
+  </ul>
+ </div>
 
  <h2>1. The formula</h2>
  <p>Every neighbourhood gets one score from 0 to 100. The calculation runs in three steps, in this order.</p>
@@ -400,20 +415,20 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <p>In the United States, Feeding America's Map the Meal Gap provides county-level food-insecurity rates and meal-cost estimates. The Atlas does not replace it and does not produce dollar or meal estimates.</p>
 
  <h2>9. How to cite the Atlas</h2>
- <div class="src">Food Aid Project. <em>Food-Need Atlas</em> — [food bank name] service area. Methodology version 1.2, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
+ <div class="src">Food Aid Project. <em>Food-Need Atlas</em> — [food bank name] service area. Methodology version 1.3, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
  When citing a score, state the geography and the limitation, for example: "Dissemination area 47110567 scores 95.3 on the Food-Need Atlas composite index, the highest relative score within the Saskatoon service area. The index ranks neighbourhoods within a service area and is not comparable between regions."</div>
 
  <h2>10. Reproducing the calculation</h2>
  <p>The score for every neighbourhood can be recomputed from the values shown on the map itself, using the formula in section 1. The build code is open: <a href="https://github.com/MultigrainIntl/foodbank-atlas" target="_blank" rel="noopener">github.com/MultigrainIntl/foodbank-atlas</a> — the scoring function is <span class="mono">score()</span> in <span class="mono">build_ca.py</span> for Canada and <span class="mono">build_atlas.py</span> for the United States. If your recomputation disagrees with a published score by more than rounding, that is a defect and we want to hear about it.</p>
 
  <h2>Changelog</h2>
- <div class="src"><b>Version 1.2 — 15 September 2026.</b> Plain-language rewrite of the weighting-test explanation in section 7. No change to the method or the results.<br><b>Version 1.1 — 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0 — 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
+ <div class="src"><b>Version 1.3 — 15 September 2026.</b> Added a plain-language summary at the top of the page.<br><b>Version 1.2 — 15 September 2026.</b> Plain-language rewrite of the weighting-test explanation in section 7. No change to the method or the results.<br><b>Version 1.1 — 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0 — 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
 
  <h2>Questions about the method</h2>
  <p>If something on this page is unclear, insufficient, or wrong, say so. Corrections and challenges to the method are welcome.</p>
  <a class="cta" href="https://www.foodaidproject.org/food-banks.html" target="_blank" rel="noopener">Talk to Food Aid Project →</a>
 
- <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.2 · illustrative, not a Feeding America product</div>
+ <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.3 · illustrative, not a Feeding America product</div>
 </div>
 __FBSEARCH_JS__</body></html>'''
 METHOD = METHOD.replace("__ORDER_NAV__", order_nav).replace("__FBSEARCH_NAV__", FBSEARCH_NAV).replace("__FBSEARCH_JS__", FBSEARCH_JS)
