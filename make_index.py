@@ -315,11 +315,11 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a>__ORDER_NAV____FBSEARCH_NAV__</div>
 </header>
 <div class="wrap">
- <p class="kick">Methodology · Version 1.1 · 15 September 2026</p>
+ <p class="kick">Methodology · Version 1.2 · 15 September 2026</p>
  <h1>How the food-need score is built</h1>
  <p class="lead">This page states the exact formula, the weights, the missing-data rule, what the score can and cannot be compared against, how old the data is, and what has and has not been validated. It exists so a food bank can evaluate the Atlas before citing it in a grant application or a board report.</p>
 
- <div class="src"><b>Version 1.1</b> · published 15 September 2026 · applies to all 41 maps. <b>U.S. maps last rebuilt</b> 14 September 2026. <b>Canadian maps last rebuilt</b> 8 September 2026. Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
+ <div class="src"><b>Version 1.2</b> · published 15 September 2026 · applies to all 41 maps. <b>U.S. maps last rebuilt</b> 14 September 2026. <b>Canadian maps last rebuilt</b> 8 September 2026. Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
 
  <h2>1. The formula</h2>
  <p>Every neighbourhood gets one score from 0 to 100. The calculation runs in three steps, in this order.</p>
@@ -378,13 +378,13 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <h3>Tested: does the index reproduce, and does the weighting hold up?</h3>
  <p>Two things have been tested across <b>all 41 maps and 49,634 neighbourhoods</b> with complete indicator data.</p>
  <p><b>Reproducibility — passed exactly.</b> Every published score was recomputed from the formula in section 1 using only the indicator values shown on the maps. All 50,718 scored neighbourhoods matched to the decimal place. The tool computes what this page says it computes.</p>
- <p><b>Weighting sensitivity — the equal weighting is supported by the data.</b> The obvious objection to an equal weighting is that it is arbitrary. It was tested by deriving weights from the data itself, using the first principal component of the indicator correlation matrix, and comparing the result with the published equal-weighted score:</p>
+ <p><b>Weighting sensitivity — the equal weighting is supported by the data.</b> The obvious objection is that one-third each is an arbitrary choice. So the data was allowed to pick the weights instead, using a standard statistical method that reads the weights out of how the indicators move together. It picked weights almost exactly equal — and ranked the neighbourhoods in the same order:</p>
  <div class="src"><b>Weights the data chooses, against the equal weights actually used</b><br>
  · <b>Canada</b> — equal: 0.333 / 0.333 / 0.333. Data-derived: <b>0.333 / 0.327 / 0.340</b> (LIM-AT / transfers / income).<br>
  · <b>United States</b> — equal: 0.250 each. Data-derived: <b>0.250 / 0.267 / 0.241 / 0.242</b> (poverty / under-200% / SNAP / income).<br>
  · Rank correlation between the equal-weighted and data-weighted scores: <b>1.000</b> in both countries.<br>
- · First principal component explains <b>78% (Canada) and 80% (United States)</b> of the variance across indicators.</div>
- <p>In plain terms: the indicators largely measure one underlying thing, and when the data is allowed to pick the weights it picks something within about two points of equal. The equal weighting is not a shortcut that distorts the result.</p>
+ · The indicators overlap heavily — about <b>78% (Canada) and 80% (United States)</b> of the variation between neighbourhoods is one common pattern, which is what makes combining them into a single score reasonable.</div>
+ <p>In plain terms: the three (or four) indicators largely measure one underlying thing, and the equal weighting is not a shortcut that distorts the result. It is what the data itself points to.</p>
  <p><b>Missing-data rule — holds.</b> Dropping any single indicator and rescoring changes the neighbourhood ranking very little: rank correlation with the full score stays between 0.90 and 0.98 in Canada and 0.96 and 0.99 in the United States. This is direct evidence that the neighbourhoods scored on fewer indicators (section 4) are not badly misplaced.</p>
  <p><b>The composite does more than any one indicator.</b> No single indicator reproduces it — the worst-matching single indicator correlates 0.66 (Canada) and 0.74 (United States) with the composite.</p>
  <p><b>An honest limit found by this testing.</b> The exact membership of the top 10% of neighbourhoods is somewhat sensitive to weighting. Under 500 randomly drawn weightings, an average of 77% (Canada) and 79% (United States) of the top-decile neighbourhoods are the same ones the published score picks, and under the least favourable weightings that falls to roughly 45%. <b>Read the high-need band as a band, not as a ranked list</b> — the difference between the 6th and 16th highest-scoring neighbourhood is not meaningful; the difference between the top decile and the bottom half is.</p>
@@ -400,20 +400,20 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <p>In the United States, Feeding America's Map the Meal Gap provides county-level food-insecurity rates and meal-cost estimates. The Atlas does not replace it and does not produce dollar or meal estimates.</p>
 
  <h2>9. How to cite the Atlas</h2>
- <div class="src">Food Aid Project. <em>Food-Need Atlas</em> — [food bank name] service area. Methodology version 1.1, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
+ <div class="src">Food Aid Project. <em>Food-Need Atlas</em> — [food bank name] service area. Methodology version 1.2, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
  When citing a score, state the geography and the limitation, for example: "Dissemination area 47110567 scores 95.3 on the Food-Need Atlas composite index, the highest relative score within the Saskatoon service area. The index ranks neighbourhoods within a service area and is not comparable between regions."</div>
 
  <h2>10. Reproducing the calculation</h2>
  <p>The score for every neighbourhood can be recomputed from the values shown on the map itself, using the formula in section 1. The build code is open: <a href="https://github.com/MultigrainIntl/foodbank-atlas" target="_blank" rel="noopener">github.com/MultigrainIntl/foodbank-atlas</a> — the scoring function is <span class="mono">score()</span> in <span class="mono">build_ca.py</span> for Canada and <span class="mono">build_atlas.py</span> for the United States. If your recomputation disagrees with a published score by more than rounding, that is a defect and we want to hear about it.</p>
 
  <h2>Changelog</h2>
- <div class="src"><b>Version 1.1 — 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0 — 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
+ <div class="src"><b>Version 1.2 — 15 September 2026.</b> Plain-language rewrite of the weighting-test explanation in section 7. No change to the method or the results.<br><b>Version 1.1 — 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0 — 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
 
  <h2>Questions about the method</h2>
  <p>If something on this page is unclear, insufficient, or wrong, say so. Corrections and challenges to the method are welcome.</p>
  <a class="cta" href="https://www.foodaidproject.org/food-banks.html" target="_blank" rel="noopener">Talk to Food Aid Project →</a>
 
- <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.1 · illustrative, not a Feeding America product</div>
+ <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.2 · illustrative, not a Feeding America product</div>
 </div>
 __FBSEARCH_JS__</body></html>'''
 METHOD = METHOD.replace("__ORDER_NAV__", order_nav).replace("__FBSEARCH_NAV__", FBSEARCH_NAV).replace("__FBSEARCH_JS__", FBSEARCH_JS)
