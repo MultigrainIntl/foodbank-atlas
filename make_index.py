@@ -147,7 +147,7 @@ Path("docs/index.html").write_text(f'''<!doctype html><html lang="en"><head><met
 </style></head><body>
 <header class="nav">
  <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
- <div class="navlinks"><a class="tlink" href="/about">About</a>{order_nav}{FBSEARCH_NAV}<span class="count">{len(sums)} food bank{"s" if len(sums)!=1 else ""}</span></div>
+ <div class="navlinks"><a class="tlink" href="/about">About</a><a class="tlink" href="/methodology">Methodology</a>{order_nav}{FBSEARCH_NAV}<span class="count">{len(sums)} food bank{"s" if len(sums)!=1 else ""}</span></div>
 </header>
 <div class="wrap">
  <h1>Food-Need Atlas</h1>
@@ -476,7 +476,7 @@ if order.get("embed_url"):
 </style></head><body>
 <header class="nav">
  <a class="brand" href="/">Food Aid Project · <b>Food-Need Atlas</b></a>
- <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a>__FBSEARCH_NAV__</div>
+ <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a><a class="tlink" href="/methodology">Methodology</a>__FBSEARCH_NAV__</div>
 </header>
 <div class="wrap">
  <p class="kick">Food Aid Project · fill the trucks</p>
