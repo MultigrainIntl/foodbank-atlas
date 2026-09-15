@@ -321,11 +321,11 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <div class="navlinks"><a class="tlink" href="/">Atlas</a><a class="tlink" href="/about">About</a>__ORDER_NAV____FBSEARCH_NAV__</div>
 </header>
 <div class="wrap">
- <p class="kick">Methodology · Version 1.4 · 15 September 2026</p>
+ <p class="kick">Methodology · Version 1.0 · 15 September 2026</p>
  <h1>How the food-need score is built</h1>
  <p class="lead">This page states the exact formula, the weights, the missing-data rule, what the score can and cannot be compared against, how old the data is, and what has and has not been validated. It exists so a food bank can evaluate the Atlas before citing it in a grant application or a board report.</p>
 
- <div class="src"><b>Version 1.4</b> · published 15 September 2026 · applies to all 41 maps. <b>This site was last built __BUILT__.</b> Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
+ <div class="src"><b>Version 1.0</b> · published 15 September 2026 · applies to all 41 maps. <b>This site was last built __BUILT__.</b> Changes to the formula, the indicators, or the weights will appear in the changelog at the foot of this page with a new version number.</div>
 
  <div class="tldr">
   <h2 class="tldr-h">The short version</h2>
@@ -368,14 +368,14 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <p>The minimum and maximum in step one are not national. They are taken from the <b>reference set</b>: the neighbourhoods inside that one food bank's service area that are eligible to set the scale.</p>
  <p><b>In Canada</b>, the reference set is every dissemination area with a population above zero whose low-income and income figures are not both suppressed.</p>
  <p><b>In the United States</b>, the reference set is every tract with a population above zero that is not flagged as group quarters. A tract is flagged as group quarters if its population is under 1,200 <em>or</em> at least half its residents live in group quarters: dormitories, military housing, senior facilities, shelters, correctional facilities. That flag is a rule applied by the Atlas, not a label published by the Census Bureau.</p>
- <p>Neighbourhoods outside the reference set are still scored and still drawn on the map, and are marked with a dashed purple outline rather than hidden, but they do not set the ends of the scale, and their scores are clamped to the 0–100 range.</p>
+ <p>Neighbourhoods outside the reference set are never hidden. They are always drawn and always marked. In the United States a group-quarters tract still receives a score, shown with a <b>dashed purple outline</b>. In Canada a dissemination area whose low-income and income figures are both suppressed cannot be scored at all, and is shown in grey with a <b>dashed grey outline</b> and labelled "data suppressed". Either way, these neighbourhoods do not set the ends of the scale, and any score they do receive is clamped to the 0–100 range.</p>
 
  <h2>4. Missing and suppressed data</h2>
  <p>Statistics Canada suppresses figures for small or sparsely populated areas to protect privacy, and ACS estimates are sometimes absent. The rule is the same in both countries: <b>a missing indicator is dropped, and the remaining indicators are averaged among themselves.</b> The divisor <em>k</em> in the formula is the number of indicators actually available for that neighbourhood, not the full three or four. Missing values are never imputed, never filled with a national average, and never treated as zero.</p>
  <p>This means a neighbourhood can be scored on fewer indicators than its neighbours. <b>That is a real limitation and it should be read as one.</b> The numbers, verified against the live maps on 15 September 2026:</p>
  <div class="src"><b>Canada</b>: 24,420 dissemination areas across 9 maps. <b>23,836</b> are scored. <b>584</b> have both low-income and income suppressed and are left unscored entirely, carrying no score at all rather than a partial one. Of those scored, <b>444</b> (1.9%) rest on one or two indicators instead of three.<br><br>
  <b>United States</b>: 26,882 tracts across 32 maps. All are scored. Of those, <b>186</b> (0.7%) rest on fewer than four indicators. <b>555</b> are flagged as group quarters.</div>
- <p>A neighbourhood scored on one indicator is a weaker estimate than one scored on three. Click any neighbourhood on a map to see which indicators it actually has; a suppressed figure is shown as blank, not as a number.</p>
+ <p>A neighbourhood scored on one indicator is a weaker estimate than one scored on three. Click any neighbourhood on a map to see which indicators it actually has; a suppressed figure is shown as a dash, never as a number or a zero.</p>
 
  <h2>5. What the score can be compared against, and what it cannot</h2>
  <p>Because the scale is built from the highest and lowest values <em>inside each service area</em>, the score is a <b>local ranking</b>. This is the single most important limitation on the page.</p>
@@ -388,13 +388,13 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <p><b>Canada: the 2021 Census of Population.</b> It was collected in May 2021, and its income and low-income measures refer to the <b>2020 tax year</b>. As of September 2026 that makes the income figures roughly six years old. This matters: they describe conditions before the sharp food-price inflation of 2022–23, and Canadian food-bank visits have risen substantially since. The Atlas is useful here for showing <em>where</em> need concentrates, and unreliable for showing <em>how much</em> need there is now. The next Canadian refresh depends on Statistics Canada. The 2026 Census was collected in May 2026, and dissemination-area profile data is expected in 2027–28.</p>
  <p><b>United States: the American Community Survey 5-year estimates.</b> The builder requests the latest 5-year release available at the time each map is built; the release current as of September 2026 is the <b>2024 5-year</b> file, covering 2020–2024. A 5-year estimate is an average across five years, so its midpoint is about three years behind the present even when the file is brand new. Tract boundaries come from the 2023 TIGER release.</p>
  <p><b>When the maps were last built.</b> This site was last built <b>__BUILT__</b>. Rebuilding does not make the underlying data newer: new figures exist only when the statistical agencies publish them. The Census Bureau releases a new ACS 5-year file each December, and Statistics Canada releases dissemination-area Census Profile data after each census. The build history for every page is public at <a href="https://github.com/MultigrainIntl/foodbank-atlas/commits/main" target="_blank" rel="noopener">github.com/MultigrainIntl/foodbank-atlas</a>.</p>
- <p><b>A known gap in version 1.0:</b> the specific ACS release used for each individual map is not currently recorded on that map's page, and the build caches census responses, so a rebuild does not by itself guarantee freshly pulled data. Until each map carries its own data stamp, treat the rebuild dates in the version box above as the build date, not as proof of the data vintage.</p>
+ <p><b>A known gap.</b> The specific ACS release used for each individual map is not recorded on that map's page, and the build caches census responses, so a rebuild does not by itself guarantee freshly pulled data. Until each map carries its own data stamp, treat the build date above as the date the page was generated, not as proof of when the data was last pulled.</p>
 
  <h2>7. Validation: what has and has not been tested</h2>
  <p>This section is deliberately blunt, because a food bank citing the Atlas in a funding application needs to know exactly how much weight it will bear. It separates what has been tested from what has not.</p>
 
  <h3>Tested: does the index reproduce, and does the weighting hold up?</h3>
- <p>Two things have been tested across <b>all 41 maps and 49,634 neighbourhoods</b> with complete indicator data.</p>
+ <p>The tests below were run across <b>all 41 maps</b>. The reproducibility check covers every one of the <b>50,718</b> neighbourhoods that carry a score. The weighting and stability tests use the <b>49,634</b> of those that have every indicator present, since a weighting cannot be compared on a neighbourhood that is missing one.</p>
  <p><b>Reproducibility: passed exactly.</b> Every published score was recomputed from the formula in section 1 using only the indicator values shown on the maps. All 50,718 scored neighbourhoods matched to the decimal place. The tool computes what this page says it computes.</p>
  <p><b>Weighting sensitivity: the equal weighting is supported by the data.</b> The obvious objection is that one-third each is an arbitrary choice. So the data was allowed to pick the weights instead, using a standard statistical method that reads the weights out of how the indicators move together. It picked weights almost exactly equal, and ranked the neighbourhoods in the same order:</p>
  <div class="src"><b>Weights the data chooses, against the equal weights actually used</b><br>
@@ -418,20 +418,20 @@ METHOD = r'''<!doctype html><html lang="en"><head><meta charset="utf-8">
  <p>In the United States, Feeding America's Map the Meal Gap provides county-level food-insecurity rates and meal-cost estimates. The Atlas does not replace it and does not produce dollar or meal estimates.</p>
 
  <h2>9. How to cite the Atlas</h2>
- <div class="src">Food Aid Project. <em>Food-Need Atlas</em>, [food bank name] service area. Methodology version 1.4, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
+ <div class="src">Food Aid Project. <em>Food-Need Atlas</em>, [food bank name] service area. Methodology version 1.0, 15 September 2026. Retrieved [date] from https://foodbank-atlas.web.app<br><br>
  When citing a score, state the geography and the limitation, for example: "Dissemination area 47110567 scores 95.3 on the Food-Need Atlas composite index, the highest relative score within the Saskatoon service area. The index ranks neighbourhoods within a service area and is not comparable between regions."</div>
 
  <h2>10. Reproducing the calculation</h2>
  <p>The score for every neighbourhood can be recomputed from the values shown on the map itself, using the formula in section 1. The build code is open: <a href="https://github.com/MultigrainIntl/foodbank-atlas" target="_blank" rel="noopener">github.com/MultigrainIntl/foodbank-atlas</a>. The scoring function is <span class="mono">score()</span> in <span class="mono">build_ca.py</span> for Canada and <span class="mono">build_atlas.py</span> for the United States. If your recomputation disagrees with a published score by more than rounding, that is a defect and we want to hear about it.</p>
 
  <h2>Changelog</h2>
- <div class="src"><b>Version 1.4, 15 September 2026.</b> Build date now generated automatically instead of hard-coded, so it cannot go stale.<br><b>Version 1.3, 15 September 2026.</b> Added a plain-language summary at the top of the page.<br><b>Version 1.2, 15 September 2026.</b> Plain-language rewrite of the weighting-test explanation in section 7. No change to the method or the results.<br><b>Version 1.1, 15 September 2026.</b> Added tested validation results: reproducibility check on all 50,718 scores, data-derived weighting comparison, leave-one-out stability, and a weighting stress test of the top decile.<br><b>Version 1.0, 15 September 2026.</b> First published methodology. States the formula, equal weighting, reference population, missing-data rule, comparability limits, and data vintages.</div>
+ <div class="src"><b>Version 1.0, 15 September 2026.</b> First published methodology. States the formula, the equal weighting, the reference population, the missing-data rule, the comparability limits, the data vintages, and the validation results and gaps. Any later change to the formula, the indicators or the weights will be listed here with a new version number.</div>
 
  <h2>Questions about the method</h2>
  <p>If something on this page is unclear, insufficient, or wrong, say so. Corrections and challenges to the method are welcome.</p>
  <a class="cta" href="https://www.foodaidproject.org/food-banks.html" target="_blank" rel="noopener">Talk to Food Aid Project →</a>
 
- <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.4 · illustrative, not a Feeding America product</div>
+ <div class="foot">Food Aid Project · Food-Need Atlas · methodology v1.0 · illustrative, not a Feeding America product</div>
 </div>
 __FBSEARCH_JS__</body></html>'''
 METHOD = METHOD.replace("__BUILT__", BUILT).replace("__ORDER_NAV__", order_nav).replace("__FBSEARCH_NAV__", FBSEARCH_NAV).replace("__FBSEARCH_JS__", FBSEARCH_JS)
